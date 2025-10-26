@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Attributes Tutorial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #007bff;
+    }
+    code {
+      background: #f2f2f2;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    ul {
+      background: #fff;
+      padding: 15px 25px;
+      border-left: 4px solid #007bff;
+      border-radius: 5px;
+      list-style: disc;
+    }
+    .example {
+      background: #fff;
+      border-left: 4px solid #28a745;
+      padding: 10px 20px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>HTML Attributes</h1>
+
+  <p>HTML attributes provide additional information about HTML elements.</p>
+
+  <h2>Features of HTML Attributes</h2>
+  <ul>
+    <li>All HTML elements can have attributes.</li>
+    <li>Attributes provide additional information about elements.</li>
+    <li>Attributes are always specified in the start tag.</li>
+    <li>Attributes usually come in name/value pairs like: <code>name="value"</code>.</li>
+  </ul>
+
+  <h2>The <code>href</code> Attribute</h2>
+  <p>The <code>&lt;a&gt;</code> tag defines a hyperlink. The <code>href</code> attribute specifies the URL of the page the link goes to:</p>
+  <div class="example">
+    <pre>&lt;a href="html-intro.html"&gt;Go to homepage&lt;/a&gt;</pre>
+  </div>
+
+  <h2>The <code>src</code> Attribute</h2>
+  <p>The <code>&lt;img&gt;</code> tag is used to embed an image in an HTML page. The <code>src</code> attribute specifies the path to the image:</p>
+  <div class="example">
+    <pre>&lt;img src="../image/apple.png.jpg"&gt;</pre>
+  </div>
+
+  <p>There are two ways to specify the URL in the <code>src</code> attribute:</p>
+  <ol>
+    <li><strong>Absolute URL:</strong> Links to an external image hosted on another website.
+      <pre>src="https://www.ejistan.com/image/apple.jpg"</pre>
+      <small>Note: External images may be copyrighted.</small>
+    </li>
+    <li><strong>Relative URL:</strong> Links to an image hosted within your own site.
+      <pre>src="apple.png"</pre>
+    </li>
+  </ol>
+
+  <p><strong>Tip:</strong> It’s usually best to use relative URLs — they won’t break if you change domains.</p>
+
+  <h2>The <code>width</code> and <code>height</code> Attributes</h2>
+  <p>These specify the size of the image in pixels:</p>
+  <div class="example">
+    <pre>&lt;img src="img_girl.jpg" width="500" height="600"&gt;</pre>
+  </div>
+
+  <h2>The <code>alt</code> Attribute</h2>
+  <p>The <code>alt</code> attribute provides alternate text if an image cannot be displayed.</p>
+  <div class="example">
+    <pre>&lt;img src="apple.png.jpg" alt="This is an apple logo"&gt;</pre>
+  </div>
+  <p>If the image is missing:</p>
+  <div class="example">
+    <pre>&lt;img src="apple-logo.jpg" alt="This is an apple logo"&gt;</pre>
+  </div>
+
+  <h2>The <code>style</code> Attribute</h2>
+  <p>Used to apply inline CSS styles to an element.</p>
+  <div class="example">
+    <pre>&lt;p style="color:red;"&gt;This is a red paragraph.&lt;/p&gt;</pre>
+  </div>
+
+  <h2>The <code>lang</code> Attribute</h2>
+  <p>Defines the language of a web page. It should always be added to the <code>&lt;html&gt;</code> tag.</p>
+  <div class="example">
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;body&gt;
+...
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+  </div>
+  <p>It can also include a country code:</p>
+  <div class="example">
+    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-US"&gt;
+&lt;body&gt;
+...
+&lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+  </div>
+
+  <h2>The <code>title</code> Attribute</h2>
+  <p>Adds extra information as a tooltip when you hover over an element.</p>
+  <div class="example">
+    <pre>&lt;p title="This is the tooltip"&gt;This is a paragraph.&lt;/p&gt;</pre>
+  </div>
+
+  <h2>Attribute Best Practices</h2>
+
+  <h3>Use Lowercase Attribute Names</h3>
+  <p>HTML is not case-sensitive, but using lowercase keeps code clean and consistent.</p>
+
+  <h3>Always Quote Attribute Values</h3>
+  <p>Quotes are not strictly required, but recommended. Without them, spaces break your code.</p>
+  <div class="example">
+    <strong>Good:</strong><br>
+    <pre>&lt;a href="https://www.ejistan.com/html/"&gt;Visit our HTML tutorial&lt;/a&gt;</pre>
+    <strong>Bad:</strong><br>
+    <pre>&lt;a href=https://www.ejistan.com/html/&gt;Visit our HTML tutorial&lt;/a&gt;</pre>
+  </div>
+
+  <h3>Single or Double Quotes?</h3>
+  <p>Double quotes are most common, but single quotes can be used if the value contains double quotes:</p>
+  <div class="example">
+    <pre>&lt;p title='Learning "HTML" course'&gt;</pre>
+    <pre>&lt;p title="Learning 'HTML' course"&gt;</pre>
+  </div>
+
+  <h2>Chapter Summary</h2>
+  <ul>
+    <li>All HTML elements can have attributes.</li>
+    <li>The <code>href</code> attribute defines link destinations.</li>
+    <li>The <code>src</code> attribute specifies image sources.</li>
+    <li>The <code>width</code> and <code>height</code> attributes define image size.</li>
+    <li>The <code>alt</code> attribute provides fallback text for images.</li>
+    <li>The <code>style</code> attribute adds inline CSS styles.</li>
+    <li>The <code>lang</code> attribute defines the page’s language.</li>
+    <li>The <code>title</code> attribute adds tooltip information.</li>
+  </ul>
+
+</body>
+</html>
