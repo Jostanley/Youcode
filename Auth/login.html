@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href ="auth.css">
+<title>Ejistan Premium Course - Login</title>
+</head>
+
+<body>
+<p id="pageview">ejistan frontend web development</p>
+<main>
+  <h2>Login to Access Premium Course</h2>
+  <form id="form">
+    <input type="email" id="login-email" placeholder="Email Address" required>
+    <input type="password" id="login-password" placeholder="Password" required>
+    <p id="database-message"></p>
+    <button type="submit" id ="button">Login</button>
+  </form>
+  <div class="switch">
+    New user? <a href="register.html">Register here</a>
+  </div>
+</main>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyANRzfCpns7bKQREB7dAi1ujYkssaDC6QM",
+    authDomain: "ejistan-6ba97.firebaseapp.com",
+    projectId: "ejistan-6ba97",
+    storageBucket: "ejistan-6ba97.appspot.com",
+    messagingSenderId: "292265431615",
+    appId: "1:292265431615:web:1c8895149a5ee0c9ddde8a",
+    measurementId: "G-NE1SLMGP9W"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+
+  const submitform = document.getElementById("form")
+  const message = document.getElementById("database-message")
+  
+  submitform.addEventListener("submit", async (e)=>{
+      e.preventDefault()
+      const email = document.getElementById("login-email").value
+      const password = document.getElementById("login-password").value
+      try{
+      const user = await signInWithEmailAndPassword(auth,email,password)
+       alert("login successful" )   
+       window.location.href ="/"
+      }
+      catch (err){
+          
+         if (err.message = "auth/invalid-credential."){
+         alert("wrong credentials")
+          message.innerHTML = "wrong password "
+          message.style.color = "red"
+          
+      } else{
+          message.innerHTML = error.message
+          message.style.color = "red"
+      }
+      }
+  })
+</script>
+<footer>
+  Sponsored by Ejistan  | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">Privacy Policy</a>
+</footer>
+
+</body>
+</html>

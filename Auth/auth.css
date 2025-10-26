@@ -1,0 +1,169 @@
+body {
+ font-family: Arial; 
+ background: #00bfff; 
+ margin:0; 
+ display:flex; 
+ width:100vw;
+ flex-direction:column; 
+ 
+ }
+ #pageview{
+     background :#00bfff;
+     width:85%;
+     text-align:center;
+     font-size:17px;
+     color:white;
+     border:3px solid white;
+     padding:10px;
+     margin:10px 20px;
+ }
+  main {
+    width: 90vw;
+    margin: 30px auto; 
+    background: white; 
+    padding: 30px; 
+    border-radius: 8px; 
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+ main h2 { 
+  text-align:center;
+   color:#333;
+    }
+   #names{
+       display :flex;
+       gap:10px;
+       margin:10px auto;
+       flex-direction:row;
+       width:80vw;
+       
+   }
+   #names input {
+       flex: 1 1 0;
+       width:100%;
+   }
+   form{
+       width:90vw;
+   }
+   
+   input[type="email"],
+   input[type="text"]
+   {
+       width:80vw;
+       padding:10px;
+       border:1px solid black;
+       border-radius:10px;
+       margin:10px 5px;
+       font-size:16px;
+       text-align:center;
+   }
+   reg-email{
+       width:80vw;
+       display:flex;
+       align-self:center;
+       justify-self:center;
+   }
+  input[type="password"]{
+      border:none;
+      outline:none;
+      flex:1;
+  } 
+   #toggle{
+   position: relative;
+   display: flex;
+   align-items:center;
+   justify-content: space-between;
+   padding:10px;
+   border-radius:10px;
+   width:80vw;
+   border:1px solid black;
+   margin:10px 5px;
+   text-align:center;
+   font-size:16px;
+   }
+   #reg-password, #reg-confirmpassword,
+   #toggle button{
+       border:none;
+       font-size:16px;
+       
+   }
+   
+   #button {
+    width:80vw;
+    padding:12px; 
+    margin:15px 10px; 
+    border-radius:5px;
+    font-size:16px;
+    text-align:center ; 
+    background:#0056b3;
+    color:white;
+    border:none;
+     cursor:pointer; 
+     font-weight:bold; 
+     transition:0.3s;
+     }
+     #button:hover {
+   background:#003d80; 
+   }
+     .switch{
+         margin:10px 0;
+     }
+     .switch a{
+         text-decoration:none;
+     }
+  
+  footer { 
+  margin-top:auto;
+   background:#222; 
+   color:white;
+    text-align:center; 
+    padding:15px; 
+    font-size:14px;
+    }
+  footer a { 
+  color:#00bfff; 
+  text-decoration:none; 
+  opmargin:0 10px;
+   }
+  footer a:hover { text-decoration:underline; }
+  img{
+       width:50px;
+        height:auto;
+    }
+    .payment-container{
+        background :white;
+        width:80%;
+        margin:10px auto;
+        padding:10px;
+        border-radius:10px;
+    }
+   #paymentForm{
+        display :flex ;
+        align-items:left;
+        justify-content: left;
+        flex-direction:column;
+        padding:10px;
+    }
+    #paymentblock{
+    display :flex;
+    align-items:center;
+     padding :10px;
+    width:100%;
+    margin:5px 0;
+    font-size:20px;
+    box-shadow: 0 4px 10px rgba(150, 150, 150, 0.3);
+    }
+    #paymentblock:hover{
+        transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(80, 80, 80, 0.3);
+    }
+    #paymentblock span{
+        padding : 10px;
+    }
+    #secureicon{
+        
+    font-size: 13px;
+      color: #555;
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style
