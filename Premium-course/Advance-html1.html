@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced HTML Concepts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background: #007bff;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+    }
+
+    pre {
+      background: #f0f0f0;
+      color: black;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    button.copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    button.copy-btn:hover {
+      background: #0056b3;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #007bff;
+      color: white;
+      border-top: 2px solid #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Advanced HTML Concepts for Beginners</h1>
+  </header>
+
+  <main>
+
+    <!-- 1. Semantic HTML -->
+    <section id="semantic">
+      <h2>1. Semantic HTML Explained</h2>
+      <p>
+        Semantic HTML uses meaningful tags to describe the structure of a webpage. 
+        Instead of generic &lt;div&gt; tags, we use elements like &lt;header&gt;, &lt;nav&gt;, &lt;article&gt;, &lt;section&gt;, and &lt;footer&gt;. 
+        These help browsers and assistive technologies understand your content better.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;header&gt;
+  &lt;h1&gt;My Blog&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="#home"&gt;Home&lt;/a&gt;
+    &lt;a href="#articles"&gt;Articles&lt;/a&gt;
+    &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Understanding Semantic HTML&lt;/h2&gt;
+    &lt;section&gt;
+      &lt;p&gt;Semantic HTML makes your website more accessible...&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;&copy; 2025 My Blog&lt;/footer&gt;
+      </code></pre>
+      <p><strong>Explanation:</strong> Each tag has a role. <code>&lt;header&gt;</code> introduces the page, <code>&lt;nav&gt;</code> provides links, <code>&lt;article&gt;</code> contains independent content, <code>&lt;section&gt;</code> divides parts, and <code>&lt;footer&gt;</code> ends the page.</p>
+    </section>
+
+    <!-- 2. Accessibility -->
+    <section id="accessibility">
+      <h2>2. Accessibility Best Practices</h2>
+      <p>
+        Accessibility ensures your website is usable by everyone, including people with disabilities. 
+        Techniques include using ARIA roles, proper alt text, and supporting keyboard navigation.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;button aria-label="Play video"&gt;▶&lt;/button&gt;
+
+&lt;img src="nature.jpg" alt="Beautiful green forest with sunlight"&gt;
+
+&lt;a href="#main-content" accesskey="m"&gt;Skip to main content&lt;/a&gt;
+      </code></pre>
+
+      <p><strong>Explanation:</strong> ARIA attributes like <code>aria-label</code> describe purpose to screen readers. 
+      <code>alt</code> describes images. <code>accesskey</code> enables keyboard shortcuts.</p>
+    </section>
+
+    <!-- 3. Forms -->
+    <section id="forms">
+      <h2>3. Forms and Validation</h2>
+      <p>
+        Forms collect data from users. Modern HTML5 adds useful input types and validation attributes like <code>required</code>, <code>pattern</code>, and <code>min</code>/<code>max</code>.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;form&gt;
+  &lt;label&gt;Email: &lt;/label&gt;
+  &lt;input type="email" required placeholder="example@mail.com"&gt;
+
+  &lt;label&gt;Password: &lt;/label&gt;
+  &lt;input type="password" pattern=".{6,}" required title="At least 6 characters"&gt;
+
+  &lt;label&gt;Age: &lt;/label&gt;
+  &lt;input type="number" min="18" max="60"&gt;
+
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+      </code></pre>
+
+      <p><strong>Explanation:</strong> The browser automatically checks required fields and patterns before submission, making validation easier and faster.</p>
+    </section>
+
+    <!-- 4. Tables -->
+    <section id="tables">
+      <h2>4. Tables with Advanced Styling</h2>
+      <p>
+        Tables organize structured data. You can use <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code> for clarity, and CSS for styling.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;table border="1"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Country&lt;/th&gt;
+      &lt;th&gt;Score&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;John&lt;/td&gt;&lt;td&gt;Ghana&lt;/td&gt;&lt;td&gt;89&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Mary&lt;/td&gt;&lt;td&gt;Nigeria&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+      </code></pre>
+
+      <p><strong>Explanation:</strong> Tables are used for displaying structured information. 
+      Use CSS to add hover effects and colors for readability.</p>
+    </section>
+
+    <!-- 5. Embedding -->
+    <section id="embedding">
+      <h2>5. Embedding Content</h2>
+      <p>
+        You can embed videos, maps, or social media posts with <code>&lt;iframe&gt;</code>. 
+        Always ensure you allow safe permissions and make the iframe responsive.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;iframe 
+  src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+  width="100%" 
+  height="315" 
+  style="border:0; border-radius:8px;"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;iframe 
+  src="https://www.google.com/maps/embed?..." 
+  width="100%" 
+  height="300" 
+  style="border:0;" 
+  loading="lazy"&gt;
+&lt;/iframe&gt;
+      </code></pre>
+
+      <p><strong>Explanation:</strong> The <code>allowfullscreen</code> and <code>loading="lazy"</code> attributes improve user experience and performance. Always verify the iframe source to prevent security issues.</p>
+    </section>
+
+  </main>
+<div>
+    <a href="advance2.html">Next</a>
+</div>
+  <footer>
+    &copy; 2025 Advanced HTML Concepts | Designed for Beginners
+  </footer>
+
+  <script>
+    function copyCode(btn) {
+      const code = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code);
+      btn.innerText = "Copied!";
+      setTimeout(() => btn.innerText = "Copy", 2000);
+    }
+  </script>
+</body>
+  </html>
+                                      
