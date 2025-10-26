@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Ejistan Multi-Page Agency Website</title>
+  <style>
+    :root{
+      --primary: #007bff;
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --muted: #6c757d;
+      --codebg: #1e1e1e;
+      --max-width: 980px;
+      --radius: 10px;
+    }
+    html,body{height:100%;margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:#222;line-height:1.6}
+    header.tutorial-header{background:var(--primary);color:#fff;padding:28px 20px;text-align:center}
+    main.tutorial{max-width:var(--max-width);margin:28px auto;padding:22px;background:var(--card);border-radius:var(--radius);box-shadow:0 0 10px rgba(0,0,0,0.06)}
+    h1{margin:0;font-size:1.4rem}
+    h2{color:var(--primary);border-bottom:2px solid var(--primary);padding-bottom:8px;margin-top:26px}
+    h3{color:#333}
+    p{margin:0 0 12px}
+    pre{background:#f0f0f0;color:black;padding:16px;border-radius:8px;overflow:auto;position:relative;margin:12px 0;white-space:pre-wrap}
+    code{font-family:Consolas,monospace}
+    button.copy-btn{position:absolute;right:10px;top:10px;background:var(--primary);color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:0.9rem}
+    button.copy-btn:hover{background:#0056b3}
+    .note{background:#fff3cd;border:1px solid #ffeeba;padding:10px;border-radius:6px;margin:12px 0;color:#856404}
+    .muted{color:var(--muted)}
+    .toc{background:#fff;padding:12px;border-radius:8px;border:1px solid rgba(0,0,0,0.04);margin-bottom:18px}
+    ol{margin-left:1.1rem}
+    ul{margin-left:1.1rem}
+  </style>
+</head>
+<body>
+  <header class="tutorial-header">
+ 
+    <div style="opacity:0.95">Multi-Page Business / Agency Website</div>
+  </header>
+
+  <main class="tutorial">
+    <section>
+      <h2>Introduction</h2>
+      <p>
+        Welcome! In this tutorial you will learn how to build a **multi-page business/agency website** for a fictional agency named <strong>Ejistan</strong>. The tutorial is structured, step-by-step, and each section includes ready-to-copy code blocks. We will build four pages:
+      </p>
+      <ol>
+        <li><code>index.html</code> — Homepage</li>
+        <li><code>about.html</code> — About / Team</li>
+        <li><code>services.html</code> — Services detail</li>
+        <li><code>contact.html</code> — Contact form & capture</li>
+      </ol>
+
+      <p class="note"><strong>Classroom style:</strong> each section explains reasoning, accessibility and deployment tips. Copy code with the "Copy" buttons and test in Acode or your editor.</p>
+    </section>
+
+    <section>
+      <h2>Project Plan & Folder Structure</h2>
+      <p>
+        Planning first avoids messy projects later. Create a folder named <code>ejistan</code> and inside it create this structure:
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/ejistan/
+  index.html
+  about.html
+  services.html
+  contact.html
+  css/
+    style.css
+  js/
+    main.js
+  images/
+    logo.png
+    hero.jpg
+    team-1.jpg
+    work-case1.jpg
+  docs/
+    privacy.pdf
+</code></pre>
+
+      <p><strong>Why this structure?</strong> - CSS, JS and images are clearly separated. It makes deployment simple (upload the root folder). Use small, optimized images and name files with hyphens.</p>
+    </section>
+
+    <section>
+      <h2>Common HTML Head & Shared Elements</h2>
+      <p>
+        Every page will include a consistent <code>&lt;head&gt;</code> block. Copy this into every page's head to keep consistency, fonts, and meta tags.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- common-head.html (paste into each page's head) --&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;title&gt;Ejistan — Digital Agency&lt;/title&gt;
+&lt;meta name="description" content="Ejistan is a full-service digital agency offering product design, web development and growth services."&gt;
+
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"&gt;
+
+&lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;script defer src="js/main.js"&gt;&lt;/script&gt;
+</code></pre>
+
+      <p><strong>Note:</strong> Using a common-head snippet helps keep metadata consistent and improves SEO management across pages.</p>
+    </section>
+
+    <section>
+      <h2>Navigation & Site Header (shared partial)</h2>
+      <p>
+        The header/navigation is consistent across pages. Use a semantic <code>&lt;header&gt;</code> with a nav and accessible attributes.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- header partial (include on every page) --&gt;
+&lt;header class="site-header"&gt;
+  &lt;div class="container"&gt;
+    &lt;a href="index.html" class="brand"&gt;&lt;img src="images/logo.png" alt="Ejistan logo" height="36"&gt;&lt;/a&gt;
+
+    &lt;nav aria-label="Main navigation"&gt;
+      &lt;ul class="nav-links"&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="services.html"&gt;Services&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="work.html"&gt;Work&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+
+    &lt;a href="contact.html" class="btn btn-primary"&gt;Request Quote&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/header&gt;
+</code></pre>
+
+      <p><strong>Accessibility note:</strong> Keep markup order logical: brand &lt; nav &gt; CTA. Use <code>aria-label</code> to name the navigation region for assistive technology.</p>
+    </section>
+
+    <section>
+      <h2>Homepage — index.html (HTML)</h2>
+      <p>
+        The homepage is the main marketing page: hero, services summary, featured work, testimonials and a contact CTA. Below is the full HTML body for <code>index.html</code> (paste the common head above into &lt;head&gt;).
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- index.html: body content --&gt;
+&lt;body&gt;
+  &lt;!-- header: shared --&gt;
+  &lt;header class="site-header"&gt;... (see header partial) ...&lt;/header&gt;
+
+  &lt;main id="main-content"&gt;
+    &lt;section class="hero"&gt;
+      &lt;div class="container"&gt;
+        &lt;h1&gt;Ejistan — We design and build digital products&lt;/h1&gt;
+        &lt;p class="lead"&gt;Strategy, design, and front-end development for startups and growing teams.&lt;/p&gt;
+        &lt;div class="hero-cta"&gt;
+          &lt;a href="contact.html" class="btn btn-primary"&gt;Request a quote&lt;/a&gt;
+          &lt;a href="work.html" class="btn btn-ghost"&gt;See our work&lt;/a&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section id="services" class="section"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Services&lt;/h2&gt;
+        &lt;div class="services-grid"&gt;
+          &lt;article class="service-card"&gt;&lt;h3&gt;Product Design&lt;/h3&gt;&lt;p class="muted"&gt;Research, prototyping, and UI systems.&lt;/p&gt;&lt;/article&gt;
+          &lt;article class="service-card"&gt;&lt;h3&gt;Web Development&lt;/h3&gt;&lt;p class="muted"&gt;Accessible, performant front-ends and APIs.&lt;/p&gt;&lt;/article&gt;
+          &lt;article class="service-card"&gt;&lt;h3&gt;Growth Strategy&lt;/h3&gt;&lt;p class="muted"&gt;SEO, experiments, and analytics.&lt;/p&gt;&lt;/article&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section id="featured-work" class="section"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Featured work&lt;/h2&gt;
+        &lt;div class="work-grid"&gt;
+          &lt;article class="case-card"&gt;
+            &lt;img src="images/work-case1.jpg" alt="E-commerce redesign" loading="lazy"&gt;
+            &lt;h3&gt;E-commerce redesign&lt;/h3&gt;
+            &lt;p class="muted"&gt;28% increase in checkout conversions.&lt;/p&gt;
+          &lt;/article&gt;
+          &lt;!-- add more case cards --&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section id="testimonials" class="section"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;What clients say&lt;/h2&gt;
+        &lt;blockquote&gt;"Ejistan helped us pivot and launch in under 6 weeks." &lt;cite&gt;— Product Lead, Acme Corp&lt;/cite&gt;&lt;/blockquote&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section class="cta-section"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Ready to get started?&lt;/h2&gt;
+        &lt;a href="contact.html" class="btn btn-primary"&gt;Request a quote&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer class="site-footer"&gt;
+    &lt;div class="container"&gt;&amp;copy; 2025 Ejistan — All rights reserved.&lt;/div&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+
+      <p><strong>Explanation:</strong> Notice semantic sections, descriptive headings, and image lazy loading. The homepage is intentionally content-light so it loads quickly and funnels visitors toward contact or case studies.</p>
+    </section>
+
+    <section>
+      <h2>About page — about.html (HTML)</h2>
+      <p>
+        The About page includes the agency story, approach, and team teasers. Use <code>about.html</code> to expand trust and credibility.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- about.html: body content --&gt;
+&lt;body&gt;
+  &lt;!-- header partial --&gt;
+
+  &lt;main&gt;
+    &lt;section class="section"&gt;
+      &lt;div class="container"&gt;
+        &lt;h1&gt;About Ejistan&lt;/h1&gt;
+        &lt;p class="lead"&gt;Ejistan was founded to help teams design delightful, usable products that scale.&lt;/p&gt;
+
+        &lt;h2&gt;Our approach&lt;/h2&gt;
+        &lt;p&gt;We combine product thinking, iterative design, and measurable engineering to reduce time-to-market.&lt;/p&gt;
+
+        &lt;h2&gt;Values&lt;/h2&gt;
+        &lt;ul&gt;
+          &lt;li&gt;User-centered design&lt;/li&gt;
+          &lt;li&gt;Quality &amp; performance&lt;/li&gt;
+          &lt;li&gt;Transparent communication&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section id="team" class="section"&gt;
+      &lt;div class="container"&gt;
+        &lt;h2&gt;Our team&lt;/h2&gt;
+        &lt;div class="team-grid"&gt;
+          &lt;figure class="team-card"&gt;
+            &lt;img src="images/team-1.jpg" alt="Photo of Jostanic Stanley"&gt;
+            &lt;figcaption&gt;&lt;strong&gt;Jostanic Stanley&lt;/strong&gt;&lt;br&gt;Founder &amp; CTO&lt;/figcaption&gt;
+          &lt;/figure&gt;
+          &lt;!-- more team members --&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer class="site-footer"&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+
+      <p><strong>Tip:</strong> Use <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> for images with captions — this is semantic and helpful for accessibility.</p>
+    </section>
+
+    <section>
+      <h2>Services page — services.html (HTML)</h2>
+      <p>
+        The Services page lists each service with an intro and links to subpages (if needed). Keep the page scannable with headings and bullet points.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- services.html: body content --&gt;
+&lt;body&gt;
+  &lt;!-- header partial --&gt;
+
+  &lt;main&gt;
+    &lt;section class="section"&gt;
+      &lt;div class="container"&gt;
+        &lt;h1&gt;Services&lt;/h1&gt;
+        &lt;p class="lead"&gt;We help teams from discovery to delivery.&lt;/p>
+
+        &lt;article class="service-detail"&gt;
+          &lt;h2&gt;Product Design&lt;/h2&gt;
+          &lt;p&gt;User research, usability tests, high-fidelity prototypes, and design systems.&lt;/p&gt;
+        &lt;/article&gt;
+
+        &lt;article class="service-detail"&gt;
+          &lt;h2&gt;Web &amp; Front-End Development&lt;/h2&gt;
+          &lt;p&gt;Modern tooling, accessible UI, and performance-first engineering.&lt;/p&gt;
+        &lt;/article&gt>
+
+        &lt;!-- Add more service articles as needed --&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer class="site-footer"&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+
+      <p><strong>SEO tip:</strong> each service can become its own page if you want to target keywords like "product design agency" or "frontend development services". Use descriptive titles and meta descriptions for each service page.</p>
+    </section>
+
+    <section>
+      <h2>Contact page — contact.html (HTML) & Form Handling</h2>
+      <p>
+        The contact page is your conversion point. Use a short form and explain next steps. Below is a form example with accessibility and progressive enhancement in mind.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- contact.html: body content --&gt;
+&lt;body&gt;
+  &lt;!-- header partial --&gt;
+
+  &lt;main&gt;
+    &lt;section class="section"&gt;
+      &lt;div class="container"&gt;
+        &lt;h1&gt;Contact Ejistan&lt;/h1&gt;
+        &lt;p class="lead"&gt;Tell us about your project and timeline. We’ll respond within one business day.&lt;/p>
+
+        &lt;form id="contact-form" action="/api/inquiry" method="post" novalidate&gt;
+          &lt;label for="name"&gt;Name&lt;/label&gt;
+          &lt;input id="name" name="name" required&gt;
+
+          &lt;label for="email"&gt;Email&lt;/label&gt;
+          &lt;input id="email" name="email" type="email" required&gt;
+
+          &lt;label for="message"&gt;Message&lt;/label&gt;
+          &lt;textarea id="message" name="message" rows="6"&gt;&lt;/textarea&gt;
+
+          &lt;button type="submit" class="btn btn-primary"&gt;Send inquiry&lt;/button&gt;
+        &lt;/form&gt;
+
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer class="site-footer"&gt;...&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+
+      <p><strong>Form notes:</strong> Validate inputs both client-side and server-side. For static hosts use services such as Netlify Forms or Formspree. Protect forms from spam with a honeypot field or CAPTCHA.</p>
+    </section>
+
+    <section>
+      <h2>Shared stylesheet — css/style.css</h2>
+      <p>
+        Paste the CSS below into <code>css/style.css</code>. This file styles the header, hero, grids, forms, and responsive behavior. It follows your classroom visual language: clean, accessible, and simple.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/* css/style.css — Ejistan starter theme (mobile-first) */
+:root{
+  --primary:#007bff;
+  --bg:#f8f9fa;
+  --card:#ffffff;
+  --muted:#6c757d;
+  --radius:10px;
+  --container:1100px;
+  --max-width:980px;
+}
+
+/* Reset & base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter, "Segoe UI", Arial, sans-serif;background:var(--bg);color:#222;line-height:1.6}
+.container{max-width:var(--max-width);margin:0 auto;padding:18px}
+a{color:var(--primary);text-decoration:none}
+
+/* Header */
+.site-header{background:var(--card);border-bottom:1px solid #eef3fb}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px}
+.brand img{height:36px}
+.nav-links{list-style:none;display:flex;gap:14px;padding:0;margin:0}
+.nav-links a{color:#333;padding:8px;border-radius:6px}
+.nav-links a:hover{background:#f1f5ff}
+
+/* Buttons */
+.btn{display:inline-block;padding:10px 14px;border-radius:8px}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-ghost{background:#fff;border:1px solid #e6eefc;color:var(--primary)}
+
+/* Hero */
+.hero{background:var(--card);border-radius:10px;margin:18px 0;padding:22px}
+.hero .container{display:flex;flex-direction:column;gap:16px}
+.hero h1{margin:0;font-size:1.6rem}
+.hero .lead{color:var(--muted)}
+@media(min-width:900px){
+  .hero .container{flex-direction:row;align-items:center;justify-content:space-between}
+  .hero h1{font-size:2rem}
+}
+
+/* Services grid */
+.services-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+@media(min-width:700px){.services-grid{grid-template-columns:repeat(3,1fr)}}
+.service-card{background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
+.service-card h3{margin:0 0 6px}
+
+/* Work grid */
+.work-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:700px){.work-grid{grid-template-columns:repeat(2,1fr)}}
+.case-card{background:var(--card);border-radius:8px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
+.case-card img{width:100%;height:auto;display:block}
+
+/* Forms */
+form{background:var(--card);padding:16px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.04);max-width:760px;margin:18px 0}
+label{display:block;margin-bottom:6px;font-weight:600}
+input,textarea,select{width:100%;padding:10px;border:1px solid #e6e9ef;border-radius:6px;font-size:1rem;margin-bottom:12px}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:900px){.team-grid{grid-template-columns:repeat(4,1fr)}}
+.team-card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+
+/* Footer */
+.site-footer{background:var(--card);padding:18px;border-top:1px solid #eef3fb;margin-top:16px;text-align:center}
+
+/* Utility */
+.muted{color:var(--muted)}
+.section{padding:18px 0}
+.container-small{max-width:760px;margin:0 auto}
+</code></pre>
+
+      <p><strong>Why mobile-first?</strong> Starting with a single-column layout ensures the site is usable on phones. We then add breakpoints for larger screens (tablets/desktops).</p>
+    </section>
+
+    <section>
+      <h2>Client-side JS (optional) — js/main.js</h2>
+      <p>
+        Keep JavaScript minimal. This small file handles form UX (preventing double-submit) and adds a mobile nav toggle if you later add a hamburger menu.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>// js/main.js (minimal)
+document.addEventListener('DOMContentLoaded', function() {
+  // Prevent double form submit
+  const forms = document.querySelectorAll('form');
+  forms.forEach(form => {
+    form.addEventListener('submit', function(e) {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+      }
+    });
+  });
+
+  // Mobile nav toggle (optional)
+  const navToggle = document.querySelector('.nav-toggle');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      const nav = document.querySelector('.nav-links');
+      nav.classList.toggle('open');
+    });
+  }
+});
+</code></pre>
+
+      <p><strong>Note:</strong> This JS is intentionally tiny — avoid loading heavy libraries unless needed. Defer or load scripts at the end of the page to avoid blocking rendering.</p>
+    </section>
+
+    <section>
+      <h2>Accessibility & SEO Checklist (Classroom Notes)</h2>
+      <p>Before you ship Ejistan, run this checklist. These are core, non-negotiable items for a professional site.</p>
+      <ul>
+        <li>Unique <code>&lt;title&gt;</code> & <code>meta description</code> per page</li>
+        <li>One logical <code>&lt;h1&gt;</code> per page; use H2/H3 for subheadings</li>
+        <li>Alt attributes for all meaningful images; decorative images use empty alt <code>alt=""</code></li>
+        <li>Accessible forms (labels, required attributes, error messages)</li>
+        <li>Keyboard focus styles visible and usable</li>
+        <li>ARIA only when necessary — prefer native HTML</li>
+        <li>Structured data (JSON-LD) for Organization and CaseStudy where appropriate</li>
+      </ul>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</b
