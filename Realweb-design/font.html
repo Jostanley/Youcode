@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Using Google Fonts and Icons</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: #f7f9fb;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #007bff;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      color: white;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 6px;
+      margin-bottom: 15px;
+    }
+
+    pre {
+      background: #f0f0f0;
+      color: black;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    .copy-btn:hover {
+      background: #0056b3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #007bff;
+      color: white;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+  
+    <h2> Using Google Fonts and Icons</h2>
+  </header>
+
+  <main>
+    <section>
+      <h2>Introduction</h2>
+      <p>
+        Typography and icons play a major role in how professional a website looks. In this lesson, you’ll learn how to use <strong>Google Fonts</strong> to give your site beautiful text styles and how to include <strong>Google Icons</strong> (Material Symbols) for clean, consistent visuals.
+      </p>
+      <p>
+        By the end of this tutorial, you’ll know how to:  
+        1. Add Google Fonts to your website  
+        2. Use multiple fonts for different sections  
+        3. Add and style Google Icons  
+        4. Combine both for a polished professional design
+      </p>
+    </section>
+
+    <section>
+      <h2>1. Adding Google Fonts to Your Website</h2>
+      <p>
+        Google Fonts provides free, open-source fonts you can easily embed into your web projects. Let’s start with a basic example of adding a new font to your site.
+      </p>
+      <p>
+        Go to <a href="https://fonts.google.com" target="_blank">fonts.google.com</a> and choose a font you like. For this tutorial, let’s use “Poppins”.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"&gt;</code></pre>
+
+      <p>
+        Place this <code>&lt;link&gt;</code> inside your <code>&lt;head&gt;</code> section before your CSS. Then, set it as your site’s font:
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>body {
+  font-family: 'Poppins', sans-serif;
+}</code></pre>
+
+      <p>
+        Now, your whole website will use the “Poppins” font. If the browser can’t load it, it will fall back to a normal sans-serif font.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Using Multiple Fonts</h2>
+      <p>
+        You can mix fonts to give different sections unique personalities. For example, use one font for headings and another for body text. Let’s use “Poppins” for headings and “Roboto” for paragraphs.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&display=swap" rel="stylesheet"&gt;
+
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+}</code></pre>
+
+      <p>
+        Using two complementary fonts makes your text easier to read and more visually appealing. Avoid using too many fonts — two or three are usually enough for a clean design.
+      </p>
+    </section>
+
+    <section>
+      <h2>3. Adding Google Icons (Material Symbols)</h2>
+      <p>
+        Google also provides a set of free icons known as <strong>Material Symbols</strong>. They’re scalable, customizable, and easy to add to your page.  
+        Add this line inside your <code>&lt;head&gt;</code>:
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" /&gt;</code></pre>
+
+      <p>
+        Now, you can use an icon anywhere in your HTML like this:
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;span class="material-symbols-outlined"&gt;home&lt;/span&gt;</code></pre>
+
+      <p>
+        This displays a home icon. You can replace “home” with any icon name from the Material Symbols library (like “search”, “favorite”, “menu”, or “settings”).
+      </p>
+    </section>
+
+    <section>
+      <h2>4. Styling Your Icons</h2>
+      <p>
+        Icons behave like text, so you can change their size, color, and alignment using CSS:
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>.material-symbols-outlined {
+  font-size: 40px;
+  color: #007bff;
+  vertical-align: middle;
+}</code></pre>
+
+      <p>
+        You can also use hover effects to make icons interactive:
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>.material-symbols-outlined:hover {
+  color: #ff9800;
+  cursor: pointer;
+}</code></pre>
+
+      <p>
+        Try adding these icons to your navigation bar or footer to make your site more visually engaging.
+      </p>
+    </section>
+
+    <section>
+      <h2>5. Example: Using Fonts and Icons Together</h2>
+      <p>
+        Let’s combine what you’ve learned into a mini project — a navigation bar with Google Fonts and Icons.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Google Fonts & Icons Demo&lt;/title&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400&family=Material+Symbols+Outlined" rel="stylesheet"&gt;
+  &lt;style&gt;
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
+    nav {
+      background: #007bff;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 16px;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    .material-symbols-outlined {
+      font-size: 20px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav&gt;
+    &lt;div class="logo"&gt;&lt;span class="material-symbols-outlined"&gt;language&lt;/span&gt;MySite&lt;/div&gt;
+    &lt;div class="nav-links"&gt;
+      &lt;a href="#"&gt;&lt;span class="material-symbols-outlined"&gt;home&lt;/span&gt;Home&lt;/a&gt;
+      &lt;a href="#"&gt;&lt;span class="material-symbols-outlined"&gt;info&lt;/span&gt;About&lt;/a&gt;
+      &lt;a href="#"&gt;&lt;span class="material-symbols-outlined"&gt;contact_mail&lt;/span&gt;Contact&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <p>
+        This example combines modern fonts and icons to create a polished interface that feels like a real web app. Try customizing the fonts, colors, and icons to match your site’s theme.
+      </p>
+    </section>
+
+    <section>
+      <h2>Conclusion</h2>
+      <p>
+        In this lesson, you learned how to elevate your web design using Google Fonts and Icons. These tools bring style, readability, and clarity to your site — and they’re free!  
+        Always ensure your chosen fonts and icons match your site’s tone and purpose. Simplicity and consistency make your design professional.
+      </p>
+      <p>
+        In the next lesson, we’ll explore **Optimizing Websites for SEO and Speed**, where you’ll learn how to make your site faster and search-engine-friendly.
+      </p>
+    </section>
+  </main>
+<div>
+    <a href="SEO.html">Next</a>
+</div>
+  <footer>
+    &copy; 2025 Real-World Web Design | Lesson 18 by Jostanic Stanley
+  </footer>
+
+  <script>
+    function copyCode(btn) {
+      const code = btn.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code);
+      btn.innerText = 'Copied!';
+      setTimeout(() => btn.innerText = 'Copy', 2000);
+    }
+  </script>
+</body>
+</html>

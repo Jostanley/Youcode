@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> Building Professional Navigation Bars and Footers</title>
+  <style>
+    /* Page layout (consistent with your previous file) */
+    :root {
+      --brand: #007bff;
+      --brand-dark: #0056b3;
+      --muted: #6c757d;
+      --max-width: 900px;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      color: #222;
+    }
+
+    header.site-header {
+      background: var(--brand);
+      color: white;
+      padding: 18px 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: auto;
+      background: white;
+      padding: 4px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    }
+
+    h1, h2, h3 {
+      color: var(--brand);
+      margin-top: 0;
+    }
+
+    p, li {
+      color: #333;
+      margin-bottom: 12px;
+    }
+
+    section {
+      margin-bottom: 36px;
+      background: white;
+      padding: 18px;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.04);
+    }
+
+    pre {
+      background: #f0f0f0;
+      color: black;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      position: relative;
+      margin: 12px 0;
+    }
+
+    code {
+      font-family: "Courier New", monospace;
+      font-size: 0.95em;
+    }
+
+    button.copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: var(--brand);
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      cursor: pointer;
+    }
+
+    button.copy-btn:hover { background: var(--brand-dark); }
+
+    .example {
+      border-left: 4px solid var(--brand);
+      padding-left: 12px;
+      margin: 12px 0;
+    }
+
+    .muted { color: var(--muted); }
+
+    footer.site-footer {
+      text-align: center;
+      margin-top: 18px;
+      color: #666;
+    }
+
+    /* Navigation demo styles used inside examples */
+    .demo-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid #eee;
+    }
+    .demo-nav .brand { font-weight: 700; color: var(--brand); }
+    .demo-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 12px; align-items: center;}
+    .demo-nav a { text-decoration: none; color: #333; padding: 6px 10px; border-radius: 6px; }
+    .demo-nav a:hover { background: #f1f1f1; }
+
+    /* responsive helper for code previews */
+    .code-block { position: relative; }
+
+    /* small utility */
+    .row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .col { flex:1; }
+
+    /* Accessibility demo focus style */
+    a:focus { outline: 3px solid #ffd54f; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+  
+    <p style="margin:6px 0 0; font-size:0.95em; color:white";>Building Professional Navigation Bars and Footers — a step-by-step tutorial for students</p>
+  </header>
+
+  <main>
+    <!-- INTRO -->
+    <section id="intro">
+      <h2>Introduction</h2>
+      <p>
+        Navigation bars (navbars) and footers are essential parts of any website. They provide structure, orientation and quick access to important pages.
+        In this lesson you'll learn how to build professional, accessible, and responsive navigation bars and footers — from a simple start to production-ready patterns.
+      </p>
+
+      <p class="muted">
+        This tutorial is written as a guided class. Each subsection includes explanatory notes and a copiable code example. Try each example in your editor (Acode, VS Code, etc.) and play with the styles.
+      </p>
+
+      <p>
+        The lesson covers:
+      </p>
+      <ul>
+        <li>Semantic HTML structure for navs and footers</li>
+        <li>Basic horizontal navigation</li>
+        <li>Responsive hamburger + toggle menu</li>
+        <li>Accessible markup and keyboard support</li>
+        <li>Dropdown menus and multi-level navs</li>
+        <li>Sticky navbars and microinteractions</li>
+        <li>Footers: simple, multi-column, legal & contact sections</li>
+        <li>Performance and best practices</li>
+      </ul>
+    </section>
+
+    <!-- ANATOMY -->
+    <section id="anatomy">
+      <h2>1. Anatomy of a Navigation Bar (What belongs where)</h2>
+      <p>
+        Before we code, let’s identify the parts of a professional navbar:
+      </p>
+      <ol>
+        <li><strong>Branding</strong> (logo or site name) — usually an <code>&lt;a&gt;</code> pointing to the home page.</li>
+        <li><strong>Primary links</strong> — key site pages (Home, About, Docs, Pricing).</li>
+        <li><strong>Utility actions</strong> — sign in, sign up, search, language selector.</li>
+        <li><strong>Responsive control</strong> — a hamburger button for small screens.</li>
+        <li><strong>Accessibility attributes</strong> — ARIA roles, labels and keyboard focus management.</li>
+      </ol>
+
+      <p class="example"><strong>Tip:</strong> Keep the navbar concise. Users scan quickly — prioritize the top tasks.</p>
+    </section>
+
+    <!-- SIMPLE NAV -->
+    <section id="simple-nav">
+      <h2>2. Simple Horizontal Navigation (Semantic & Clean)</h2>
+      <p>
+        We'll start with semantic HTML. Use the <code>&lt;nav&gt;</code> element and an unordered list for navigation links. This helps screen readers and search engines.
+      </p>
+
+      <h3>Markup</h3>
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!-- simple-nav.html --&gt;
+&lt;header&gt;
+  &lt;nav aria-label="Primary Navigation"&gt;
+    &lt;a href="/" class="brand"&gt;MySite&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/services"&gt;Services&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+      </code></pre>
+
+      <p>
+        Here, the <code>&lt;nav&gt;</code> has an <code>aria-label</code> so assistive tech can identify it. Lists are used for link groups — a recommended pattern.
+      </p>
+
+      <h3>Styling (basic)</h3>
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;style&gt;
+nav { display:flex; align-items:center; gap:16px; }
+nav .brand { font-weight:700; color: #007bff; text-decoration:none; }
+nav ul { list-style:none; display:flex; gap:12px; margin:0; padding:0; }
+nav a { text-decoration:none; color:#333; padding:6px 10px; border-radius:6px; }
+nav a:hover { background:#f1f1f1; }
+&lt;/style&gt;
+      </code></pre>
+
+      <p>
+        Combine the markup and style to create a light, usable navigation bar. This is perfect for desktop-first sites.
+      </p>
+
+      <div class="example">
+        <strong>Exercise:</strong> Build this simple nav, then try changing the gap and padding to see how spacing affects usability.
+      </div>
+    </section>
+
+    <!-- NAV WITH CTA -->
+    <section id="nav-cta">
+      <h2>3. Navigation with a Call-to-Action (CTA)</h2>
+      <p>
+        Many sites include a CTA (like Sign Up) within the nav. Place it to the right of primary links and style it to stand out.
+      </p>
+
+      <h3>Markup + CSS</h3>
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;header&gt;
+  &lt;nav aria-label="Main Navigation" class="main-nav"&gt;
+    &lt;a href="/" class="brand"&gt;MySite&lt;/a&gt;
+    &lt;ul class="primary"&gt;
+      &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/pricing"&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;div class="utilities"&gt;
+      &lt;a href="/signin"&gt;Sign In&lt;/a&gt;
+      &lt;a href="/signup" class="btn"&gt;Get Started&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;style&gt;
+.main-nav { display:flex; align-items:center; gap:16px; }
+.primary { margin-left: 8px; flex:1; display:flex; gap:12px; }
+.utilities a { margin-left: 8px; text-decoration:none; }
+.btn { background: #007bff; color: white; padding:8px 12px; border-radius:8px; text-decoration:none; }
+.btn:hover { background:#0056b3; }
+&lt;/style&gt;
+      </code></pre>
+
+      <p>
+        Note how the CTA uses a stronger color and padding. That visual weight guides users to primary actions.
+      </p>
+    </section>
+
+    <!-- RESPONSIVE NAV -->
+    <section id="responsive-nav">
+      <h2>4. Responsive Navigation — Hamburger + Toggle</h2>
+      <p>
+        On small screens, horizontal navs run out of space. A common solution is to hide the links and provide a hamburger button to toggle a mobile menu.
+      </p>
+
+      <h3>Goals for a responsive nav</h3>
+      <ul>
+        <li>Keep markup semantic and screen-reader friendly.</li>
+        <li>Provide easy keyboard access to the toggle and menu items.</li>
+        <li>Animate the opening/closing to make the experience smooth.</li>
+      </ul>
+
+      <h3>Complete Example (HTML + CSS + JS)</h3>
+      <p class="muted">This is a production-ready minimal responsive nav. Copy and test it.</p>
+
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!-- responsive-nav.html --&gt;
+&lt;header&gt;
+  &lt;nav class="site-nav" aria-label="Primary"&gt;
+    &lt;a href="/" class="brand"&gt;MySite&lt;/a&gt;
+
+    &lt;button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle menu"&gt;
+      &lt;span class="hamburger"&gt;☰&lt;/span&gt;
+    &lt;/button&gt;
+
+    &lt;ul id="primary-menu" class="menu"&gt;
+      &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/work"&gt;Work&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;style&gt;
+/* base layout */
+.site-nav { display:flex; align-items:center; gap:12px; padding:12px; }
+.site-nav .brand { font-weight:700; color: #007bff; text-decoration:none; }
+
+/* menu default (desktop) */
+.menu { list-style:none; display:flex; gap:12px; margin:0; padding:0; }
+
+/* toggle button hidden on desktop */
+.nav-toggle { display:none; background:transparent; border:none; font-size:20px; cursor:pointer; }
+
+/* responsive rules */
+@media (max-width: 700px) {
+  .menu { 
+    position: absolute;
+    left: 0; right: 0; top: 64px;
+    background: white;
+    flex-direction: column;
+    padding: 12px;
+    display: none; /* hidden by default on mobile */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .nav-toggle { display: inline-block; }
+  .menu.show { display: flex; }
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+/* JS to toggle menu and update aria-expanded */
+document.addEventListener('DOMContentLoaded', function () {
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('primary-menu');
+
+  toggle.addEventListener('click', function () {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    menu.classList.toggle('show');
+  });
+});
+&lt;/script&gt;
+      </code></pre>
+
+      <p>
+        Important accessibility notes:
+      </p>
+      <ul>
+        <li>The toggle <code>button</code> has <code>aria-expanded</code> to signal state.</li>
+        <li><code>aria-controls</code> points to the menu's id.</li>
+        <li>Menu items remain real links so keyboard users can tab and navigate.</li>
+      </ul>
+
+      <div class="example">
+        <strong>Try it:</strong> Reduce your browser width to see the hamburger appear. Use keyboard (Tab) to focus the button then Enter to toggle.
+      </div>
+    </section>
+
+    <!-- ACCESSIBILITY -->
+    <section id="accessibility-nav">
+      <h2>5. Accessibility: ARIA, Focus Management and Keyboard Controls</h2>
+      <p>
+        A visually pleasing nav is not enough — make sure it works for everyone. Below are patterns and examples to improve accessibility.
+      </p>
+
+      <h3>Focus outlines</h3>
+      <p>
+        Don't remove default focus outlines unless you replace them with an equally visible style. Users navigating with keyboard rely on outline and focus rings.
+      </p>
+
+      <h3>ARIA roles and labels</h3>
+      <p>
+        Use accessible attributes:
+        <ul>
+          <li><code>role="navigation"</code> or semantic <code>&lt;nav&gt;</code></li>
+          <li><code>aria-label</code> for clarity when there are multiple nav blocks</li>
+          <li><code>aria-expanded</code> and <code>aria-controls</code> on toggles</li>
+        </ul>
+      </p>
+
+      <h3>Keyboard navigation for submenus</h3>
+      <p>
+        If you implement dropdowns, support Arrow keys, Esc to close, and Tab to move away. Below is a simplified keyboard behavior for a dropdown button.
+      </p>
+
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!-- dropdown-access.html --&gt;
+&lt;nav aria-label="Example with dropdown"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="has-dropdown"&gt;
+      &lt;button aria-expanded="false" aria-controls="submenu-1"&gt;Services&lt;/button&gt;
+      &lt;ul id="submenu-1" hidden&gt;
+        &lt;li&gt;&lt;a href="/s1"&gt;Service 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/s2"&gt;Service 2&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;script&gt;
+const btn = document.querySelector('.has-dropdown > button');
+const submenu = document.getElementById('submenu-1');
+
+btn.addEventListener('click', () => {
+  const open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!open));
+  submenu.hidden = open;
+});
+
+/* close on Escape */
+document.addEventListener('keydown', (e) =&gt; {
+  if (e.key === 'Escape') {
+    btn.setAttribute('aria-expanded', 'false');
+    submenu.hidden = true;
+  }
+});
+&lt;/script&gt;
+      </code></pre>
+
+      <p>
+        This example uses the <code>hidden</code> attribute and updates <code>aria-expanded</code>. Screen readers will announce the change.
+      </p>
+    </section>
+
+    <!-- DROPDOWNS -->
+    <section id="dropdowns">
+      <h2>6. Dropdown Menus and Mega Menus</h2>
+      <p>
+        Dropdowns add depth to your nav but need careful attention. Use them sparingly for secondary content. Mega menus are good for content-rich sites (e-commerce, news).
+      </p>
+
+      <h3>Simple CSS dropdown</h3>
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!-- css-dropdown.html --&gt;
+&lt;nav class="css-dropdown"&gt;
+  &lt;ul&gt;
+    &lt;li class="nav-item"&gt;
+      &lt;a href="#"&gt;Products&lt;/a&gt;
+      &lt;ul class="dropdown"&gt;
+        &lt;li&gt;&lt;a href="/p1"&gt;Product 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/p2"&gt;Product 2&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+&lt;style&gt;
+.css-dropdown .nav-item { position:relative; }
+.css-dropdown .dropdown {
+  position:absolute; left:0; top:100%;
+  display:none;
+  background:white; padding:8px; border-radius:6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.css-dropdown .nav-item:hover .dropdown { display:block; }
+&lt;/style&gt;
+      </code></pre>
+
+      <p>
+        CSS-only dropdowns are simple but rely on hover — remember touch devices don't have hover, so pair CSS hover with a toggle for mobile.
+      </p>
+
+      <h3>Mega menu (structure)</h3>
+      <p>
+        Mega menus are wide panels with grouped links. Keep them keyboard accessible, provide headings inside the panel, and avoid too many nested levels.
+      </p>
+
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!-- mega-menu.html (structure) --&gt;
+&lt;li class="mega"&gt;
+  &lt;button aria-expanded="false" aria-controls="mega-1"&gt;Categories&lt;/button&gt;
+  &lt;div id="mega-1" class="mega-panel" hidden&gt;
+    &lt;section&gt;
+      &lt;h4&gt;Design&lt;/h4&gt;
+      &lt;ul&gt;&lt;li&gt;&lt;a&gt;UI Kits&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+    &lt;/section&gt;
+    &lt;section&gt;
+      &lt;h4&gt;Development&lt;/h4&gt;
+      &lt;ul&gt;&lt;li&gt;&lt;a&gt;Libraries&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+      </code></pre>
+
+      <p>
+        Mega menus are heavier to implement but excellent for content-rich applications. Test on mobile and with keyboard navigation thoroughly.
+      </p>
+    </section>
+
+    <!-- STICKY / FIXED -->
+    <section id="sticky">
+      <h2>7. Sticky and Fixed Navigation Bars</h2>
+      <p>
+        Sticky navbars remain visible as users scroll and are great for long pages. Use CSS <code>position: sticky</code> for simpler behavior and <code>position: fixed</code> when you need a true fixed header.
+      </p>
+
+      <h3>CSS Sticky</h3>
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/* Sticky nav */
+header.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+      </code></pre>
+
+      <p class="muted">
+        With <code>position: sticky</code>, the element behaves like static content until the scroll position reaches the element, then it sticks to the top.
+      </p>
+
+      <h3>Fixed header note</h3>
+      <p>
+        A fixed header uses layout space — account for its height with top padding on the main content (<code>body { padding-top: 64px; }</code>) to prevent content being covered.
+      </p>
+    </section>
+
+    <!-- MICROINTERACTIONS -->
+    <section id="micro">
+      <h2>8. Microinteractions & Visual Feedback</h2>
+      <p>
+        Small animations (transitions, subtle motion) give feedback — e.g., hover states, focus rings, menu slide. Always prefer subtlety: fast & light.
+      </p>
+
+      <h3>Example: slide-down menu</h3>
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+.menu {
+  transition: max-height 0.25s ease;
+  overflow: hidden;
+  max-height: 0;
+}
+.menu.show {
+  max-height: 400px; /* large enough for items */
+}
+      </code></pre>
+
+      <p>
+        Animating <code>max-height</code> is a simple way to animate from closed to open — avoid animating expensive properties like <code>box-shadow</code> on mobile.
+      </p>
+    </section>
+
+    <!-- FOOTERS -->
+    <section id="footers">
+      <h2>9. Footers — Types and When to Use Them</h2>
+      <p>
+        Footers provide last-mile navigation and legal details. There are several footer types:
+      </p>
+      <ul>
+        <li><strong>Simple footer</strong>: copyright + small links</li>
+        <li><strong>Multi-column footer</strong>: groups of links (product, company, resources)</li>
+        <li><strong>Utility footer</strong>: newsletter signup, contact details, social icons</li>
+        <li><strong>Sticky footer</strong>: sits at bottom of viewport if content is short</li>
+      </ul>
+
+      <h3>Simple footer example</h3>
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;footer class="site-footer"&gt;
+  &lt;p&gt;&amp;copy; 2025 MySite. All rights reserved.&lt;/p&gt;
+  &lt;nav aria-label="Footer Navigation"&gt;
+    &lt;a href="/privacy"&gt;Privacy&lt;/a&gt; |
+    &lt;a href="/terms"&gt;Terms&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/footer&gt;
+      </code></pre>
+
+      <h3>Multi-column footer (grid)</h3>
+      <pre class="code-block"><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;footer class="footer-grid"&gt;
+  &lt;div class="col"&gt;
+    &lt;h4&gt;Product&lt;/h4&gt;
+    &lt;ul&gt;&lt
+    </code>
+    </pre>
+    <div>
+        <a href="web.html">Next</a>
+    </div>
+    <script>
+        function copyCode(button){
+      const pre = button.parentElement;
+      const code = pre.querySelector('code');
+      if(!code) return;
+      const text = code.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const original = button.textContent;
+        button.textContent = 'Copied!';
+        setTimeout(()=> button.textContent = original, 1400);
+      }).catch(err => {
+        console.error('Copy failed', err);
+        button.textContent = 'Fail';
+        setTimeout(()=> button.textContent = 'Copy', 1400);
+      });
+    }
+    </script>

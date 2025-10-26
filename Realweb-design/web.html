@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Creating Multi-Page Websites (Tutorial)</title>
+  <style>
+    /* Basic page layout (consistent with previous lesson style) */
+    :root{
+      --primary:#007bff;
+      --muted:#6c757d;
+      --bg:#f8f9fa;
+      --card:#ffffff;
+      --codebg:#1e1e1e;
+      --copybtn:#007bff;
+    }
+    html,body{height:100%;margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:#222}
+    header{background:var(--primary);color:#fff;padding:1rem;text-align:center}
+    
+    main{max-width:1000px;margin:20px auto;padding:20px;background:var(--card);border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.08)}
+    
+    h1{margin:0 0 10px;font-size:1.6rem}
+    
+    h2{color:var(--primary);border-bottom:2px solid var(--primary);padding-bottom:6px;margin-top:28px}
+    
+    h3{color:#333;margin-top:18px}
+    
+    p{line-height:1.6}
+    
+    ol,ul{margin-left:1.1rem}
+    pre{background:#f0f0f0;color:black;padding:16px;border-radius:8px;overflow:auto;position:relative}
+    
+    code{font-family:Consolas,monospace}
+    
+    .copy-btn{position:absolute;right:10px;top:10px;background:var(--copybtn);color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:0.9rem}
+    
+    .section-intro{background:#fff;padding:14px;border-radius:8px;border:1px solid rgba(0,0,0,0.04);margin-bottom:12px}
+    
+    footer{margin-top:18px;padding:14px;text-align:center;background:var(--primary);color:white;border-radius:6px}
+    
+    .note{background:#fff3cd;border:1px solid #ffeeba;padding:8px;border-radius:6px;margin:12px 0;color:#856404}
+    
+    .example{border-left:4px solid var(--primary);padding:10px;background:#f7fbff;border-radius:6px;margin:12px 0}
+    
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:800px){.two-col{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1> Creating Multi-Page Websites</h1>
+  <div style="opacity:.9">A student tutorial with copiable code examples — detailed & practical</div>
+</header>
+
+<main>
+
+  <section id="overview">
+    <h2>Overview & Learning Goals</h2>
+    <div class="section-intro">
+      <p>This lesson teaches how to build, organize, and deliver a practical multi-page website. You will learn:</p>
+      <ul>
+        <li>How to plan a site and create a clean folder structure</li>
+        <li>How to create navigation bars and footers that appear on every page</li>
+        <li>How to link pages using relative and absolute paths</li>
+        <li>How to create reusable header/footer code patterns (templates and server-side includes)</li>
+        <li>Responsive navigation and accessible markup</li>
+        <li>Optimization, SEO basics, and deployment tips</li>
+      </ul>
+    </div>
+
+    <p class="note"><strong>Note:</strong> This page is intentionally thorough. Read each section and copy the examples into your editor to practice. Many blocks include a <em>Copy</em> button to make it easy.</p>
+  </section>
+
+  <!-- Section 1 -->
+  <section id="planning">
+    <h2>1. Plan Before You Build</h2>
+    <p>Good websites start with planning. Before writing code, decide the pages you need, the content on each, and how users will move through the site.</p>
+
+    <h3>What to include in your plan</h3>
+    <ol>
+      <li><strong>Site Map:</strong> List pages (Home, About, Services, Blog, Contact).</li>
+      <li><strong>Navigation Flow:</strong> Which pages link to which; what primary & secondary navigation looks like.</li>
+      <li><strong>Content Structure:</strong> For each page decide headings, text, images, forms.</li>
+      <li><strong>Design System:</strong> Colors, typography, spacing, and component patterns (buttons, cards).</li>
+      <li><strong>Device Targets:</strong> Mobile-first or responsive? Plan for breakpoints.</li>
+    </ol>
+
+    <p class="example"><strong>Example site map:</strong> Home → Services → Pricing → Contact → Blog (list & article pages)</p>
+
+    <h3>Quick checklist</h3>
+    <ul>
+      <li>Which pages are required?</li>
+      <li>Which pages will be linked from the nav?</li>
+      <li>Will you use a templating system or pure static files?</li>
+    </ul>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="folder-structure">
+    <h2>2. Folder Structure (Keep it tidy)</h2>
+    <p>A clear folder structure makes a multi-page site manageable. Here is a simple and effective one:</p>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/my-website/
+├─ index.html
+├─ about.html
+├─ services.html
+├─ contact.html
+├─ blog/
+│  ├─ index.html
+│  ├─ article-1.html
+│  └─ article-2.html
+├─ css/
+│  └─ styles.css
+├─ js/
+│  └─ scripts.js
+├─ images/
+│  └─ hero.jpg
+└─ assets/
+   └─ fonts/
+    </code></pre>
+
+    <p><strong>Explanation:</strong> Keep each file in logical places. All CSS in <code>/css/</code>, JavaScript in <code>/js/</code>, and images in <code>/images/</code>. The blog gets its own folder because it contains many pages.</p>
+
+    <p class="note">When linking between pages, the directory depth matters — use relative paths like <code>../</code> when linking from nested folders.</p>
+  </section>
+
+  <!-- Section 3 -->
+  <section id="basic-html-template">
+    <h2>3. Basic HTML Template for Every Page</h2>
+    <p>Create a base template that every page follows: a consistent <code>&lt;head&gt;</code>, a header with navigation, and a footer. This makes the site coherent and easy to maintain.</p>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Page Title - My Site</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  &lt;!-- Site header (navigation) --&gt;
+  &lt;header&gt;
+    &lt;nav&gt;
+      &lt;a href="/index.html"&gt;Home&lt;/a&gt;
+      &lt;a href="/about.html"&gt;About&lt;/a&gt;
+      &lt;a href="/services.html"&gt;Services&lt;/a&gt;
+      &lt;a href="/blog/index.html"&gt;Blog&lt;/a&gt;
+      &lt;a href="/contact.html"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;!-- Page content --&gt;
+  &lt;/main>
+
+  &lt;footer&gt;&copy; 2025 My Site&lt;/footer>
+  <script src="/js/scripts.js"></script>
+</body>
+</html>
+    </code></pre>
+
+    <p><strong>Explanation:</strong> Notice that the <code>&lt;link rel="stylesheet"&gt;</code> points to a shared stylesheet and the script to a shared JS file. Using the same template on every page ensures consistent fonts, colors, and behavior.</p>
+  </section>
+
+</>  <!-- Section 4 -->
+  <section id="navigation-basics">
+    <h2>4. Navigation Basics — Structure & Accessibility</h2>
+    <p>Navigation is one of the most important UI elements. It should be easy to find, keyboard accessible, and semantic.</p>
+
+    <h3>Semantic nav with accessibility features</h3>
+    <p>Always use <code>&lt;nav&gt;</code> for primary navigation and include ARIA attributes where needed. Provide skip links for keyboard users to jump to main content.</p>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;header&gt
+  &lt;a class="skiplink" href="#main-content"&gt;Skip to main content&lt;/a&gt;
+  &lt;nav aria-label="Main navigation"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/services.html"&gt;Services&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/blog/index.html"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+    </code></pre>
+
+    <p><strong>Explanation:</strong> The skip link helps screen reader and keyboard users skip repetitive content. The <code>aria-label</code> describes the nav role to assistive tech.</p>
+
+    <h3>CSS for a simple horizontal nav</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/* css/styles.css */
+header nav ul {
+  list-style:none;
+  display:flex;
+  gap:18px;
+  padding:0;
+  margin:0;
+}
+header nav a {
+  text-decoration:none;
+  color: #222;
+  padding:8px 10px;
+  border-radius:6px;
+}
+header nav a:hover,
+header nav a:focus {
+  background:#e9f2ff;
+}
+.skip-link { position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden }
+.skip-link:focus { position:static;width:auto;height:auto; }
+    </code></pre>
+
+    <p><strong>Explanation:</strong> The nav uses flexbox to align links horizontally. The <code>.skip-link</code> is visually hidden but becomes visible when focused.</p>
+  </section>
+
+  <!-- Section 5 -->
+  <section id="relative-paths">
+    <h2>5. Linking Pages — Relative vs Absolute Paths</h2>
+    <p>Understanding link paths is crucial in multi-page sites. There are two main types:</p>
+    <ul>
+      <li><strong>Absolute paths:</strong> Start with a slash <code>/</code> and point from the domain root: <code>/about.html</code>. Use these when files are served from the site root.</li>
+      <li><strong>Relative paths:</strong> Based on the current file’s location: <code>../index.html</code> or <code>contact.html</code>. Use when linking within subfolders.</li>
+    </ul>
+
+    <h3>Examples</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/* From /blog/article-1.html to home (absolute) */
+&lt;a href="/index.html"&gt;Home&lt;/a&gt;
+
+/* From /blog/article-1.html up one folder to blog index (relative) */
+&lt;a href="../index.html"&gt;Blog home&lt;/a&gt;
+
+/* From /about.html to contact (relative, same folder) */
+&lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+    </code></pre>
+
+    <p class="note">If you deploy to a subfolder (e.g. GitHub Pages with username.github.io/repo), absolute root paths may break. In that case use relative paths or set a base URL.</p>
+
+    <h3>Using &lt;base&gt; (be careful)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!-- Put in the head if you want to set a base URL for all relative links --&gt;
+&lt;base href="/my-subfolder/"&gt;
+    </code></pre>
+
+    <p><strong>Tip:</strong> For beginners, using consistent absolute paths starting with <code>/</code> is often simpler when deploying to root. If not using root, prefer relative links.</p>
+  </section>
+
+  <!-- Section 6 -->
+  <section id="reusable-templates">
+    <h2>6. Reusable Header & Footer — Techniques</h2>
+    <p>Maintaining identical headers and footers across many pages is tedious if edited manually. Use one of these patterns to keep code DRY (Don't Repeat Yourself).</p>
+
+    <h3>Option A — Server-side includes (recommended on servers)</h3>
+    <p>If you have a server that supports includes (PHP, Node/Express, or Apache SSI), create partials.</p>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/* Example with PHP (header.php & footer.php) */
+
+/* header.php */
+&lt;header&gt;
+  &lt;nav&gt;...links...&lt;/nav&gt;
+&lt;/header&gt;
+
+/* footer.php */
+&lt;footer&gt;&copy; 2025 My Site&lt;/footer&gt;
+
+/* Any page e.g. index.php */
+&lt;?php include 'header.php'; ?&gt;
+&lt;main&gt;...&lt;/main&gt;
+&lt;?php include 'footer.php'; ?&gt;
+    </code></pre>
+
+    <p><strong>Explanation:</strong> This method ensures updates to <code>header.php</code> affect all pages. Use PHP, templating engines (e.g., EJS, Pug), or server frameworks the same way.</p>
+
+    <h3>Option B — Client-side include (JavaScript)</h3>
+    <p>If you're using static hosting without server-side templates, you can insert header/footer via JS. Note: This adds a tiny flash as content loads.</p>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/* header.html (partial file) */
+&lt;nav&gt;
+ &lt;ul&gt;
+   &lt;li&gt;&lt;a href="/index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+   &lt;li&gt;&lt;a href="/about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+&lt;/nav&gt>
+
+/* In your page's body where you want header to appear */
+&lt;div id="site-header"&gt;&lt;/div&gt;
+
+/* js/scripts.js (run before DOMContentLoaded or at end of body) */
+function includeHTML(selector, url) {
+  fetch(url).then(res => res.text()).then(html => {
+    document.querySelector(selector).innerHTML = html;
+  }).catch(err => console.error('Include failed', err));
+}
+includeHTML('#site-header','/partials/header.html');
+    </code></pre>
+
+    <p><strong>Tradeoffs:</strong> Server-side templates are preferred for SEO and performance. Client-side includes work for static hosts, but search engines may see less content unless they render JS.</p>
+  </section>
+
+  <!-- Section 7 -->
+  <section id="responsive-nav">
+    <h2>7. Responsive Navigation (Mobile-friendly)</h2>
+    <p>On small screens, the main nav should collapse into a menu toggle (hamburger). This example shows a simple accessible pattern using CSS and minimal JS.</p>
+
+    <h3>HTML</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;header class="site-header"&gt;
+  &lt;button id="nav-toggle" aria-expanded="false" aria-controls="primary-nav"&gt;
+    &lt;span class="sr-only"&gt;Open menu&lt;/span&gt;
+    ☰
+  &lt;/button&gt;
+
+  &lt;nav id="primary-nav" aria-label="Primary" class="nav-collapsed"&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="/index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/services.html"&gt;Services&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="/contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+    </code></pre>
+
+    <h3>CSS</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/* css/styles.css (add) */
+.site-header{display:flex;justify-content:space-between;align-items:center;padding:12px}
+.nav-collapsed ul{display:flex;gap:12px;margin:0;padding:0;list-style:none}
+@media (max-width:700px){
+  .nav-collapsed ul{display:block;max-height:0;overflow:hidden;transition:max-height .25s ease}
+  .nav-collapsed.open ul{max-height:400px} /* expanded */
+  #nav-toggle{display:inline-block}
+}
+    </code></pre>
+
+    <h3>JS (toggle)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/* js/scripts.js */
+document.getElementById('nav-toggle')?.addEventListener('click', function(){
+  const nav = document.getElementById('primary-nav');
+  const open = nav.classList.toggle('open');
+  this.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+    </code></pre>
+
+    <p><strong>Accessibility tips:</strong> Ensure the toggle button updates <code>aria-expanded</code>. Provide visible focus outlines for keyboard users and avoid hiding links for screen readers.</p>
+  </section>
+
+  <!-- Section 8 -->
+  <section id="footer-design">
+    <h2>8. Building Professional Footers</h2>
+    <p>Footers usually include contact links, legal links, site map, and small print. Keep them structured semantically inside a <code>&lt;footer&gt;</code> element.</p>
+
+    <h3>Footer example</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;footer class="site-footer"&gt;
+  &lt;div class="footer-columns"&gt;
+    &lt;div&gt;
+      &lt;h4&gt;About&lt;/h4&gt;
+      &lt;p&gt;Short site description.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;h4&gt;Links&lt;/h4&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/privacy.html"&gt;Privacy&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/terms.html"&gt;Terms&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;h4&gt;Contact&lt;/h4&gt;
+      &lt;address&gt;Email: &lt;a href="mailto:hello@example.com"&gt;hello@example.com&lt;/a&gt;&lt;/address&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p style="text-align:center;margin-top:10px"&gt;&amp;copy; 2025 My Site&lt;/p&gt;
+&lt;/footer&gt;
+    </code></pre>
+
+    <p class="example"><strong>Design:</strong> Use a subdued background, smaller text, and well-spaced columns. Keep legal links accessible in the footer.</p>
+  </section>
+
+  <!-- Section 9 -->
+  <section id="breadcrumbs">
+    <h2>9. Breadcrumbs & Page Hierarchy</h2>
+    <p>Breadcrumbs help users understand where they are within a site. They are also helpful for SEO.</p>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;nav aria-label="Breadcrumb"&gt;
+  &lt;ol class="breadcrumb"&gt;
+    &lt;li&gt;&lt;a href="/blog/index.html"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;How to build navs&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+    </code></pre>
+
+    <p><strong>Tip:</strong> Use ordered lists for breadcrumbs and separate style vs semantics — this helps assistive tech.</p>
+  </section>
+
+  <!-- Section 10 -->
+  <section id="common-components">
+    <h2>10. Common Page Components & Patterns</h2>
+    <p>Design components make replication faster. Some common components:</p>
+    <ul>
+      <li>Hero section (title, subtitle, CTA)</li>
+      <li>Feature cards (3-column grid)</li>
+      <li>Testimonials</li>
+      <li>Contact form</li>
+    </ul>
+
+    <h3>Feature card example (responsive)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;section class="features"&gt;
+  &lt;div class="feature"&gt;
+    &lt;h4&gt;Fast&lt;/h4&gt;
+    &lt;p&gt;Optimized for speed.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="feature"&gt;
+    &lt;h4&gt;Accessible&lt;/h4&gt;
+    &lt;p&gt;Keyboard &amp; screen reader friendly.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="feature"&gt;
+    &lt;h4&gt;Responsive&lt;/h4&gt;
+    &lt;p&gt;Looks good on any device.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+
+/* minimal css */
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:800px){.features{grid-template-columns:1fr}}
+    </code></pre>
+  </section>
+
+  <!-- Section 11 -->
+  <section id="forms-multi">
+    <h2>11. Contact Forms across Pages</h2>
+    <p>Forms are common across pages. Use consistent validation UX and server endpoints. Here’s a basic accessible contact form with HTML5 validation.</p>
+
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;form action="/api/contact" method="post" novalidate&gt;
+  &lt;label for="name"&gt;Name&lt;/label&gt;
+  &lt;input id="name" name="name" required&gt;
+
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required&gt;
+
+  &lt;label for="message"&gt;Message&lt;/label&gt;
+  &lt;textarea id="message" name="message" rows="5" required&gt;&lt;/textarea&gt;
+
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+    </code></pre>
+
+    <p><strong>Server note:</strong> Make sure your server endpoint sanitizes input and returns proper 200/400 responses. On static hosting you can use services like Formspree or Netlify Forms.</p>
+  </section>
+
+  <!-- Section 12 -->
+  <section id="seo-basics">
+    <h2>12. SEO Basics for Multi-Page Sites</h2>
+    <p>SEO helps your pages get found. For multi-page sites, be consistent and provide metadata on each page.</p>
+
+    <h3>Essential meta tags</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!-- in the head of each page --&gt;
+&lt;title&gt;Services - My Site&lt;/title&gt;
+&lt;meta name="description" content="Professional services to help you... "&gt;
+&lt;link rel="canonical" href="https://example.com/services.html" /&gt;
+    </code></pre>
+
+    <p><strong>Other tips:</strong> Use structured data (JSON-LD) for articles and businesses, create an XML sitemap and a robots.txt, and make sure each page has unique content and title tags.</p>
+  </section>
+
+  <!-- Section 13 -->
+  <section id="performance">
+    <h2>13. Performance & Best Practices</h2>
+    <p>Faster pages improve UX & SEO. Important steps:</p>
+    <ul>
+      <li>Compress and serve optimized images (WebP when possible)</li>
+      <li>Minify CSS and JS</li>
+      <li>Use browser caching and a CDN for assets</li>
+      <li>Load non-essential scripts asynchronously</li>
+    </ul>
+
+    <h3>Lazy load images</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;img src="hero.jpg" alt="Hero" loading="lazy" width="1200" height="600"&gt;
+    </code></pre>
+
+    <p>Using <code>loading="lazy"</code> defers off-screen images and speeds up initial paint.</p>
+  </section>
+
+  <!-- Section 14 -->
+  <section id="fonts-icons">
+    <h2>14. Fonts & Icons</h2>
+    <p>Use web fonts and icons carefully. Keep a fallback font stack for performance and accessibility.</p>
+
+    <h3>Google Fonts example</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!-- head --&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com"&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"&gt;
+
+/* css */
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    </code></pre>
+
+    <p><strong>Icons:</strong> Use an icon font or SVG sprite. SVGs are scalable and accessible (add <code>role="img"</code> and <code>&lt;title&gt;</code> for accessibility).</p>
+  </section>
+
+  <!-- Section 15 -->
+  <section id="analytics-privacy">
+    <h2>15. Analytics, Privacy & Legal</h2>
+    <p>Tracking user behavior is useful but must respect privacy. Provide a clear privacy policy and consider adding cookie consent if you track users.</p>
+
+    <h3>Simple Google Analytics snippet (GA4)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!-- head --&gt;
+&lt;script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"&gt;&lt;/script&gt;
+&lt;script&gt;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXX');
+&lt;/script&gt;
+    </code></pre>
+
+    <p class="note">Replace <code>G-XXXXXXX</code> with your measurement ID. For privacy sensitive sites, consider cookieless analytics or server-side tracking.</p>
+  </section>
+
+  <!-- Section 16 -->
+  <section id="testing-deployment">
+    <h2>16. Testing & Deployment</h2>
+    <p>Before deploying, test on multiple devices and run Lighthouse to check performance and accessibility. When ready, deploy to a static host or a server.</p>
+
+    <h3>Deployment options</h3>
+    <ul>
+      <li><strong>Static hosting:</strong> GitHub Pages, Netlify, Vercel (good for static sites)</li>
+      <li><strong>Server hosting:</strong> DigitalOcean, AWS, or shared hosting (when you need backend)</li>
+      <li><strong>CDN:</strong> Use Cloudflare for additional caching and security</li>
+    </ul>
+
+    <h3>Quick deploy with Netlify (example)</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/* Steps:
+1. Create a Git repo of your site.
+2. Sign in to Netlify -> New site -> Import from Git.
+3. Select repo and deploy.
+4. Set publish directory to root or /dist if using a build step.
+*/
+    </code></pre>
+
+    <p><strong>Tip:</strong> Use HTTPS and an SSL certificate (most hosts provide one automatically).</p>
+  </section>
+
+  <!-- Section 17 -->
+  <section id="examples">
+    <h2>17. Full Example — A Small Multi-Page Site</h2>
+    <p>Below is a complete minimal multi-page example. Copy the three files into your project: <code>index.html</code>, <code>about.html</code>, and <code>css/styles.css</code>. This shows header, footer, and consistent nav across pages.</p>
+
+    <h3>index.html</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+  &lt;title&gt;Home - Example Site&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/css/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;header&gt;
+  &lt;nav&gt;
+    &lt;a href="/index.html"&gt;Home&lt;/a&gt;
+    &lt;a href="/about.html"&gt;About&lt;/a&gt;
+    &lt;a href="/services.html"&gt;Services&lt;/a&gt;
+    &lt;a href="/contact.html"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main id="main-content"&gt;
+  &lt;h1&gt;Welcome to Our Site&lt;/h1&gt;
+  &lt;p&gt;This is the home page.&lt;/p&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;&amp;copy; 2025 Example Site&lt;/footer&gt;
+
+&lt;script src="/js/scripts.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+    <h3>about.html</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+  &lt;title&gt;About - Example Site&lt;/title&gt;
+  &lt;link rel="stylesheet" href="/css/styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;header&gt;
+  &lt;nav&gt;
+    &lt;a href="/index.html"&gt;Home&lt;/a&gt;
+    &lt;a href="/about.html"&gt;About&lt;/a&gt;
+    &lt;a href="/services.html"&gt;Services&lt;/a&gt;
+    &lt;a href="/contact.html"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main id="main-content"&gt;
+  &lt;h1&gt;About Us&lt;/h1&gt;
+  &lt;p&gt;We build websites that are accessible and fast.&lt;/p&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;&amp;copy; 2025 Example Site&lt;/footer&gt;
+
+&lt;script src="/js/scripts.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+
+    <h3>css/styles.css</h3>
+    <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+/* css/styles.css */
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f4f6f8;color:#222}
+header{background:#fff;padding:12px;border-bottom:1px solid #eee}
+header nav{display:flex;gap:12px;justify-content:center}
+header nav a{text-decoration:none;color:#333;padding:8px 10px;border-radius:6px}
+header nav a:hover{background:#f0f6ff}
+main{max-width:900px;margin:24px auto;padding:20px;background:#fff;border-radius:8px;box-shadow:0 0 6px rgba(0,0,0,0.04)}
+footer{text-align:center;padding:14px;background:#fff;border-top:1px solid #eee;margin-top:20px}
+    </code></pre>
+
+    <p><strong>How to test:</strong> Place the files in the folder structure described earlier and open <code>index.html</code>. Click links to navigate between pages — the shared header & footer show on every page.</p>
+  </section>
+
+  <!-- Section 18 -->
+  <section id="common-issues">
+    <h2>18. Common Issues & Troubleshooting</h2>
+    <h3>Broken links</h3>
+    <p>Check your paths carefully. Use browser devtools to see 404s. If a link points to <code>/css/styles.css</code> but your site is deployed under <code>/repo/</code>, it may need <code>/repo/css/styles.css</code> or a relative path.</p>
+
+    <h3>Resources not loading</h3>
+    <p>Check console errors for CORS, wrong MIME types, or blocked mixed content (HTTP vs HTTPS).</p>
+
+    <h3>SEO issues</h3>
+    <p>Make sure each page has a unique <code>&lt;title&gt;</code> and <code>meta description</code>. Use server-side rendering for dynamic sites to ensure crawlers index content.</p>
+  </section>
+
+  <!-- Section 19 -->
+  <section id="next-steps">
+    <h2>19. Next Steps & Learning Path</h2>
+    <p>When you're comfortable with static multi-page sites, explore:</p>
+    <ul>
+      <li>Templating engines (EJS, Pug) or static site generators (Jekyll, Hugo)</li>
+      <li>Single Page Applications (React, Vue) when you need dynamic UIs</li>
+      <li>Progressive Web Apps (PWAs) for offline support</li>
+    </ul>
+
+    <p class="example"><strong>Project idea:</strong> Build a 5-page site with a blog, deploy to Netlify, then add a contact form and analytics. That will exercise everything in this lesson.</p>
+  </section>
+
+  <!-- Closing -->
+  <section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>This tutorial covered the essential steps to plan, build, and deploy a multi-page website with consistent navigation, footer, and structure. You now have practical examples to copy into your projects.</p>
+
+  </section>
+<div>
+    <a href="font.html">Next</a>
+</div>
+  <footer>
+    &copy; 2025 Real-World Web Design — Tutorial. Built for students.
+  </footer>
+
+</main>
+
+<script>
+  // Copy button function (works for all code blocks)
+  function copyCode(button){
+    // Find the nearest <pre> then the innerText of the code inside it
+    const pre = button.parentElement;
+    const code = pre.querySelector('code');
+    if(!code) return;
+    const text = code.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(()=> button.textContent = original, 1800);
+    }).catch(err => {
+      console.error('Copy failed', err);
+    });
+  }
+</script>
+
+</body>
+</html>
