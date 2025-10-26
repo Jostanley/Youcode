@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="auth.css"
+>
+
+<title>Ejistan Premium Course - Register</title>
+</head>
+<body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  
+    import { 
+    getAuth, 
+    createUserWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyANRzfCpns7bKQREB7dAi1ujYkssaDC6QM",
+    authDomain: "ejistan-6ba97.firebaseapp.com",
+    projectId: "ejistan-6ba97",
+    storageBucket: "ejistan-6ba97.firebasestorage.app",
+    messagingSenderId: "292265431615",
+    appId: "1:292265431615:web:1c8895149a5ee0c9ddde8a",
+    measurementId: "G-NE1SLMGP9W"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+   const auth = getAuth(app)
+  
+  const submitform = document.getElementById("form")
+  const message = document.getElementById("database-message")
+  
+  submitform.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const email = document.getElementById('reg-email').value
+  const firstname = document.getElementById("reg-firstname").value
+  const lastname = document.getElementById('reg-lastname').value
+  const location = document.getElementById("reg-location").value
+  const password= document.getElementById("reg-password").value
+  
+   const confirmpassword = document.getElementById("reg-confirmpassword").value 
+     try{
+     if (password !== confirmpassword){
+         alert(" password mismatched")
+     }else{
+      const user = await createUserWithEmailAndPassword(auth,email, password)
+      console.log("user created")
+     window.location.href= "payment.html"
+  }
+  }
+  catch (err){
+  message.innerHTML = err.message
+  message.style.color="red"
+     console.log(err.message)
+     alert(err.message)
+  }})
+</script>
+
+<p id="pageview">ejistan frontend web development</p>
+<main>
+  
+  <div id ="form">
+     <div id="names"> 
+    <input type="text" id="reg-firstname" placeholder="firstName" required>
+    
+    <input type="text" id="reg-lastname" placeholder="lastname" required>
+    </div>
+    <input type="email" id="reg-email" placeholder="email" required>
+   
+    <input type ="text" id ="reg-location" placeholder ="country"/>
+    <div id ="toggle">
+    <input type="password" id="reg-password" placeholder="Password" required>
+    <button class="showpassword">show</button>
+    </div>
+    <div id="toggle">
+    <input type="password" id="reg-confirmpassword" placeholder="confirm Password" required>
+    <button class="showpassword">show</button>
+    </div>
+    <div class="payment-container">
+  <h3>choose payment method</h3>
+  <div id="paymentForm">
+      <div id="paymentblock" onClick =' payWithPaystack (event,"bank_transfer")'>
+          <img src="../lmage/transfer.png" alt="Mobile money">
+          <span>local bank transfer</span>
+      </div>
+      
+    <div id="paymentblock" onClick =' payWithPaystack (event,"ussd")'>
+        <img src="../lmage/ussd.png" alt="ussd">
+    <span>USSD
+    </span>
+    </div>
+    <div id="paymentblock" onClick =' payWithPaystack (event,"card")'>
+        <img src="../lmage/Visa.png" alt="Visa MasterCard">
+        <span>Visa MasterCard</span>
+        </div>
+   
+    
+    <div id="paymentblock" onClick='payWithPaystack(event,"apple_pay")'>
+       <img src="../lmage/apple.png" alt="Apple pay">
+        <span>Apple pay
+        </span>
+        </div>
+    </div>
+    <p id="secureicon">🔐secured by paystack</p>
+</div>
+
+    <p id="database-message"></p>
+    
+  </div>
+ 
+</main>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script type = 'module'>
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+  
+    import { 
+    getAuth, 
+    createUserWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyANRzfCpns7bKQREB7dAi1ujYkssaDC6QM",
+    authDomain: "ejistan-6ba97.firebaseapp.com",
+    projectId: "ejistan-6ba97",
+    storageBucket: "ejistan-6ba97.firebasestorage.app",
+    messagingSenderId: "292265431615",
+    appId: "1:292265431615:web:1c8895149a5ee0c9ddde8a",
+    measurementId: "G-NE1SLMGP9W"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+   const auth = getAuth(app)
+  
+  
+    const button = document.querySelectorAll(".showpassword")
+    
+     button.forEach((button)=>{button.addEventListener("click", ()=>{ 
+     alert("you clicked me")
+         const showpassword = button.previousElementSibling
+     
+        if(showpassword.type == "password"){
+            showpassword.type = "text"
+            button.textContent = 'hidden'
+        } else{
+            showpassword.type = "password"
+            button.textContent = "show"
+        }
+    })
+    })
+  
+ window.payWithPaystack  = async function(event,method) {
+    try{
+   
+  const email = document.getElementById('reg-email').value
+  const firstname = document.getElementById("reg-firstname").value
+  const lastname = document.getElementById('reg-lastname').value
+  const location = document.getElementById("reg-location").value
+  const password= document.getElementById("reg-password").value
+  
+   const confirmpassword = document.getElementById("reg-confirmpassword").value 
+   let newuser;
+   if(password !== confirmpassword){
+ alert("password mismatched")
+   }else{
+       newuser = await createUserWithEmailAndPassword (auth,email,password)
+   }
+    if (newuser){
+    
+    
+      let handler =  PaystackPop.setup({
+        key: 'pk_live_10343c5462a915b51fac6020b280054f73231fa3', 
+        email: email,
+        amount: 1000 * 100, 
+        currency: 'NGN', // or 'NGN', 'USD' depending on your setup
+        channels: [method],
+        callback: function(response) {
+          alert('Payment successful! Ref: ' + response.reference);
+          window.location.href()
+        },
+        onClose: function() {
+          alert('Payment window closed.');
+        }
+      });
+      handler.openIframe();
+    }
+    }
+    catch (err){
+        alert(err.message)
+    }
+    }
+  </script>
+  <footer>
+  Sponsored by Ejistan  | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">Privacy Policy</a>
+</footer>
+
+</body>
+  </html>
+  
