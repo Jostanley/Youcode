@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Portfolio Website</title>
+  <style>
+    :root{
+      --primary:#007bff;
+      --bg:#f5f7fa;
+      --card:#fff;
+      --text:#222;
+      --codebg:#1e1e1e;
+    }
+    body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    header{background:var(--primary);color:#fff;padding:26px;text-align:center}
+    
+    main{max-width:960px;margin:28px auto;padding:24px;background:var(--card);border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.08)}
+    
+    h1{font-size:1.6rem;margin:0 0 4px}
+    
+    h2{color:var(--primary);border-bottom:2px solid var(--primary);padding-bottom:6px;margin-top:22px}
+    
+    h3{margin-top:18px}
+    pre{background:#f0f0f0;color:black;padding:14px;border-radius:8px;overflow:auto;position:relative}
+    
+    code{font-family:Consolas,monospace}
+    .copy-btn{position:absolute;right:10px;top:10px;background:var(--primary);color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer}
+    
+    .note{background:#fff3cd;border:1px solid #ffeeba;padding:10px;border-radius:6px;margin:12px 0}
+    
+    img.demo{width:100%;border-radius:8px;margin:12px 0}
+    
+    footer{text-align:center;margin-top:24px;padding:12px;background:var(--primary);color:white;border-radius:6px}
+  </style>
+</head>
+<body>
+<header>
+
+  <p>Building a Portfolio Website</p>
+</header>
+<main>
+<section>
+<h2>1 — Goal of the Project</h2>
+<p>
+You will create your **first professional website** — a clean, responsive **portfolio** to showcase your name, photo, skills, projects, and contact form.  
+It combines everything you’ve learned: semantic HTML, CSS grid/flexbox, responsive design, accessibility, and performance optimization.
+</p>
+<p class="note"><strong>Outcome:</strong> At the end you’ll have an index.html and style.css ready to upload to GitHub Pages or Render static hosting.</p>
+</section>
+
+<section>
+<h2>2 — Plan and Folder Setup</h2>
+<p>
+Create a new folder on your device (for example <code>portfolio-site</code>) and inside it:
+</p>
+<ul>
+  <li><strong>index.html</strong> – main file</li>
+  <li><strong>style.css</strong> – external CSS</li>
+  <li><strong>images/</strong> – profile photo & project screenshots</li>
+</ul>
+
+<p>Link your CSS file inside <code>&lt;head&gt;</code>:</p>
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+</section>
+
+<section>
+<h2>3 — HTML Structure (Semantic Layout)</h2>
+<p>
+We’ll divide the page into clear landmarks — <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code> with sections for Hero, About, Projects, Contact, and <code>&lt;footer&gt;</code>.
+</p>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Your Name – Portfolio&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;nav&gt;
+      &lt;h1 class="logo"&gt;Your Name&lt;/h1&gt;
+      &lt;ul class="nav-links"&gt;
+        &lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#projects"&gt;Projects&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;div class="hero"&gt;
+      &lt;img src="images/profile.jpg" alt="Your photo" class="hero-img"&gt;
+      &lt;h2&gt;Hi, I'm Your Name&lt;/h2&gt;
+      &lt;p&gt;Front-End Developer | UI Designer | Learner&lt;/p&gt;
+      &lt;a href="#projects" class="btn"&gt;View My Work&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;section id="about"&gt;
+      &lt;h2&gt;About Me&lt;/h2&gt;
+      &lt;p&gt;Short bio about who you are, your skills, and goals.&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section id="projects"&gt;
+      &lt;h2&gt;Projects&lt;/h2&gt;
+      &lt;div class="project-grid"&gt;
+        &lt;article class="project-card"&gt;
+          &lt;img src="images/project1.jpg" alt="Project 1 screenshot"&gt;
+          &lt;h3&gt;Project Title 1&lt;/h3&gt;
+          &lt;p&gt;Brief description of project 1.&lt;/p&gt;
+          &lt;a href="#" class="btn small"&gt;View Live&lt;/a&gt;
+        &lt;/article&gt;
+
+        &lt;article class="project-card"&gt;
+          &lt;img src="images/project2.jpg" alt="Project 2 screenshot"&gt;
+          &lt;h3&gt;Project Title 2&lt;/h3&gt;
+          &lt;p&gt;Brief description of project 2.&lt;/p&gt;
+          &lt;a href="#" class="btn small"&gt;View Live&lt;/a&gt;
+        &lt;/article&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section id="contact"&gt;
+      &lt;h2&gt;Contact Me&lt;/h2&gt;
+      &lt;form action="#" method="post"&gt;
+        &lt;label for="name"&gt;Name&lt;/label&gt;
+        &lt;input type="text" id="name" name="name" required&gt;
+
+        &lt;label for="email"&gt;Email&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required&gt;
+
+        &lt;label for="message"&gt;Message&lt;/label&gt;
+        &lt;textarea id="message" name="message" rows="5"&gt;&lt;/textarea&gt;
+
+        &lt;button type="submit" class="btn"&gt;Send Message&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;&copy; 2025 Your Name. All rights reserved.&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+
+<section>
+<h2>4 — Styling Your Portfolio (style.css)</h2>
+<p>Now design it with modern CSS — colors, fonts, layout, and responsive grid.</p>
+
+<pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/* Global Reset */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",Arial,sans-serif;background:#f5f7fa;color:#222;line-height:1.6}
+
+/* Navigation */
+header nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.logo{font-size:1.5rem;font-weight:bold}
+.nav-links{list-style:none;display:flex;gap:18px}
+.nav-links a{text-decoration:none;color:#fff;font-weight:500}
+.nav-links a:hover{text-decoration:underline}
+
+/* Hero Section */
+.hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;background:#fff;border-radius:10px;margin-top:20px}
+.hero-img{width:160px;height:160px;border-radius:50%;object-fit:cover;margin-bottom:12px;border:4px solid var(--primary)}
+.hero h2{color:#007bff;margin-bottom:6px}
+.btn{display:inline-block;background:#007bff;color:#fff;padding:10px 18px;border-radius:6px;text-decoration:none;transition:.3s}
+.btn:hover{background:#0056b3}
+.btn.small{padding:8px 14px;font-size:0.9rem}
+
+/* Sections */
+main section{margin-top:40px}
+h2{text-align:center;margin-bottom:14px}
+
+/* About */
+#about p{text-align:center;max-width:700px;margin:auto}
+
+/* Projects */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:20px}
+.project-card{background:#fff;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.08);padding:16px;text-align:center}
+.project-card img{width:100%;border-radius:6px;margin-bottom:10px}
+.project-card h3{color:#007bff}
+
+/* Contact Form */
+form{display:flex;flex-direction:column;gap:10px;max-width:500px;margin:20px auto}
+input,textarea{padding:10px;border:1px solid #ccc;border-radius:6px;font-size:1rem;width:100%}
+button.btn{cursor:pointer}
+
+/* Footer */
+footer{text-align:center;background:#007bff;color:#fff;padding:16px;border-radius:10px;margin-top:40px}
+
+/* Responsive Design */
+@media(max-width:700px){
+  .nav-links{flex-direction:column;align-items:center}
+  .hero{padding:20px}
+}
+</code></pre>
+</section>
+
+<section>
+<h2>5 — Accessibility and Best Practices</h2>
+<ul>
+<li>Add <code>alt</code> text to all images.</li>
+<li>Ensure keyboard navigation works for links and buttons.</li>
+<li>Maintain color contrast (blue on white passes WCAG AA).</li>
+<li>Use meaningful headings for screen reader hierarchy.</li>
+</ul>
+</section>
+
+<section>
+<h2>6 — Mobile Optimization</h2>
+<p>Already mobile-first, but test on Android and small screens.</p>
+<ul>
+<li>Images resize with <code>width:100%</code>.</li>
+<li>Buttons large enough for touch (≥44 px height).</li>
+<li>Meta viewport tag set for scaling.</li>
+</ul>
+</section>
+
+<section>
+<h2>7 — Personalization Ideas</h2>
+<p>Add these to make it yours:</p>
+<ul>
+<li>Replace blue with your brand color.</li>
+<li>Use Google Fonts (<code>Poppins</code>, <code>Inter</code>).</li>
+<li>Add a “Download CV” button linking to PDF.</li>
+<li>Include social icons (GitHub, LinkedIn, X/Twitter).</li>
+</ul>
+</section>
+
+<section>
+<h2>8 — Deployment</h2>
+<ol>
+<li>Create a GitHub repository named <code>portfolio</code>.</li>
+<li>Upload <code>index.html</code>, <code>style.css</code>, and images.</li>
+<li>Enable GitHub Pages under Settings → Pages → Deploy from branch.</li>
+<li>Share your live URL (e.g. <code>https://username.github.io/portfolio</code>).</li>
+</ol>
+<p class="note">Alternative hosting: Render, Netlify, or your own domain (e.g. kesug.com).</p>
+</section>
+
+<section>
+<h2>9 — Optional Enhancements</h2>
+<ul>
+<li><strong>Dark Mode</strong> toggle using CSS variables and JS.</li>
+<li><strong>Scroll Animations</strong> via AOS library or simple fade-in CSS.</li>
+<li><strong>Form Handling</strong> with Formspree or Netlify Forms (no backend needed).</li>
+<li><strong>Accessibility Testing</strong> with Lighthouse/Axe extension.</li>
+</ul>
+</section>
+
+<section>
+<h2>10 — Challenge Tasks for Students</h2>
+<ol>
+<li>Add a third project card with unique content and image.</li>
+<li>Implement a sticky navbar that shrinks on scroll.</li>
+<li>Create a “Back to Top” button visible after scroll 500 px.</li>
+<li>Validate your HTML and CSS with the W3C validators.</li>
+<li>Compress images for faster loading (less than 200 KB each).</li>
+</ol>
+</section>
+
+<section>
+<h2>11 — Conclusion</h2>
+<p>
+Congratulations! You’ve built a professional portfolio that works on mobile, tablet, and desktop. This is your first real project to show potential clients or employers.  
+Keep updating it as you learn new skills and complete more projects.
+</p>
+
+</section>
+<div>
+    <a href="">Back</a>
+    <a href="landingpage.html">Next</a>
+</div>
+<footer>
+&copy; 2025 Professional Projects – Portfolio Website
+</footer>
+</main>
+
+<script>
+function copyCode(btn){
+ const code=btn.parentElement.querySelector('code').innerText;
+ navigator.clipboard.writeText(code).then(()=>{
+   const old=btn.textContent;
+   btn.textContent='Copied!';
+   setTimeout(()=>btn.textContent=old,1200);
+ });
+}
+</script>
+</body>
+</html>

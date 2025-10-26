@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to build Product Landing Page (Responsive)</title>
+  <style>
+    :root {
+      --primary: #007bff;
+      --bg: #f7f9fb;
+      --card: #ffffff;
+      --muted: #6c757d;
+      --accent: #ff7a59;
+      --max-width: 1000px;
+      --radius: 10px;
+    }
+    html,body{height:100%;margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:#222;line-height:1.6}
+    header{background:var(--primary);color:#fff;padding:20px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.08)}
+    main{max-width:var(--max-width);margin:24px auto;padding:22px;background:var(--card);border-radius:var(--radius);box-shadow:0 0 10px rgba(0,0,0,0.06)}
+    h1{margin:0;font-size:1.5rem}
+    h2{color:var(--primary);border-bottom:2px solid var(--primary);padding-bottom:8px;margin-top:22px}
+    h3{color:#333}
+    p{margin:0 0 12px}
+    pre{background:#f0f0f0;color:black;padding:14px;border-radius:8px;overflow:auto;position:relative;margin:12px 0}
+    
+    code{font-family:Consolas,monospace}
+    .copy-btn{position:absolute;right:10px;top:10px;background:var(--primary);color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:0.9rem}
+    
+    .copy-btn:hover{background:#0056b3}
+    
+    .note{background:#fff3cd;border:1px solid #ffeeba;padding:10px;border-radius:6px;margin:12px 0;color:#856404}
+    
+    .muted{color:var(--muted)}
+    
+    .two-col{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    @media(max-width:980px){.two-col{grid-template-columns:1fr}}
+    
+    .hero{display:flex;gap:20px;align-items:center;background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+    
+    .hero .hero-content{flex:1}
+    
+    .hero .hero-visual{width:360px;max-width:40%;border-radius:8px;overflow:hidden}
+    
+    .btn{display:inline-block;background:var(--primary);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600}
+    
+    .btn.ghost{background:#fff;color:var(--primary);border:1px solid #e6eefc}
+    
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    @media(max-width:980px){.features{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.features{grid-template-columns:1fr}}
+    
+    .feature-card{background:#fff;padding:14px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.04);text-align:center}
+    
+    .pricing{display:flex;gap:14px;margin-top:18px}
+    @media(max-width:700px){.pricing{flex-direction:column}}
+    
+    .price-card{flex:1;background:#fff;padding:18px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.04);text-align:center}
+    
+    .price-card h3{margin:8px 0;color:var(--primary)}
+    
+    .testimonial{background:#fff;padding:16px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.04);margin-top:18px}
+    
+    footer{text-align:center;margin-top:24px;padding:12px;background:var(--primary);color:white;border-radius:6px}
+    
+    .grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media(max-width:900px){.grid-cards{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.grid-cards{grid-template-columns:1fr}}
+    .accent{color:var(--accent)}
+  </style>
+</head>
+<body>
+  <header>
+   
+    <div > Product Landing Page (Responsive)</div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Overview & learning goals</h2>
+      <p class="muted">
+        In this project you'll build a responsive product landing page suitable for SaaS products, apps, or digital tools. The page will include:
+      </p>
+      <ul>
+        <li>A compelling hero section with primary CTA</li>
+        <li>Feature highlights using grid & cards</li>
+        <li>Pricing section with tiers and CTA</li>
+        <li>Testimonials and social proof</li>
+        <li>Accessible markup, responsive behavior (mobile-first), and performance tips</li>
+      </ul>
+      <p class="note">Follow step-by-step: copy examples into files (index.html & style.css), then customize branding, images, and text for your product.</p>
+    </section>
+
+    <section>
+      <h2>1 — Plan & folder structure</h2>
+      <p>Keep an organized project folder:</p>
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/product-landing/
+  index.html
+  css/
+    style.css
+  images/
+    hero.png
+    feature-1.jpg
+    testimonial-1.jpg
+  js/
+    main.js
+  assets/
+    logos/
+</code></pre>
+      <p><strong>Why:</strong> Clear structure makes linking assets easy and deployment predictable (GitHub Pages, Netlify, Vercel).</p>
+    </section>
+
+    <section>
+      <h2>2 — Mobile-first HTML skeleton</h2>
+      <p>Start with semantic HTML and simple content placeholders. Keep navigation, hero, features, pricing, testimonials, and footer.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Product Name — Landing Page&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header&gt;
+    &lt;nav class="site-nav" aria-label="Main Navigation"&gt;
+      &lt;div class="logo"&gt;ProductName&lt;/div&gt;
+      &lt;div class="nav-actions"&gt;
+        &lt;a href="#" class="btn ghost"&gt;Sign in&lt;/a&gt;
+        &lt;a href="#" class="btn"&gt;Get started&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;!-- Hero, features, pricing, testimonials go here --&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt; &amp;copy; 2025 ProductName &lt;/footer&gt;
+  &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+      <p><strong>Accessibility:</strong> Include <code>aria-label</code> on navigation and ensure the page has one logical <code>&lt;main&gt;</code> landmark.</p>
+    </section>
+
+    <section>
+      <h2>3 — Hero section: message, visual, CTA</h2>
+      <p>The hero is the most important real estate. Keep a short headline, brief subhead, 1–2 CTAs, and a product visual or screenshot. Mobile-first: stack content vertically, then use a two-column layout on larger screens.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section class="hero" aria-labelledby="hero-title"&gt;
+  &lt;div class="hero-content"&gt;
+    &lt;h1 id="hero-title"&gt;Beautiful product. Simple pricing.&lt;/h1&gt;
+    &lt;p class="muted"&gt;Ship faster with design-ready components and a simple API. Free 14-day trial — no credit card.&lt;/p&gt;
+    &lt;div style="margin-top:12px"&gt;
+      &lt;a href="#get-started" class="btn"&gt;Get started free&lt;/a&gt;
+      &lt;a href="#learn-more" class="btn ghost"&gt;Learn more&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="hero-visual"&gt;
+    &lt;img src="images/hero.png" alt="Product user interface screenshot"&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+
+      <p><strong>Design note:</strong> Put the hero visual after the content in the DOM for mobile so screen readers encounter the headline first; use CSS to re-order on wide screens if necessary.</p>
+    </section>
+
+    <section>
+      <h2>4 — Feature highlights</h2>
+      <p>Use concise feature cards with icons or small images. Keep copy short: benefit → how → impact.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section id="features"&gt;
+  &lt;h2&gt;Core features&lt;/h2&gt;
+  &lt;div class="features"&gt;
+    &lt;div class="feature-card"&gt;
+      &lt;img src="images/feature-1.jpg" alt="Visual for fast development"&gt;
+      &lt;h3&gt;Ship faster&lt;/h3&gt;
+      &lt;p class="muted"&gt;Pre-built components reduce development time by 70%.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="feature-card"&gt;
+      &lt;img src="images/feature-2.jpg" alt="Visual for customization"&gt;
+      &lt;h3&gt;Easily customizable&lt;/h3&gt;
+      &lt;p class="muted"&gt;Customize styles to match your brand in minutes.&lt;/p&gt;
+    &lt;/div>
+
+    &lt;div class="feature-card"&gt;
+      &lt;img src="images/feature-3.jpg" alt="Visual for performance"&gt;
+      &lt;h3&gt;Fast & reliable&lt;/h3&gt;
+      &lt;p class="muted"&gt;Optimized for speed and tested at scale.&lt;/p&gt;
+    &lt;/div>
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+
+      <p><strong>Tip:</strong> Use SVG icons or optimized images; avoid heavy bitmaps in the features grid.</p>
+    </section>
+
+    <section>
+      <h2>5 — Pricing section</h2>
+      <p>Show 2–3 pricing tiers with clear differences. Make the recommended option visually prominent. Provide monthly and yearly toggle optionally.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section id="pricing"&gt;
+  &lt;h2&gt;Choose a plan&lt;/h2&gt;
+  &lt;div class="pricing"&gt;
+    &lt;div class="price-card"&gt;
+      &lt;h3&gt;Starter&lt;/h3&gt;
+      &lt;p class="muted"&gt;Free forever&lt;/p&gt;
+      &lt;div style="font-size:1.6rem;margin:12px 0"&gt;$0&lt;/div&gt;
+      &lt;a class="btn ghost" href="#"&gt;Start free&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="price-card" style="border:2px solid var(--primary)"&gt;
+      &lt;h3&gt;Pro&lt;/h3&gt;
+      &lt;p class="muted"&gt;Most popular&lt;/p&gt;
+      &lt;div style="font-size:1.6rem;margin:12px 0"&gt;$19/mo&lt;/div&gt;
+      &lt;a class="btn" href="#"&gt;Get Pro&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="price-card"&gt;
+      &lt;h3&gt;Enterprise&lt;/h3&gt;
+      &lt;p class="muted"&gt;Custom pricing&lt;/p&gt;
+      &lt;div style="font-size:1.6rem;margin:12px 0"&gt;Contact us&lt;/div&gt;
+      &lt;a class="btn ghost" href="#"&gt;Contact sales&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+
+      <p><strong>Accessibility:</strong> Ensure CTAs are keyboard accessible and have descriptive link text (e.g., "Get Pro — $19 per month").</p>
+    </section>
+
+    <section>
+      <h2>6 — Testimonials & social proof</h2>
+      <p>Include 2–3 short testimonials with name, role, and small avatar. Social proof builds trust and conversion.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section id="testimonials"&gt;
+  &lt;h2&gt;What customers say&lt;/h2&gt;
+  &lt;div class="grid-cards"&gt;
+    &lt;div class="testimonial"&gt;
+      &lt;p&gt;"This tool reduced our dev time by weeks. The docs are excellent."&lt;/p&gt;
+      &lt;div class="muted"&gt;- Jane Doe, Product Manager&lt;/div&gt;
+    &lt;/div&gt>
+
+    &lt;div class="testimonial"&gt;
+      &lt;p&gt;"Reliable, performant, and easy to customize. Highly recommended."&lt;/p&gt;
+      &lt;div class="muted"&gt;- Ahmed K., CTO&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+
+      <p><strong>Tip:</strong> Use real testimonials when possible; rotate or paginate if you have many.</p>
+    </section>
+
+    <section>
+      <h2>7 — Footer & legal</h2>
+      <p>Include links for support, docs, privacy, terms, social icons, and a small newsletter signup area.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;footer class="page-footer"&gt;
+  &lt;div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"&gt;
+    &lt;div&gt;&lt;strong&gt;ProductName&lt;/strong&gt; — Build better products&lt;/div&gt;
+    &lt;div style="display:flex;gap:12px"&gt;
+      &lt;a href="#"&gt;Docs&lt;/a&gt;
+      &lt;a href="#"&gt;Privacy&lt;/a&gt;
+      &lt;a href="#"&gt;Terms&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/footer&gt;
+</code></pre>
+
+      <p><strong>Legal:</strong> Provide a privacy policy if you collect emails or analytics, and store user data according to local laws (GDPR, CCPA where applicable).</p>
+    </section>
+
+    <section>
+      <h2>8 — Core CSS (mobile-first)</h2>
+      <p>Below is a compact but complete CSS sample covering layout, hero, features, pricing, and basic responsive rules. Put this in <code>css/style.css</code>.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/* css/style.css (core) */
+:root{--primary:#007bff;--accent:#ff7a59;--bg:#f7f9fb;--radius:10px}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);font-family:Inter,Segoe UI,Arial,sans-serif;color:#222}
+a{color:inherit}
+.site-nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+.logo{font-weight:700;font-size:1.1rem}
+.nav-actions{display:flex;gap:8px;align-items:center}
+
+/* Hero */
+.hero{display:flex;flex-direction:column;padding:18px;gap:12px;align-items:flex-start}
+.hero-visual img{width:100%;height:auto;border-radius:8px}
+.hero .btn{margin-right:8px}
+
+/* Features */
+.features{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:640px){.features{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.features{grid-template-columns:repeat(3,1fr)}}
+.feature-card img{width:60px;height:60px;object-fit:cover;margin:0 auto 10px;display:block}
+
+/* Pricing */
+.pricing{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+@media(min-width:700px){.pricing{flex-direction:row}}
+.price-card{padding:16px;border-radius:8px;border:1px solid #eee;text-align:center}
+
+/* Testimonials */
+.grid-cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:700px){.grid-cards{grid-template-columns:repeat(2,1fr)}}
+
+/* Utility */
+.btn{display:inline-block;padding:10px 14px;border-radius:8px;background:var(--primary);color:#fff;text-decoration:none;font-weight:600}
+.btn.ghost{background:#fff;color:var(--primary);border:1px solid #e6eefc}
+.muted{color:#6c757d}
+
+/* Responsive layout: hero two-column */
+@media(min-width:900px){
+  .hero{flex-direction:row;align-items:center}
+  .hero .hero-content{flex:1}
+  .hero .hero-visual{width:420px}
+}
+</code></pre>
+
+      <p><strong>Notes:</strong> Keep CSS small and modular. Use variables for colors and easy theme changes.</p>
+    </section>
+
+    <section>
+      <h2>9 — Accessibility & SEO tips</h2>
+      <ul>
+        <li>Use semantic landmarks: <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>.</li>
+        <li>Provide descriptive <code>alt</code> text for images and <code>aria-label</code> where necessary.</li>
+        <li>Use clear H1 for the hero and H2 for section headings — one H1 per page.</li>
+        <li>Include meta title and description tailored to the product and audience.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>10 — Performance & production checklist</h2>
+      <ol>
+        <li>Optimize hero and feature images: use WebP and multiple sizes via <code>srcset</code>.</li>
+        <li>Preconnect to fonts and use <code>display=swap</code> to avoid FOIT.</li>
+        <li>Minify CSS & JS and enable gzip/Brotli on server.</li>
+        <li>Set caching headers for static assets and use a CDN for global users.</li>
+        <li>Defer nonessential JS (analytics) so hero and CTAs load quickly.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>11 — Optional enhancements</h2>
+      <ul>
+        <li>Monthly/yearly pricing toggle with JS and CSS transitions.</li>
+        <li>Signup modal for the CTA using accessible dialog patterns (role="dialog").</li>
+        <li>Animated micro-interactions on CTA hover (scale, shadow).</li>
+        <li>AB test headlines and CTAs — measure conversions.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>12 — Full starter HTML snippet (body)</h2>
+      <p>Copy this into <code>index.html</code> as a starting scaffold (includes hero, features, pricing, testimonials).</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;main&gt;
+  &lt;section class="hero" aria-labelledby="hero-title"&gt;
+    &lt;div class="hero-content"&gt;
+      &lt;h1 id="hero-title"&gt;Launch faster with ProductName&lt;/h1&gt;
+      &lt;p class="muted"&gt;A complete toolkit for teams that ship web products faster. Free trial available.&lt;/p&gt;
+      &lt;div style="margin-top:12px"&gt;
+        &lt;a class="btn" href="#pricing"&gt;Start free trial&lt;/a&gt;
+        &lt;a class="btn ghost" href="#features"&gt;See features&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="hero-visual"&gt;
+      &lt;img src="images/hero.png" alt="Product screenshot"&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section id="features"&gt;
+    &lt;h2&gt;Why teams love ProductName&lt;/h2&gt;
+    &lt;div class="features"&gt;
+      &lt;div class="feature-card"&gt;&lt;img src="images/feature-1.jpg" alt=""&gt;&lt;h3&gt;Fast setup&lt;/h3&gt;&lt;p class="muted"&gt;Install in minutes and start building.&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="feature-card"&gt;&lt;img src="images/feature-2.jpg" alt=""&gt;&lt;h3&gt;Customizable&lt;/h3&gt;&lt;p class="muted"&gt;Match your brand with simple theming.&lt;/p&gt;&lt;/div&gt;
+      &lt;div class="feature-card"&gt;&lt;img src="images/feature-3.jpg" alt=""&gt;&lt;h3&gt;Scale with confidence&lt;/h3&gt;&lt;p class="muted"&gt;Built for high traffic and reliability.&lt;/p&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section id="pricing"&gt;
+    &lt;h2&gt;Pricing&lt;/h2&gt;
+    &lt;div class="pricing"&gt;
+      &lt;div class="price-card"&gt;&lt;h3&gt;Starter&lt;/h3&gt;&lt;div&gt;$0&lt;/div&gt;&lt;a class="btn ghost" href="#"&gt;Start free&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="price-card"&gt;&lt;h3&gt;Pro&lt;/h3&gt;&lt;div&gt;$19/mo&lt;/div&gt;&lt;a class="btn" href="#"&gt;Get Pro&lt;/a&gt;&lt;/div&gt;
+      &lt;div class="price-card"&gt;&lt;h3&gt;Enterprise&lt;/h3&gt;&lt;div&gt;Contact us&lt;/div&gt;&lt;a class="btn ghost" href="#"&gt;Contact sales&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section id="testimonials"&gt;
+    &lt;h2&gt;Loved by teams everywhere&lt;/h2&gt;
+    &lt;div class="grid-cards"&gt;
+      &lt;div class="testimonial"&gt;&lt;p&gt;"Our workflow improved dramatically with ProductName."&lt;/p&gt;&lt;div class="muted"&gt;- Riley, Dev Lead&lt;/div&gt;&lt;/div&gt;
+      &lt;div class="testimonial"&gt;&lt;p&gt;"Easy to use and integrate."&lt;/p&gt;&lt;div class="muted"&gt;- Sam, Founder&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre>
+
+      <p>This scaffold is ready to style with the CSS shown earlier.</p>
+    </section>
+
+    <section>
+      <h2>13 — Deployment & launch checklist</h2>
+      <ol>
+        <li>Replace placeholder images with optimized WebP/JPEGs and add <code>srcset</code>.</li>
+        <li>Preconnect to external fonts and use <code>display=swap</code>.</li>
+        <li>Minify assets and enable server compression (gzip/Brotli).</li>
+        <li>Configure caching headers and deploy to a CDN-enabled host (Netlify, Vercel, GitHub Pages for static sites).</li>
+        <li>Set up analytics & get consent if required by law.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>14 — Challenge tasks (practice)</h2>
+      <ol>
+        <li>Add a pricing toggle (monthly/yearly) with JS that smoothly transitions prices.</li>
+        <li>Implement an accessible signup modal for the CTA with keyboard focus trap.</li>
+        <li>Add microcopy under the CTA with trust signals (e.g., "No credit card required").</li>
+        <li>Create A/B test variations of the hero headline and measure conversions.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>15 — Final words</h2>
+      <p class="note">You now have a full blueprint for a modern, responsive product landing page. Copy the snippets into <code>index.html</code> and <code>css/style.css</code>, replace visuals and brand colors, and test on multiple devices. When satisfied, deploy and monitor conversions.</p>
+
+      <p>If you want, I can now:</p>
+      <ul>
+        <li>Generate a ZIP with starter files (index.html, css/style.css, js/main.js, and placeholder images)</li>
+        <li>Create a polished, production-ready CSS file with additional utilities and a theme variant</li>
+        <li>Implement the pricing toggle modal & small JS interactions (accessible)</li>
+      </ul>
+    </section>
+    <div>
+        <a href="portfolio.html">Back</a>
+        <a href="landingpage.html">Next</a>
+    </div>
+
+    <footer class="page-footer">
+      &copy; 2025 Product Landing — Lesson 23. Built for students.
+    </footer>
+  </main>
+
+  <script>
+    // Copy function used for all pre copy buttons
+    function copyCode(btn) {
+      const pre = btn.parentElement;
+      const code = pre.querySelector('code');
+      if(!code) return;
+      navigator.clipboard.writeText(code.innerText).then(() => {
+        const old = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = old, 1400);
+      }).catch(err => {
+        console.error('Copy failed', err);
+        btn.textContent = 'Fail';
+        setTimeout(() => btn.textContent = 'Copy', 1400);
+      });
+    }
+  </script>
+</body>
+</html>
