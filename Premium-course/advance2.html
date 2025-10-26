@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced HTML Concepts</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: #007bff;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* Unified Section Styling (for all lessons) */
+    section {
+      margin-bottom: 50px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 6px;
+      margin-bottom: 15px;
+    }
+
+    pre {
+      background: #f0f0f0;
+      color: black;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    button.copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    button.copy-btn:hover {
+      background: #0056b3;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #007bff;
+      color: white;
+      border-top: 2px solid #0056b3;
+    }
+
+    /* Remove previous card-based lesson styles */
+    .lesson-section,
+    .lesson,
+    .section {
+      all: unset;
+      display: block;
+      margin-bottom: 50px;
+    }
+
+    .code-block {
+      background: #1e1e1e;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 10px;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Advanced HTML Concepts for Beginners</h1>
+  </header>
+
+  <main>
+
+    <!-- 1. Semantic HTML -->
+    <section id="semantic">
+      <h2>1. Semantic HTML Explained</h2>
+      <p>
+        Semantic HTML gives meaning to your web content.  
+        Instead of using generic <code>&lt;div&gt;</code> elements, we use tags that describe their role, such as 
+        <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, and 
+        <code>&lt;footer&gt;</code>. These tags help search engines and screen readers understand your page better.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;header&gt;
+  &lt;h1&gt;My Blog&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;a href="#home"&gt;Home&lt;/a&gt;
+    &lt;a href="#articles"&gt;Articles&lt;/a&gt;
+    &lt;a href="#contact"&gt;Contact&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+  &lt;article&gt;
+    &lt;h2&gt;Understanding Semantic HTML&lt;/h2&gt;
+    &lt;section&gt;
+      &lt;p&gt;Semantic HTML improves SEO and accessibility.&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/article&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;&copy; 2025 My Blog&lt;/footer&gt;
+      </code></pre>
+
+      <p><strong>Explanation:</strong>  
+      <code>&lt;header&gt;</code> holds the title and navigation.  
+      <code>&lt;nav&gt;</code> defines navigation links.  
+      <code>&lt;article&gt;</code> wraps independent content, and <code>&lt;footer&gt;</code> ends the page with copyright.</p>
+    </section>
+
+    <!-- 2. Accessibility -->
+    <section id="accessibility">
+      <h2>2. Accessibility Best Practices</h2>
+      <p>
+        Accessibility ensures your website is usable by everyone, including people with disabilities.  
+        Using ARIA attributes, alt text, and keyboard navigation improves inclusiveness.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;button aria-label="Play video"&gt;▶&lt;/button&gt;
+
+&lt;img src="nature.jpg" alt="Beautiful green forest with sunlight"&gt;
+
+&lt;a href="#main-content" accesskey="m"&gt;Skip to main content&lt;/a&gt;
+      </code></pre>
+
+      <p><strong>Explanation:</strong>  
+      <code>aria-label</code> gives buttons a clear description for screen readers.  
+      <code>alt</code> describes images.  
+      <code>accesskey</code> allows keyboard shortcuts (e.g., <kbd>Alt + M</kbd>).</p>
+    </section>
+
+    <!-- 3. Forms -->
+    <section id="forms">
+      <h2>3. Forms and Validation</h2>
+      <p>
+        Forms allow users to send data. HTML5 adds input types and built-in validation features like <code>required</code> and <code>pattern</code>.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;form&gt;
+  &lt;label&gt;Email:&lt;/label&gt;
+  &lt;input type="email" required placeholder="example@mail.com"&gt;
+
+  &lt;label&gt;Password:&lt;/label&gt;
+  &lt;input type="password" pattern=".{6,}" required title="At least 6 characters"&gt;
+
+  &lt;label&gt;Age:&lt;/label&gt;
+  &lt;input type="number" min="18" max="60"&gt;
+
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+      </code></pre>
+
+      <p><strong>Explanation:</strong>  
+      The browser automatically checks <code>required</code> fields and validates input patterns.  
+      For example, the <code>type="email"</code> ensures a valid email format, and <code>pattern</code> sets password length rules.</p>
+    </section>
+
+    <!-- 4. Tables -->
+    <section id="tables">
+      <h2>4. Tables with Advanced Styling</h2>
+      <p>
+        Tables display structured data like schedules or comparisons.  
+        Use <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code>, and <code>&lt;tfoot&gt;</code> for clarity and style them with CSS.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;table border="1"&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Country&lt;/th&gt;
+      &lt;th&gt;Score&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;td&gt;John&lt;/td&gt;&lt;td&gt;Ghana&lt;/td&gt;&lt;td&gt;89&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Mary&lt;/td&gt;&lt;td&gt;Nigeria&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+      </code></pre>
+
+      <p><strong>Explanation:</strong>  
+      The table uses <code>&lt;th&gt;</code> for headers and <code>&lt;td&gt;</code> for data.  
+      Styling can make tables readable — e.g., zebra stripes or hover highlights.</p>
+    </section>
+
+    <!-- 5. Embedding -->
+    <section id="embedding">
+      <h2>5. Embedding Content</h2>
+      <p>
+        You can embed multimedia like videos, maps, or social media posts with the <code>&lt;iframe&gt;</code> element.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>
+&lt;iframe 
+  src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+  width="100%" 
+  height="315" 
+  style="border:0; border-radius:8px;"
+  allowfullscreen&gt;
+&lt;/iframe&gt;
+
+&lt;iframe 
+  src="https://www.google.com/maps/embed?..." 
+  width="100%" 
+  height="300" 
+  style="border:0;" 
+  loading="lazy"&gt;
+&lt;/iframe&gt;
+      </code></pre>
+
+      <p><strong>Explanation:</strong>  
+      The <code>allowfullscreen</code> enables full-screen video viewing, and <code>loading="lazy"</code> improves performance.  
+      Always ensure the source you embed is safe and trusted.</p>
+    </section>
+
+    <!-- Part 3: Modern Styling Techniques (Now Unified Style) -->
+    <section id="part3">
+      <h2>Part 3: Modern Styling Techniques</h2>
+
+      <h3>11. Responsive Design with Media Queries</h3>
+      <p>
+        Media queries allow your website to adapt its layout and design depending on the device or screen size.
+        This ensures your site looks great on desktops, tablets, and mobile devices.
+      </p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code>
+
+        </code></pre>
+      </div>
+
+      <h3>12. CSS Variables (Custom Properties)</h3>
+      <p>
+        CSS variables let you store reusable values like colors or font sizes, making it easy to manage and update styles.
+      </p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code>
+:root {
+  --main-color: #4CAF50;
+  --text-color: #333;
+}
+
+button {
+  background-c      </code></pre>
+      </div>
+
+      <h3>13. Animations and Transitions</h3>
+      <p>
+        Transitions and animations make your site feel more dynamic and engaging by adding smooth motion effects.
+      </p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code>
+/* Transition Example */
+button {
+  background-color: #3498db;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Animation Example */
+@keyframes slideIn {
+  from { transform: translateX(-100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.box {
+  animation: slideIn 1s ease forwards;
+}
+        </code></pre>
+      </div>
+
+      <h3>14. Gradients, Shadows, and Image Effects</h3>
+      <p>
+        Add depth and style using gradients, shadows, and effects to make your design stand out.
+      </p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code>
+/* Gradient Background */
+div {
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+}
+
+/* Box Shadow */
+.card {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Filter */
+img {
+  filter: grayscale(80%) brightness(1.1);
+}
+        </code></pre>
+      </div>
+
+      <h3>15. Dark Mode and Theming</h3>
+      <p>
+        Dark mode improves accessibility and saves battery life. You can easily enable it using CSS variables or the user’s system preferences.
+      </p>
+      <div class="code-block">
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <pre><code>
+/* Define themes */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+[data-theme="dark"] {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+        </code></pre>
+      </div>
+    </section>
+  </main>
+<div>
+    <a href="opt.html">Next</a>
+</div>
+  <footer>
+    &copy; 2025 Advanced HTML Concepts | Designed for Beginners
+  </footer>
+
+  <script>
+    function copyCode(button) {
+      const code = button.nextElementSibling.innerText;
+      navigator.clipboard.writeText(code).then(() => {
+        button.textContent = "Copied!";
+        setTimeout(() => button.textContent = "Copy", 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
