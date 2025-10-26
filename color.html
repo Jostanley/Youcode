@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Tutorial - Colors and Backgrounds</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f5f8;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    nav {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    h1 {
+      color: #0078d7;
+    }
+    section {
+      background: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .example {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="selectors.html">Selectors</a>
+    <a href="color-background.html">Colors</a>
+    <a href="font-text.html">Fonts</a>
+    <a href="box-model.html">Box Model</a>
+  </nav>
+
+  <h1>🎨 CSS Colors and Backgrounds</h1>
+  <p>This section covers how to use colors, background images, and opacity to design visually appealing pages.</p>
+
+  <section>
+    <h2>1. color</h2>
+    <p>Defines the <b>text color</b> of an element.</p>
+    <pre><code>p { color: blue; }</code></pre>
+    <div class="example">
+      <p style="color: blue;">This text is blue.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. background-color</h2>
+    <p>Sets the <b>background color</b> of an element.</p>
+    <pre><code>div { background-color: lightgreen; }</code></pre>
+    <div class="example" style="background-color: lightgreen;">
+      This box has a light green background.
+    </div>
+  </section>
+
+  <section>
+    <h2>3. background-image</h2>
+    <p>Displays an image as the background.</p>
+    <pre><code>body { background-image: url('https://picsum.photos/300/100'); }</code></pre>
+    <div class="example" style="background-image: url('https://picsum.photos/300/100'); height:100px; color:white;">
+      This div uses a background image.
+    </div>
+  </section>
+
+  <section>
+    <h2>4. background-repeat</h2>
+    <p>Controls if the image should <b>repeat</b>.</p>
+    <pre><code>div { background-repeat: no-repeat; }</code></pre>
+    <div class="example" style="background-image: url('https://picsum.photos/100'); background-repeat: no-repeat; height:100px;">
+      No repeating image.
+    </div>
+  </section>
+
+  <section>
+    <h2>5. background-position</h2>
+    <p>Sets the <b>starting position</b> of the background image.</p>
+    <pre><code>div { background-position: center; }</code></pre>
+    <div class="example" style="background-image: url('https://picsum.photos/100'); background-repeat:no-repeat; background-position:center; height:100px;">
+      Image centered.
+    </div>
+  </section>
+
+  <section>
+    <h2>6. background-size</h2>
+    <p>Controls how the image fits its container: <code>cover</code>, <code>contain</code>, or a size value.</p>
+    <pre><code>div { background-size: cover; }</code></pre>
+    <div class="example" style="background-image: url('https://picsum.photos/200/100'); background-size: cover; height:100px; color:white;">
+      Image covers the box.
+    </div>
+  </section>
+
+  <section>
+    <h2>7. background-attachment</h2>
+    <p>Specifies if the background image scrolls with the page or stays fixed.</p>
+    <pre><code>body { background-attachment: fixed; }</code></pre>
+    <div class="example" style="background-image:url('https://picsum.photos/200/100'); background-attachment:fixed; background-size:cover; height:100px;">
+      Scroll the page to see the fixed effect.
+    </div>
+  </section>
+
+  <section>
+    <h2>8. opacity</h2>
+    <p>Defines how transparent an element is (0 = invisible, 1 = solid).</p>
+    <pre><code>div { opacity: 0.5; }</code></pre>
+    <div class="example" style="background: red; color:white; opacity:0.6;">
+      This box is 60% visible.
+    </div>
+  </section>
+
+</body>
+</html>

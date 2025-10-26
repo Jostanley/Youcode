@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <title>Youcode</title>
+    <style> 
+        
+      body{
+         margin:0;
+         font-family:aerial, San-serif;
+         padding:0;
+        
+         
+      } 
+      #header-container{
+          background:#00bbff;
+          position:fixed;
+          top:0;
+          z-index:100;
+          width:100%;
+      }
+      #header{
+         display:flex;
+         align-items:center;
+         justify-content: space-between;
+         flex-direction:row;
+         color:#00b3ff;
+         width:90vw;
+         height:5%;
+         
+         font-size:0.5rem;
+        margin:20px;
+      }
+      #header h1{
+          color:#00bbff;
+         background:white;
+         padding:5px;
+         border-radius:10px;
+         background:white;
+      }
+      #menu-tab{
+          display:flex;
+         align-items:center;
+         justify-content: space-between;
+         flex-direction:row;
+         border-radius:10px;
+         background:white;
+         width:50px;
+      }
+      #menu-tab p{
+          ;
+          padding:2px;
+          
+      }
+      #content{
+          margin-top:20%;
+         
+      }
+       
+      footer{ background:#222; color:white; text-align:center; padding:15px; margin-top:30px; font-size:14px; }
+  
+  footer a { color:#00bfff; text-decoration:none; margin:0 10px; }
+  footer a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<header id="header-container">
+    <div id="header">
+  <h1>Youcode</h1>
+  <div id="menu-tab">
+  <p>Chart</p>
+  <p>Menu</p>
+  </div>
+  </div>
+</header>
+
+<main id="content">
+   <button onClick="handlebar('http://localhost:8080/professional-project/Business.html')">course</button> 
+</main>
+<footer>
+  Sponsored by Ejistan | <a href="#">Domain Registration</a> | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">Privacy Policy</a>
+</footer>
+<script>
+     function handlebar(htmls){
+        fetch(htmls)
+        .then((res)=>{
+           return res.text()
+        })
+        .then((data)=>{
+            document.getElementById("content").innerHTML = data;
+        })
+        .catch((err)=>{
+            console.log(err.message)
+        })
+    }
+</script>
+</body>
+</html>

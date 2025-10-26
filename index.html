@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Step by step introduction to web development, HTML, and CSS. Learn how to set up your environment and create your first web page.">
+    <meta name="keywords" content="HTML tutorial, CSS tutorial, web development, frontend development, learn HTML, learn CSS, VS Code setup">
+    <meta name="author" content="Ejistan">
+    <title>Introduction to Web Development | HTML & CSS Tutorial</title>
+    <style>body {
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  color: #333;
+  position: relative;
+  width: 100vw;
+}
+
+#header-container {
+  background: #0065b3;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  color: #00b3ff;
+  width: 90vw;
+  height: 5%;
+  font-size: 0.5rem;
+  margin: 20px;
+}
+
+#header h1 {
+  color: #00bbff;
+  background:white;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+#menu-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  border-radius: 10px;
+  width:60px;
+  font-weight:900;
+}
+
+#menu-tab a{
+  padding: 5px;
+  color:#0065b3;
+  border-radius:3px;
+  border:none;
+  font-size:.3rem;
+  width:35px;
+  
+}
+#menu-chat{
+    background:white;
+    padding:10px;
+    width:70px;
+}
+
+
+#dropbox {
+  position: sticky;
+  width: 100vw;
+  display:none;
+  background: white;
+  color:black;
+  padding: 10px;
+  z-index: 100;
+  top: 100px;
+  height:50px;
+  overflow-y:scroll;
+  
+}
+
+#dropbox div {
+  margin-top: 5px;
+}
+
+#dropbox-button {
+  color: white;
+  background:#0065b3;
+  padding: 10px;
+  box-shadow: 2px 5px 5px gray;
+  border-radius: 5px;
+  text-decoration: none;
+  
+}
+#dropbox-scroll{
+    width:900px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-around;
+    background:#f0f0f0;
+    padding:10px;
+}
+
+#dropbox-button:hover {
+  background: #e3f3ff;
+}
+
+/* CONTENT */
+#content {
+  margin-top: 25%;
+}
+
+/* MAIN CONTENT */
+main {
+   width:100vw;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  color: #0056b3;
+}
+
+h3 {
+  color: #333;
+  margin-top: 20px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+pre {
+  background: #eee;
+  padding: 15px;
+  overflow-x: auto;
+}
+
+code {
+  font-weight: bold;
+  color: #c7254e;
+}
+
+a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* BUTTON */
+.btn-register {
+  display: inline-block;
+  padding: 15px 25px;
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.3s;
+  margin: 0 10px;
+}
+
+.btn-register:hover {
+  background-color: #003d80;
+}
+
+/* FOOTER */
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+footer a {
+  color: #00bfff;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+ 
+   <header id="header-container">
+    <div id="header">
+  <h1>Youcode</h1>
+  <div id="menu-tab">
+  <a href="community.html" id="menu-chat">community</a>
+  </div>
+  <div id="menu-tab">
+     
+  <button id="menu-button">Menu</button>
+  </div>
+  </div>
+</header>
+<div id="dropbox">
+    <div id="dropbox-scroll">
+    <div>
+        <a  href="index.html" id="dropbox-button">get started</a>
+    </div>
+    
+    <div>
+        <button id="dropbox-button">html</button>
+    </div>
+    <div>
+        <button id="dropbox-button">css</button>
+    </div>
+    <div>
+        <button id="dropbox-button">JavaScript</button>
+    </div>
+    <div>
+        <button id="dropbox-button">React</button>
+    </div>
+    <div>
+        <button id="dropbox-button">building project</button>
+    </div>
+</div>
+</div>
+<script>
+    function handlenavigation(htmls){
+        fetch(htmls)
+        .then((res)=>{
+            return res.text()
+        })
+        .then((data)=>{
+            document.getElementById("content"). innerHTML= data
+        })
+        .catch((err)=>{
+            console.log(err.text)
+        })
+    };
+    const menubutton = document.getElementById("menu-button");
+    let navbar = document.getElementById("dropbox");
+    
+    menubutton.addEventListener("click",()=>{
+       if(navbar.style.display = "none"){ navbar.style.display = "block";
+    }else{
+        navbar.style.display="none"
+    }
+    })
+    
+    
+    function displayDropbox() {
+        navbar.style.display = 'none'
+    }
+</script>
+<main id="content" onClick = "displayDropbox ()">
+    <!-- Section 1: Introduction to Web Development -->
+    <section id="web-development">
+       
+           
+        <h2>1. Introduction to Web Development</h2>
+        <p>
+            Web development is the process of building websites and web applications that are accessible through the internet or an intranet. It involves a combination of programming, design, and database management to create functional, interactive, and visually appealing websites. There are generally three types of web development: front-end development, back-end development, and full-stack development. Front-end development focuses on what users see and interact with, using technologies like HTML, CSS, and JavaScript. Back-end development handles the server-side logic, databases, and application functionality. Full-stack development combines both front-end and back-end skills, allowing a developer to manage the entire web application workflow. Understanding web development is essential for creating modern websites, learning programming fundamentals, and entering the tech industry.
+        </p>
+        <p>
+            Modern web development emphasizes the use of responsive designs to ensure websites look good on desktops, tablets, and mobile devices. Learning HTML and CSS forms the foundation of front-end development, enabling you to structure content and style it effectively. This tutorial series will guide you step by step, starting with the basics of HTML structure, introducing CSS for styling, and eventually creating fully functional web pages with interactive designs.
+        </p>
+    </section>
+
+    <!-- Section 2: What Are HTML and CSS? -->
+    <section id="html-css">
+        <h2>2. What Are HTML and CSS?</h2>
+        <p>
+            HTML, or HyperText Markup Language, is the standard markup language used to create web pages. It defines the structure of a page using elements such as headings, paragraphs, lists, images, and links. HTML allows developers to organize content meaningfully using semantic elements like <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;section&gt;</code>. For example, headings defined with <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code> tags help search engines understand the hierarchy of content, improving SEO.
+        </p>
+        <p>
+            CSS, or Cascading Style Sheets, is used to control the visual appearance of web pages. CSS allows you to set colors, fonts, layouts, spacing, and animations, separating content from design. By using CSS, you can change the look and feel of your entire website with a single style sheet. Together, HTML and CSS form the backbone of front-end web development, allowing you to create well-structured, visually appealing, and responsive web pages that enhance the user experience.
+        </p>
+        <pre>
+&lt;!-- HTML Example --&gt;
+&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+&lt;p&gt;This is a paragraph styled with CSS.&lt;/p&gt;
+
+&lt;!-- CSS Example --&gt;
+&lt;style&gt;
+    h1 { color: #0056b3; font-size: 36px; }
+    p { color: #333; font-size: 16px; }
+&lt;/style&gt;
+        </pre>
+    </section>
+
+    <!-- Section 3: Setting Up Your Environment -->
+    <section id="setup">
+        <h2>3. Setting Up Your Environment (VS Code, Browsers)</h2>
+        <p>
+            To begin web development, you need a proper environment. A code editor is essential for writing HTML and CSS efficiently. Visual Studio Code (VS Code) is a popular, free editor that supports syntax highlighting, auto-completion, and extensions for web development. Installing VS Code on your computer is straightforward; download it from the official website and follow the installation instructions. Once installed, you can create folders for your projects and open files directly in VS Code to edit your code.If you don't have a computer  you can use your phone for a start.Go to playstore and download Acode app for Android users  the same way you set your vs code environment.Other popular editors include Sublime Text, Atom, and Brackets.
+        </p>
+        <p>
+            In addition to a code editor, you need a modern web browser like Google Chrome, Firefox, or Edge to test and view your web pages. Browsers have developer tools that allow you to inspect elements, debug CSS, and check console errors. These tools are essential for learning and improving your web development skills. By setting up this environment, you ensure that you have all the tools necessary to write, test, and refine your HTML and CSS projects efficiently.
+        </p>
+        <pre>
+&lt;!-- Folder Structure Example --&gt;
+project/
+    index.html
+    styles.css
+    images/
+        logo.png
+        banner.jpg
+        background.jpg
+        </pre>
+    </section>
+
+    <!-- Section 4: Creating Your First HTML Page -->
+    <section id="first-page">
+        <h2>4. Creating Your First HTML Page</h2>
+        <p>
+            Creating your first HTML page is an exciting step in learning web development. An HTML page starts with a document type declaration <code>&lt;!DOCTYPE html&gt;</code> that tells the browser which HTML version is being used. The main structure consists of the <code>&lt;html&gt;</code> element, a <code>&lt;head&gt;</code> section for metadata, and a <code>&lt;body&gt;</code> section for the content visible on the page. Inside the body, you can add headings, paragraphs, images, links, and other HTML elements. Naming your file with the <code>.html</code> extension allows browsers to recognize and render it correctly.
+        </p>
+        <p>
+            Below is a simple HTML page example that displays a heading, a paragraph, and a link. This page can be saved as <code>index.html</code> and opened in a browser to see your first web page live.
+        </p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;My First Web Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is my first HTML page created with VS Code.&lt;/p&gt;
+    &lt;a href="https://www.ejistan.com"&gt;Visit Ejistan&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+    </section>
+
+    <!-- Section 5: Linking CSS to HTML -->
+    <section id="linking-css">
+        <h2>5. Linking CSS to HTML (Inline, Internal, External)</h2>
+        <p>
+            CSS can be applied to HTML in three main ways: inline, internal, and external. Inline CSS is written directly within an HTML element using the <code>style</code> attribute. This method is useful for quick styling but is not recommended for large projects. Internal CSS is placed inside a <code>&lt;style&gt;</code> tag within the <code>&lt;head&gt;</code> section of your HTML page. External CSS is the preferred method for maintaining large websites; styles are written in a separate <code>.css</code> file and linked to HTML using the <code>&lt;link&gt;</code> tag.
+        </p>
+        <p>
+            Using external CSS allows you to maintain a consistent design across multiple web pages and makes your code cleaner and easier to manage. Below are examples of all three methods:
+        </p>
+        <pre>
+&lt;!-- Inline CSS --&gt;
+&lt;p style="color: red; font-size: 18px;"&gt;This is an inline styled paragraph.&lt;/p&gt;
+
+&lt;!-- Internal CSS --&gt;
+&lt;head&gt;
+&lt;style&gt;
+    h1 { color: blue; }
+    p { font-size: 16px; }
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;!-- External CSS --&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+        </pre>
+        <p>
+            By understanding these three methods, you can choose the best approach for different scenarios and create clean, efficient, and maintainable web designs.
+        </p>
+    </section>
+    <section id="html-fundamentals">
+    <h2>Part 2: HTML Fundamentals</h2>
+
+    <!-- 6. Basic Structure of an HTML Document -->
+    <section id="basic-structure">
+        <h3>6. Basic Structure of an HTML Document</h3>
+        <p>
+            Every HTML page follows a standard structure that ensures browsers interpret the content correctly. The structure starts with a document type declaration <code>&lt;!DOCTYPE html&gt;</code>, which tells the browser that the page is written in HTML5. The root element of an HTML document is the <code>&lt;html&gt;</code> tag, which contains the entire content of the page. Inside <code>&lt;html&gt;</code>, the <code>&lt;head&gt;</code> section includes metadata such as page title, character encoding, and links to external resources like CSS files or fonts. The <code>&lt;body&gt;</code> section contains all the visible content such as headings, paragraphs, images, links, and lists. Using this structure ensures that your website is both browser-compatible and SEO-friendly. Search engines rely on a proper HTML structure to understand your content hierarchy, making it easier for your page to rank higher.
+        </p>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My First HTML Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;p&gt;This is the body content.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+        </pre>
+        <p>
+            This basic template serves as the foundation for all HTML documents. Once you understand this structure, you can start adding more advanced elements and styling with CSS to build visually appealing and functional web pages.
+        </p>
+    </section>
+
+    <!-- 7. Headings, Paragraphs, and Text Formatting -->
+    <section id="text-formatting">
+        <h3>7. Headings, Paragraphs, and Text Formatting</h3>
+        <p>
+            Headings, paragraphs, and text formatting elements are essential for organizing content on a web page. Headings range from <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>, with <code>&lt;h1&gt;</code> representing the main title and <code>&lt;h6&gt;</code> the least important subheading. Proper use of headings not only improves readability but also helps search engines understand the content structure for better SEO. Paragraphs are enclosed in <code>&lt;p&gt;</code> tags and allow text to be separated into logical blocks. Text formatting tags include <code>&lt;strong&gt;</code> for bold, <code>&lt;em&gt;</code> for italics, <code>&lt;u&gt;</code> for underline, and <code>&lt;mark&gt;</code> for highlighting important text.
+        </p>
+        <pre>
+&lt;h1&gt;Main Heading&lt;/h1&gt;
+&lt;h2&gt;Subheading&lt;/h2&gt;
+&lt;p&gt;This is a paragraph with &lt;strong&gt;bold&lt;/strong&gt; and &lt;em&gt;italic&lt;/em&gt; text.&lt;/p&gt;
+&lt;p&gt;You can also &lt;u&gt;underline&lt;/u&gt; or &lt;mark&gt;highlight&lt;/mark&gt; words.&lt;/p&gt;
+        </pre>
+        <p>
+            Using headings and properly formatted paragraphs enhances accessibility and readability. Screen readers can navigate headings efficiently, and visually impaired users can better understand content hierarchy. Additionally, structured headings improve SEO rankings because search engines recognize the importance of each section.
+        </p>
+    </section>
+
+    <!-- 8. Lists: Ordered, Unordered, and Description Lists -->
+    <section id="lists">
+        <h3>8. Lists: Ordered, Unordered, and Description Lists</h3>
+        <p>
+            Lists are a crucial way to organize content on web pages. There are three main types of lists in HTML: ordered lists (<code>&lt;ol&gt;</code>), unordered lists (<code>&lt;ul&gt;</code>), and description lists (<code>&lt;dl&gt;</code>). Ordered lists are numbered, making them ideal for step-by-step instructions or ranking items. Unordered lists use bullets and are useful for listing items without a specific order. Description lists are used to define terms and descriptions, often used in glossaries or FAQs.
+        </p>
+        <pre>
+&lt;!-- Ordered List --&gt;
+&lt;ol&gt;
+    &lt;li&gt;Step One&lt;/li&gt;
+    &lt;li&gt;Step Two&lt;/li&gt;
+    &lt;li&gt;Step Three&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Unordered List --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Apples&lt;/li&gt;
+    &lt;li&gt;Bananas&lt;/li&gt;
+    &lt;li&gt;Cherries&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Description List --&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;&lt;dd&gt;HyperText Markup Language&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;&lt;dd&gt;Cascading Style Sheets&lt;/dd&gt;
+&lt;/dl&gt;
+        </pre>
+        <p>
+            Lists help make content easier to read, organize information logically, and improve SEO by structuring data clearly. Using lists properly allows both users and search engines to navigate and understand your content more efficiently.
+        </p>
+    </section>
+
+    <!-- 9. Links and Navigation Menus -->
+    <section id="links-navigation">
+        <h3>9. Links and Navigation Menus</h3>
+        <p>
+            Links are the backbone of the web, allowing users to navigate between pages, websites, and sections within a page. The <code>&lt;a&gt;</code> (anchor) tag creates a hyperlink, with the <code>href</code> attribute specifying the destination URL. Links can point to internal pages, external websites, email addresses, or specific sections of a page using IDs. Navigation menus combine multiple links in a structured format, usually in <code>&lt;nav&gt;</code> elements. Properly structured menus improve user experience and accessibility, allowing visitors to find content easily.
+        </p>
+        <pre>
+&lt;!-- Link Example --&gt;
+&lt;a href="https://www.ejistan.com"&gt;Visit Ejistan&lt;/a&gt;
+
+&lt;!-- Navigation Menu Example --&gt;
+&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="about.html"&gt;About&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+        </pre>
+        <p>
+            Well-designed navigation not only improves usability but also benefits SEO. Search engines use internal links to understand site hierarchy and index pages. Clear, descriptive link text helps users know what to expect when clicking a link, enhancing both accessibility and search ranking.
+        </p>
+    </section>
+
+    <!-- 10. Images and Multimedia (Audio & Video) -->
+    <section id="images-multimedia">
+        <h3>10. Images and Multimedia (Audio & Video)</h3>
+        <p>
+            Images, audio, and video are essential for engaging web content. The <code>&lt;img&gt;</code> tag inserts images with the <code>src</code> and <code>alt</code> attributes, where <code>alt</code> describes the image for accessibility and SEO. Audio is embedded using the <code>&lt;audio&gt;</code> tag, and video with the <code>&lt;video&gt;</code> tag. Both support multiple formats and attributes like <code>controls</code>, <code>autoplay</code>, and <code>loop</code>. Adding multimedia enhances user engagement, conveys complex ideas, and improves user experience.
+        </p>
+        <pre>
+&lt;!-- Image Example --&gt;
+&lt;img src="images/logo.png" alt="Ejistan Logo" width="200"&gt;
+
+&lt;!-- Audio Example --&gt;
+&lt;audio controls&gt;
+    &lt;source src="audio/song.mp3" type="audio/mpeg"&gt;
+    Your browser does not support the audio element.
+&lt;/audio&gt;
+
+&lt;!-- Video Example --&gt;
+&lt;video width="400" controls&gt;
+    &lt;source src="video/intro.mp4" type="video/mp4"&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;
+        </pre>
+        <p>
+            Using descriptive alt text, captions, and accessible controls ensures that your multimedia content is inclusive. Search engines also index images and videos better when alt text and titles are used correctly, improving SEO for your website.
+        </p>
+    </section>
+
+</section>
+<section id="css-fundamentals">
+    <h2>Part 3: CSS Fundamentals</h2>
+
+    <!-- 11. CSS Syntax and Selectors -->
+    <section id="css-syntax-selectors">
+        <h3>11. CSS Syntax and Selectors (Element, Class, ID)</h3>
+        <p>
+            CSS (Cascading Style Sheets) is used to style HTML elements and control the visual appearance of web pages. The basic CSS syntax consists of a <strong>selector</strong> and a <strong>declaration block</strong>. The selector specifies which HTML elements the style applies to, and the declaration block contains one or more style properties and values enclosed in curly braces. CSS selectors can target elements in different ways: element selectors, class selectors, and ID selectors. Element selectors target all occurrences of an HTML tag, class selectors target elements with a specific class attribute, and ID selectors target a single element with a unique ID attribute. Understanding how to use selectors effectively allows you to apply precise styling to your page.
+   
+   styling element with a tag class you write (.) before  the class name . For styling element with id tag you write the (#) before the id name .
+        </p>
+        <pre>
+&lt;!-- HTML Example --&gt;
+&lt;p class="intro"&gt;Welcome to CSS Tutorial&lt;/p&gt;
+&lt;p id="highlight"&gt;This is highlighted text&lt;/p&gt;
+
+&lt;!-- CSS Example --&gt;
+p { color: blue; font-size: 16px; }      /* Element selector */
+.intro { font-weight: bold; }           /* Class selector */
+#highlight { background-color: yellow; } /* ID selector */
+        </pre>
+        <p>
+            Using selectors properly helps maintain clean, organized CSS and avoids conflicts. Combining selectors with pseudo-classes and pseudo-elements allows even more precise styling for complex layouts. This foundational understanding of CSS syntax and selectors sets the stage for advanced styling techniques, creating consistent and visually appealing websites.
+        </p>
+    </section>
+
+    <!-- 12. Colors, Backgrounds, and Borders -->
+    <section id="colors-backgrounds-borders">
+        <h3>12. Colors, Backgrounds, and Borders</h3>
+        <p>
+            Colors, backgrounds, and borders are fundamental aspects of web design that enhance visual appeal and user experience. CSS allows you to set colors for text, backgrounds, and borders using color names, hexadecimal codes, RGB, or HSL values. Backgrounds can be solid colors, images, gradients, or even patterns. Borders define the edges of elements and can vary in width, style, and color. Proper use of these properties improves readability, visual hierarchy, and overall aesthetics.
+        </p>
+        <pre>
+&lt;!-- CSS Example --&gt;
+p {
+    color: #333;                 /* Text color */
+    background-color: #f0f0f0;   /* Background color */
+    border: 2px solid #0056b3;   /* Border with width, style, and color */
+    padding: 10px;                /* Space inside the border */
+}
+        </pre>
+        <p>
+            Using consistent color schemes and borders helps create a professional look. Gradients, shadows, and transparency can add depth and dimension to elements. Combining these properties thoughtfully improves the overall design and makes the website more visually engaging.
+        </p>
+    </section>
+
+    <!-- 13. Fonts, Text Styling, and Alignment -->
+    <section id="fonts-text-alignment">
+        <h3>13. Fonts, Text Styling, and Alignment</h3>
+        <p>
+            Text styling and fonts play a crucial role in readability, branding, and visual hierarchy. CSS allows you to specify fonts using generic families (serif, sans-serif, monospace) or custom fonts via Google Fonts or other services. You can control font size, weight, style (italic, normal), and spacing (letter-spacing, line-height). Text alignment properties, such as <code>left</code>, <code>right</code>, <code>center</code>, or <code>justify</code>, control how text appears within an element. Proper typography improves the user experience, accessibility, and the professional look of your website.
+        </p>
+        <pre>
+&lt;!-- CSS Example --&gt;
+p {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.6;
+    text-align: justify;
+    color: #444;
+}
+        </pre>
+        <p>
+            Combining font styles with color, spacing, and alignment ensures your content is readable and visually appealing. Consistency in typography across a website strengthens branding and provides a cohesive user experience.
+        </p>
+    </section>
+
+    <!-- 14. Margins, Padding, and the Box Model -->
+    <section id="box-model">
+        <h3>14. Margins, Padding, and the Box Model</h3>
+        <p>
+            The CSS box model is the foundation for understanding layout and spacing on web pages. Every HTML element is considered a rectangular box that consists of four parts: content, padding, border, and margin. The content area contains the actual text or media. Padding is the space between the content and the border, creating breathing room inside the element. The border surrounds the padding and content. Margin is the space outside the border, separating elements from one another. Mastering the box model is essential for precise positioning and creating visually balanced layouts.
+        </p>
+        <pre>
+&lt;!-- CSS Example --&gt;
+div {
+    width: 300px;
+    padding: 20px;       /* Inside space */
+    border: 2px solid #333; /* Border */
+    margin: 30px;        /* Outside space */
+}
+        </pre>
+        <p>
+            Understanding how padding, borders, and margins affect element size is key to responsive design. Adjusting these values allows developers to control spacing consistently, avoiding layout issues across devices. Tools like browser developer inspectors make it easy to visualize the box model for each element.
+        </p>
+    </section>
+
+    <!-- 15. Styling Buttons and Links -->
+    <section id="buttons-links">
+        <h3>15. Styling Buttons and Links</h3>
+        <p>
+            Buttons and links are interactive elements crucial for navigation and user actions. CSS allows you to style buttons using properties such as background color, border, padding, font, hover effects, and transitions. Links can be styled differently in normal, hover, active, and visited states using pseudo-classes. Well-styled buttons and links improve usability, visual appeal, and encourage user interaction, which is critical for engagement on your website.
+        </p>
+        <pre>
+&lt;!-- HTML Example --&gt;
+&lt;a href="#" class="btn"&gt;Click Me&lt;/a&gt;
+
+&lt;!-- CSS Example --&gt;
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #003d80;
+}
+        </pre>
+        <p>
+            Adding hover effects, transitions, and rounded corners makes buttons more interactive and visually appealing. Consistent styling of links and buttons across the site reinforces branding and improves the user experience, making users more likely to stay engaged and explore additional content.
+        </p>
+    </section>
+
+</section>
+<section id="layout-design">
+    <h2>Part 4: Basic Layout and Design</h2>
+
+    <!-- 16. Page Layout Using <div> and <span> -->
+    <section id="div-span">
+        <h3>16. Page Layout Using &lt;div&gt; and &lt;span&gt;</h3>
+        <p>
+            In HTML, the <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> elements are foundational for creating page layouts. The <code>&lt;div&gt;</code> tag is a block-level element, meaning it takes up the full width available and can contain other block or inline elements. It is commonly used to group sections of content, making it easier to apply CSS styling or organize the page structure. On the other hand, the <code>&lt;span&gt;</code> tag is an inline element, used to style or manipulate small portions of text within a larger block of content. Together, <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> provide the flexibility to structure your page effectively and apply CSS precisely.
+        </p>
+        <pre>
+&lt;!-- Example of div and span --&gt;
+&lt;div class="container"&gt;
+    &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+    &lt;p&gt;This is a &lt;span class="highlight"&gt;highlighted&lt;/span&gt; word.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+.container { width: 80%; margin: 0 auto; padding: 20px; }
+.highlight { color: #0056b3; font-weight: bold; }
+        </pre>
+        <p>
+            Using <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code> effectively allows developers to create visually organized layouts while maintaining semantic clarity. Grouping content with <code>&lt;div&gt;</code> simplifies the application of styling, while <code>&lt;span&gt;</code> enables fine-grained text styling. This approach is crucial for both static layouts and dynamic, interactive designs.
+        </p>
+    </section>
+
+    <!-- 17. Introduction to Flexbox -->
+    <section id="flexbox">
+        <h3>17. Introduction to Flexbox</h3>
+        <p>
+            Flexbox is a modern CSS layout module designed to simplify the creation of flexible and responsive layouts. Unlike traditional block or inline layouts, Flexbox allows you to align and distribute space among items in a container efficiently. The container is set to <code>display: flex;</code>, and its children can be aligned horizontally or vertically using properties like <code>justify-content</code> and <code>align-items</code>. Flexbox is particularly useful for designing navigation bars, card layouts, and content grids. Its flexibility allows elements to grow, shrink, or wrap depending on available space, making responsive design easier to implement without complex CSS calculations.
+        </p>
+        <pre>
+&lt;!-- Flexbox Example --&gt;
+&lt;div class="flex-container"&gt;
+    &lt;div class="box"&gt;Box 1&lt;/div&gt;
+    &lt;div class="box"&gt;Box 2&lt;/div&gt;
+    &lt;div class="box"&gt;Box 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+.box {
+    background-color: #0056b3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+        </pre>
+        <p>
+            Flexbox simplifies layout challenges, including vertical centering, equal-height columns, and responsive adjustments. By mastering Flexbox, developers can build modern web pages that adapt smoothly to different screen sizes while maintaining clean, readable code.
+        </p>
+    </section>
+
+    <!-- 18. Simple Responsive Design -->
+    <section id="responsive-design">
+        <h3>18. Simple Responsive Design</h3>
+        <p>
+            Responsive design ensures that web pages look good and function correctly on all devices, including desktops, tablets, and mobile phones. This is achieved using CSS media queries, flexible grids, and relative units like percentages and viewport units. Media queries allow you to apply different styles depending on the screen size or device orientation. For example, you might adjust font size, hide certain elements, or change the layout from multiple columns to a single column for smaller screens. Simple responsive design practices improve usability, accessibility, and SEO by providing a consistent experience across devices.
+        </p>
+        <pre>
+&lt;!-- Example of a simple responsive design --&gt;
+&lt;style&gt;
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+}
+&lt;/style&gt;
+        </pre>
+        <p>
+            By adopting responsive design early, developers ensure their websites remain modern, accessible, and user-friendly. Combining flexible layouts with media queries allows content to adapt naturally to different devices without compromising readability or functionality.
+        </p>
+    </section>
+
+    <!-- 19. Creating a Basic Web Page Layout -->
+    <section id="webpage-layout">
+        <h3>19. Creating a Basic Web Page Layout (Header, Main, Footer)</h3>
+        <p>
+            A typical web page consists of three main sections: header, main content, and footer. The <code>&lt;header&gt;</code> usually contains the website title, logo, or navigation menu. The <code>&lt;main&gt;</code> tag houses the primary content, such as articles, images, or interactive elements. The <code>&lt;footer&gt;</code> provides additional information like contact details, copyright notices, or external links. Structuring a page this way improves both user experience and SEO by providing semantic meaning to each section.
+        </p>
+        <pre>
+&lt;!-- HTML Layout Example --&gt;
+&lt;header&gt;
+    &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;a href="#"&gt;Home&lt;/a&gt; |
+        &lt;a href="#"&gt;About&lt;/a&gt; |
+        &lt;a href="#"&gt;Contact&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;h2&gt;Welcome to My Page&lt;/h2&gt;
+    &lt;p&gt;This is the main content area.&lt;/p&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;&copy; 2025 Ejistan. All Rights Reserved.&lt;/p&gt;
+&lt;/footer&gt;
+
+&lt;!-- CSS --&gt;
+header, footer { background-color: #0056b3; color: white; padding: 20px; text-align: center; }
+main { padding: 20px; }
+nav a { color: white; text-decoration: none; margin: 0 10px; }
+nav a:hover { text-decoration: underline; }
+        </pre>
+        <p>
+            This structure creates a clean, organized layout and ensures the page is semantically correct. Adding CSS styling enhances the visual appeal, while maintaining semantic HTML supports accessibility and improves search engine indexing. By combining header, main, and footer with responsive techniques, you can build a web page that is both functional and visually engaging across devices.
+        </p>
+    </section>
+
+</section>
+<a href="Register.html" class="btn-register">Register to Unlock Advance Lesson</a>
+
+<style>
+
+</style>
+</main>
+<footer>
+  Sponsored by Ejistan | <a href="#">Domain Registration</a> | <a href="#">Contact</a> | <a href="#">Terms</a> | <a href="#">Privacy Policy</a>
+</footer>
+
+</body>
+</html>

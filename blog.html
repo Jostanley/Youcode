@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> Product Landing Page (Ejistan Tech) — Classroom Tutorial</title>
+  <style>
+    :root{
+      --primary:#007bff;
+      --bg:#f8f9fa;
+      --card:#ffffff;
+      --muted:#6c757d;
+      --codebg:#1e1e1e;
+      --max-width:980px;
+      --radius:10px;
+    }
+    html,body{height:100%;margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:#222;line-height:1.65}
+    header{background:var(--primary);color:#fff;padding:26px 20px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.08)}
+    main.tutorial{max-width:var(--max-width);margin:24px auto;padding:22px;background:var(--card);border-radius:var(--radius);box-shadow:0 0 10px rgba(0,0,0,0.06)}
+    
+    h1{margin:0;font-size:1.45rem}
+    
+    h2{color:var(--primary);border-bottom:2px solid var(--primary);padding-bottom:8px;margin-top:22px}
+    
+    h3{color:#333}
+    p{margin:0 0 12px}
+    pre{background:#f0f0f0;color:black;padding:14px;border-radius:8px;overflow:auto;position:relative;margin:12px 0;white-space:pre-wrap}
+    code{font-family:Consolas,monospace}
+    .copy-btn{position:absolute;right:10px;top:10px;background:var(--primary);color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:0.9rem}
+    .copy-btn:hover{background:#0056b3}
+    .note{background:#fff3cd;border:1px solid #ffeeba;padding:10px;border-radius:6px;margin:12px 0;color:#856404}
+    .muted{color:var(--muted)}
+    .section{padding:12px 0}
+    .lesson-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+    .kbd{background:#e9ecef;padding:4px 6px;border-radius:4px;font-family:monospace}
+    .task{background:#eef6ff;border-left:4px solid var(--primary);padding:12px;border-radius:6px;margin:10px 0}
+    .tip{background:#f1f7ec;border-left:4px solid #2e7d32;padding:12px;border-radius:6px;margin:10px 0}
+  </style>
+</head>
+<body>
+  <header>
+    <h1> Product Landing Page (Responsive)</h1>
+    <div style="opacity:.95">Ejistan Tech — Classroom Tutorial (copyable code on every block)</div>
+  </header>
+
+  <main class="tutorial" id="tutorial">
+
+    <section class="section">
+      <h2>Overview & learning goals</h2>
+      <p>This lesson walks students through building a professional product landing page for <strong>Ejistan Tech</strong>, a fictional brand that sells a smart gadget. The page demonstrates modern layout techniques, marketing-focused copy structure, accessible markup, responsive behavior, and lightweight interactivity. Students will learn:</p>
+      <ul>
+        <li>How to plan and structure a landing page for conversion (headline, hero, benefits, social proof, pricing, CTA).</li>
+        <li>How to write semantic HTML that supports accessibility and SEO.</li>
+        <li>How to use CSS (Flexbox + Grid + media queries) to create responsive layouts.</li>
+        <li>How to build reusable components — hero, feature cards, pricing cards, testimonials.</li>
+        <li>Performance and optimization tips for production-ready pages.</li>
+      </ul>
+
+      <p class="note"><strong>How to use this file:</strong> Copy code blocks into your editor. There is a Copy button in each block for convenience. Replace placeholder images and copy with your own content to practice customization.</p>
+    </section>
+
+    <section class="section">
+      <h2>1 — Plan & folder structure</h2>
+      <p>Start with a simple folder layout. Teaching students to organize projects early avoids messy imports and broken links later.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/ejistan-product/
+  index.html
+  css/
+    style.css
+  js/
+    main.js
+  images/
+    hero.jpg
+    feature-1.jpg
+    testimonial-1.jpg
+    product-hero.png
+  assets/
+    logos/
+    fonts/
+  docs/
+    README.md
+</code></pre>
+
+      <p><strong>Teacher note:</strong> Explain why separating CSS, JS, and images helps with caching and source control. Encourage students to keep filenames all lowercase and use hyphens instead of spaces.</p>
+    </section>
+
+    <section class="section">
+      <h2>2 — Content & conversion flow</h2>
+      <p>Landing pages are marketing-first. Before coding, sketch the content flow. A classic, high-converting flow is:</p>
+      <ol>
+        <li>Hero (big promise + primary CTA)</li>
+        <li>Value propositions / features (3–4 items)</li>
+        <li>Social proof (testimonials, logos)</li>
+        <li>Pricing or packages</li>
+        <li>Secondary CTAs and FAQ</li>
+        <li>Footer & legal</li>
+      </ol>
+
+      <p class="task"><strong>Student task:</strong> Write a one-sentence value proposition for Ejistan Tech. Example: <em>"Ejistan SmartBand — track your health effortlessly with hospital-grade accuracy."</em></p>
+    </section>
+
+    <section class="section">
+      <h2>3 — The base HTML skeleton (index.html)</h2>
+      <p>Below is a full HTML skeleton for the landing page. It includes semantic sections and placeholder images. Copy the entire block into <code>index.html</code>.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+  &lt;title&gt;Ejistan Tech — SmartBand 2.0&lt;/title&gt;
+  &lt;meta name="description" content="Ejistan SmartBand 2.0 — accurate health tracking with elegant design. Free shipping &amp; 30-day trial."&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;header class="site-header"&gt;
+    &lt;div class="container"&gt;
+      &lt;a href="#" class="brand"&gt;Ejistan&lt;/a&gt;
+      &lt;nav aria-label="Primary"&gt;
+        &lt;ul class="nav"&gt;
+          &lt;li&gt;&lt;a href="#features"&gt;Features&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#pricing"&gt;Pricing&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#faq"&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#contact" class="btn btn-primary"&gt;Buy Now&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;main id="main-content"&gt;
+    &lt;!-- Hero --&gt;
+    &lt;section class="hero" id="hero"&gt;&lt;/section&gt;
+
+    &lt;!-- Features --&gt;
+    &lt;section id="features"&gt;&lt;/section&gt;
+
+    &lt;!-- Testimonials --&gt;
+    &lt;section id="testimonials"&gt;&lt;/section&gt;
+
+    &lt;!-- Pricing --&gt;
+    &lt;section id="pricing"&gt;&lt;/section&gt;
+
+    &lt;!-- FAQ --&gt;
+    &lt;section id="faq"&gt;&lt;/section&gt;
+
+    &lt;!-- Contact --&gt;
+    &lt;section id="contact"&gt;&lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;footer class="site-footer"&gt;
+    &lt;div class="container"&gt;
+      &lt;p&gt;&amp;copy; 2025 Ejistan Tech. All rights reserved.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;script src="js/main.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+      <p><strong>Explain to students:</strong> Keep the HTML readable — use comments to mark sections. Do not inline a lot of styles in HTML; use CSS file for maintainability.</p>
+    </section>
+
+    <section class="section">
+      <h2>4 — Hero section: markup, copywriting & accessibility</h2>
+      <p>The hero is the single most important area. It must answer: "What is this?", "Who is it for?", and "What should I do next?" Use a tight headline, short supporting text, and a clear primary CTA. Add a secondary CTA for people wanting more details.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section class="hero container" aria-labelledby="hero-heading"&gt;
+  &lt;div class="hero-left"&gt;
+    &lt;h1 id="hero-heading"&gt;Ejistan SmartBand 2.0 — Health tracking that adapts to your life&lt;/h1&gt;
+    &lt;p class="lead"&gt;Track heart rate, sleep, and activity with medical-grade precision. 30-day trial, free shipping.&lt;/p&gt;
+    &lt;div class="hero-ctas"&gt;
+      &lt;a href="#pricing" class="btn btn-primary"&gt;Buy now — $99&lt;/a&gt;
+      &lt;a href="#features" class="btn btn-ghost"&gt;See features&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;ul class="hero-trust"&gt;
+      &lt;li&gt;Free 30-day trial&lt;/li&gt;
+      &lt;li&gt;2-year warranty&lt;/li&gt;
+      &lt;li&gt;FDA-compliant sensors&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+
+  &lt;div class="hero-right"&gt;
+    &lt;img src="images/product-hero.png" alt="Ejistan SmartBand 2.0 product photo" width="560" height="420"&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+      <p><strong>Teacher note:</strong> Demonstrate how to write an H1 that is benefit-focused rather than feature-focused. Show how trust items (trial, warranty) reduce friction and support conversion.</p>
+    </section>
+
+    <section class="section">
+      <h2>5 — CSS: theme, variables and global styles</h2>
+      <p>Good CSS starts with variables and a sensible base. This chunk sets colors, typography, container sizes, and utility spacing.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/* css/style.css — theme & base */
+:root{
+  --primary: #007bff;
+  --accent: #ff7a59;
+  --bg: #f8f9fa;
+  --card: #ffffff;
+  --muted: #6c757d;
+  --radius: 12px;
+  --container: 1100px;
+  --gap: 18px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Segoe UI", Inter, Arial, sans-serif;
+  background:var(--bg);
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* container utility */
+.container{
+  max-width:var(--container);
+  margin:0 auto;
+  padding:0 18px;
+}
+
+/* head, buttons and links */
+.site-header{background:var(--card);border-bottom:1px solid rgba(0,0,0,0.04)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+.brand{font-weight:700;color:var(--primary);text-decoration:none;font-size:1.05rem}
+.nav{display:flex;gap:12px;list-style:none;margin:0;padding:0}
+.nav a{color:#333;text-decoration:none;padding:8px;border-radius:8px}
+.nav a:hover{background:#f1f5ff}
+
+/* button styles */
+.btn{display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none;cursor:pointer}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-ghost{background:#fff;border:1px solid rgba(0,123,255,0.1);color:var(--primary)}</code></pre>
+
+      <p><strong>Teaching point:</strong> Use variables to keep themes flexible. Encourage students to change one variable (e.g., --primary) and watch the whole site update.</p>
+    </section>
+
+    <section class="section">
+      <h2>6 — Hero styles & responsive layout</h2>
+      <p>We use a two-column layout on desktop and stack on mobile. Demonstrate mobile-first: write base rules for stacked layout and enhance for wider screens.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/* hero styles (mobile-first) */
+.hero{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:center;
+  padding:36px 0;
+  background:linear-gradient(180deg, #fff, #f9fbff);
+  border-radius:12px;
+}
+
+.hero-left{max-width:620px;text-align:center}
+.hero-left h1{font-size:1.5rem;margin-bottom:12px}
+.lead{color:var(--muted);margin-bottom:14px}
+.hero-ctas{display:flex;gap:12px;justify-content:center;margin-bottom:12px}
+.hero-trust{display:flex;gap:12px;justify-content:center;list-style:none;padding:0;margin:12px 0 0;color:var(--muted)}
+
+.hero-right img{width:100%;max-width:560px;border-radius:12px;display:block}
+
+/* wider screens */
+@media(min-width:900px){
+  .hero{flex-direction:row;align-items:center;padding:48px 0}
+  .hero-left{text-align:left}
+  .hero-ctas{justify-content:flex-start}
+  .hero-trust{justify-content:flex-start}
+}</code></pre>
+
+      <p><strong>In-class demo:</strong> Resize the browser to show students how the layout changes. Explain the importance of keeping hero content readable on phones (larger type, clear CTA visible without scrolling).</p>
+    </section>
+
+    <section class="section">
+      <h2>7 — Features section: cards & icons</h2>
+      <p>Feature cards communicate the product's main benefits. Keep copy short and user-focused (benefit → how → impact).</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section id="features" class="container"&gt;
+  &lt;h2&gt;Why Ejistan SmartBand&lt;/h2&gt;
+  &lt;div class="features-grid"&gt;
+    &lt;div class="feature-card"&gt;
+      &lt;img src="images/feature-1.jpg" alt="Accurate heart rate" class="feature-img"&gt;
+      &lt;h3&gt;Medical-grade sensors&lt;/h3&gt;
+      &lt;p&gt;Continuous heart rate monitoring with high accuracy.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="feature-card"&gt;
+      &lt;img src="images/feature-2.jpg" alt="Sleep tracking" class="feature-img"&gt;
+      &lt;h3&gt;Advanced sleep analysis&lt;/h3&gt;
+      &lt;p&gt;Understand your sleep cycles and get personalized tips.&lt;/p&gt;
+    &lt;/div>
+
+    &lt;div class="feature-card"&gt;
+      &lt;img src="images/feature-3.jpg" alt="Battery" class="feature-img"&gt;
+      &lt;h3&gt;7-day battery life&lt;/h3&gt;
+      &lt;p&gt;Long-lasting battery with fast USB-C charging.&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/* CSS: features grid */
+.features-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+@media(min-width:700px){ .features-grid{grid-template-columns:repeat(3,1fr)} }
+.feature-card{background:var(--card);padding:18px;border-radius:12px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+.feature-img{width:72px;height:72px;object-fit:cover;margin:0 auto 12px;border-radius:12px}</code></pre>
+
+      <p><strong>Exercise:</strong> Ask students to swap images with SVG icons and compare visual weight and file size.</p>
+    </section>
+
+    <section class="section">
+      <h2>8 — Social proof: testimonials & trust logos</h2>
+      <p>Social proof builds credibility. Use short testimonials with name, role, and optional photo. Add logos of press or partners to further reduce anxiety.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section id="testimonials" class="container"&gt;
+  &lt;h2&gt;Loved by customers&lt;/h2&gt;
+  &lt;div class="testimonials"&gt;
+    &lt;blockquote class="testimonial"&gt;
+      &lt;p&gt;"The SmartBand helped me track my sleep and feel more rested — incredible accuracy and battery life."&lt;/p&gt;
+      &lt;footer&gt;— Naomi K., UX Researcher&lt;/footer&gt;
+    &lt;/blockquote&gt;
+
+    &lt;blockquote class="testimonial"&gt;
+      &lt;p&gt;"Great device and even better support. The personalized insights changed how I workout."&lt;/p&gt;
+      &lt;footer&gt;— Daniel M., Runner&lt;/footer&gt;
+    &lt;/blockquote&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/* CSS: testimonials */
+.testimonials{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:900px){.testimonials{grid-template-columns:repeat(2,1fr)}}
+.testimonial{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,0.04)}</code></pre>
+
+      <p><strong>Teacher tip:</strong> Explain the importance of authenticity: real names, photos, and metrics perform better than generic praise.</p>
+    </section>
+
+    <section class="section">
+      <h2>9 — Pricing section & plan design</h2>
+      <p>Keep pricing simple. Offer clear tiers (e.g., Basic, Pro, Team) and highlight the recommended option. Use a money-back guarantee or free trial to remove friction.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section id="pricing" class="container"&gt;
+  &lt;h2&gt;Choose your plan&lt;/h2&gt;
+  &lt;div class="pricing-grid"&gt;
+    &lt;div class="price-card"&gt;
+      &lt;h3&gt;Starter&lt;/h3&gt;
+      &lt;p class="price"&gt;$0 / month&lt;/p&gt;
+      &lt;ul&gt;&lt;li&gt;Basic features&lt;/li&gt;&lt;/ul&gt;
+      &lt;a href="#contact" class="btn btn-ghost"&gt;Get started&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="price-card recommended"&gt;
+      &lt;h3&gt;Pro&lt;/h3&gt;
+      &lt;p class="price"&gt;$9 / month&lt;/p&gt;
+      &lt;ul&gt;&lt;li&gt;All features&lt;/li&gt;&lt;li&gt;Priority support&lt;/li&gt;&lt;/ul&gt;
+      &lt;a href="#contact" class="btn btn-primary"&gt;Buy Pro&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="price-card"&gt;
+      &lt;h3&gt;Enterprise&lt;/h3&gt;
+      &lt;p class="price"&gt;Contact us&lt;/p&gt;
+      &lt;ul&gt;&lt;li&gt;Custom integrations&lt;/li&gt;&lt;/ul&gt;
+      &lt;a href="#contact" class="btn btn-ghost"&gt;Contact sales&lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/* CSS: pricing */
+.pricing-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:800px){.pricing-grid{grid-template-columns:repeat(3,1fr)}}
+.price-card{background:var(--card);padding:18px;border-radius:12px;text-align:center;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
+.price-card.recommended{border:2px solid var(--primary);transform:translateY(-6px)}</code></pre>
+
+      <p><strong>Exercise:</strong> Have students create a small badge "Most popular" and attach it to the recommended card using absolute positioning.</p>
+    </section>
+
+    <section class="section">
+      <h2>10 — FAQ, accessibility & semantic markup</h2>
+      <p>Include an FAQ to address common objections. Use <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> to make this accessible without JS.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section id="faq" class="container"&gt;
+  &lt;h2&gt;Frequently asked questions&lt;/h2&gt;
+  &lt;details&gt;
+    &lt;summary&gt;How long is the free trial?&lt;/summary&gt;
+    &lt;p&gt;The free trial lasts 30 days. If you're not happy, return for a full refund.&lt;/p&gt;
+  &lt;/details&gt;
+
+  &lt;details&gt;
+    &lt;summary&gt;Is the SmartBand waterproof?&lt;/summary&gt;
+    &lt;p&gt;Yes — IP68 water resistance for everyday use.&lt;/p&gt;
+  &lt;/details&gt;
+&lt;/section&gt;</code></pre>
+
+      <p><strong>Accessibility note:</strong> The <code>&lt;details&gt;</code> element is keyboard-accessible by default. Test with a keyboard and screen reader.</p>
+    </section>
+
+    <section class="section">
+      <h2>11 — Contact & lightweight form</h2>
+      <p>A contact form should be simple and clear. For teaching, show both a mailto fallback and a progressive enhancement approach where JS handles a fetch to an API.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;section id="contact" class="container"&gt;
+  &lt;h2&gt;Get in touch&lt;/h2&gt;
+  &lt;form id="contact-form" action="https://example.com/api/inquiry" method="post"&gt;
+    &lt;label for="name"&gt;Name&lt;/label&gt;
+    &lt;input id="name" name="name" type="text" required&gt;
+
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input id="email" name="email" type="email" required&gt;
+
+    &lt;label for="message"&gt;Message&lt;/label&gt;
+    &lt;textarea id="message" name="message" rows="4"&gt;&lt;/textarea&gt;
+
+    &lt;button type="submit" class="btn btn-primary"&gt;Send inquiry&lt;/button&gt;
+  &lt;/form&gt;
+&lt;/section&gt;</code></pre>
+
+      <p><strong>Teacher note:</strong> Emphasize server-side validation. Teach students how to view network requests and test responses. For static sites, demonstrate Netlify Forms or Formspree.</p>
+    </section>
+
+    <section class="section">
+      <h2>12 — Minimal JS for small interactions</h2>
+      <p>Keep JS focused and small: form UX, mobile nav toggle, price toggle (monthly/yearly). Below is a minimal script for disabling the submit button after submission and for a mobile menu toggle.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>// js/main.js (minimal)
+document.addEventListener('DOMContentLoaded', () => {
+  // Prevent double submit
+  const form = document.getElementById('contact-form');
+  if (form) {
+    form.addEventListener('submit', e => {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+      }
+    });
+  }
+
+  // Mobile nav toggle (assume .nav-toggle exists)
+  const toggle = document.querySelector('.nav-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      document.querySelector('.nav').classList.toggle('open');
+    });
+  }
+});</code></pre>
+
+      <p><strong>Performance tip:</strong> Defer or load JS asynchronously to avoid blocking initial paint. Keep the total JS bundle small.</p>
+    </section>
+
+    <section class="section">
+      <h2>13 — Performance & production checklist</h2>
+      <p>Before students push to production, go over this checklist:</p>
+      <ul>
+        <li>Optimize images (WebP/AVIF, responsive sizes with <code>srcset</code>).</li>
+        <li>Preconnect to font hosts & use <code>display=swap</code>.</li>
+        <li>Minify CSS/JS; enable gzip/Brotli on the server.</li>
+        <li>Use a CDN and set long cache headers for static assets.</li>
+        <li>Run Lighthouse and fix high-impact issues (LCP, FID, CLS).</li>
+      </ul>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- preload hero image example --&gt;
+&lt;link rel="preload" as="image" href="images/product-hero.jpg"&gt;</code></pre>
+    </section>
+
+    <section class="section">
+      <h2>14 — SEO & structured data</h2>
+      <p>Teach the basics of SEO: meta title, meta description, and JSON-LD structured data for Product. Example JSON-LD helps search engines understand product details.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context":"https://schema.org/",
+  "@type":"Product",
+  "name":"Ejistan SmartBand 2.0",
+  "image":["https://example.com/images/product-hero.png"],
+  "description":"Medical-grade SmartBand with continuous heart rate and sleep tracking.",
+  "brand":{"@type":"Brand","name":"Ejistan"},
+  "offers":{
+    "@type":"Offer",
+    "price":"99.00",
+    "priceCurrency":"USD",
+    "availability":"https://schema.org/InStock"
+  }
+}
+&lt;/script&gt;</code></pre>
+
+      <p><strong>Classroom exercise:</strong> Have students modify the JSON-LD fields for a different currency or a sale price and observe how structured data appears in the Rich Results Test tool.</p>
+    </section>
+
+    <section class="section">
+      <h2>15 — Accessibility checklist</h2>
+      <p>Accessibility is essential. Go through this checklist with students and test manually:</p>
+      <ul>
+        <li>Use semantic HTML (<code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;footer&gt;</code>).</li>
+        <li>Provide <code>alt</code> text for images (meaningful or empty for decorative).</li>
+        <li>Ensure sufficient color contrast (WCAG AA).</li>
+        <li>Make interactive controls keyboard-accessible and visible on focus.</li>
+        <li>Use proper labels for forms and ARIA where necessary.</li>
+      </ul>
+
+      <p class="tip">Use tools like Lighthouse, axe, and manual keyboard testing. Encourage students to tab through the page and use a screen reader if available.</p>
+    </section>
+
+    <section class="section">
+      <h2>16 — Classroom assignments & challenges</h2>
+      <p>Assign these tasks to reinforce learning. Each task escalates in complexity and adds value to the student's portfolio:</p>
+      <ol>
+        <li><strong>Build & style the page:</strong> Implement the HTML/CSS provided and replace placeholder images with real product shots.</li>
+        <li><strong>Responsive polish:</strong> Ensure hero, features, and pricing look great on phones and tablets. Test multiple breakpoints.</li>
+        <li><strong>Performance sprint:</strong> Optimize the hero image and reduce LCP under 2.5s on a mobile 3G throttled test.</li>
+        <li><strong>Accessibility lab:</strong> Fix all Lighthouse accessibility issues and record before/after screenshots.</li>
+        <li><strong>Deploy:</strong> Publish on Netlify or Vercel and share the live link in the class forum.</li>
+      </ol>
+
+      <p class="task">Optional bonus: Add a simple checkout simulation using client-side JavaScript (no real payments). This demonstrates form handling and UX flow.</p>
+    </section>
+
+    <section class="section">
+      <h2>17 — Complete starter CSS (combined)</h2>
+      <p>Copy this full CSS into <code>css/style.css</code>. It contains theme variables and most of the layout rules used in previous snippets.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>/* css/style.css — combined starter (full) */
+/* Theme variables already shown above — repeat if needed */
+:root{
+  --primary:#007bff;--accent:#ff7a59;--bg:#f8f9fa;--card:#fff;--muted:#6c757d;--radius:12px;--container:1100px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:"Segoe UI",Inter,Arial,sans-serif;background:var(--bg);color:#222}
+
+/* Container */
+.container{max-width:var(--container);margin:0 auto;padding:0 18px}
+
+/* Header */
+.site-header{background:var(--card);border-bottom:1px solid rgba(0,0,0,0.04)}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;padding:14px 18px}
+.brand{font-weight:700;color:var(--primary);text-decoration:none;font-size:1.05rem}
+.nav{display:flex;gap:12px;list-style:none;margin:0;padding:0}
+.nav a{color:#333;text-decoration:none;padding:8px;border-radius:8px}
+.nav a:hover{background:#f1f5ff}
+
+/* Hero */
+.hero{display:flex;flex-direction:column;gap:18px;align-items:center;padding:36px 0;background:linear-gradient(180deg,#fff,#f9fbff);border-radius:12px}
+.hero-left{max-width:640px;text-align:center}
+.hero-left h1{font-size:1.6rem;margin-bottom:10px}
+.hero-left .lead{color:var(--muted);margin-bottom:12px}
+.hero-ctas{display:flex;gap:12px;justify-content:center}
+.hero-trust{display:flex;gap:12px;justify-content:center;list-style:none;padding:0;margin:10px 0 0;color:var(--muted)}
+.hero-right img{width:100%;max-width:560px;border-radius:12px;display:block}
+
+/* Features */
+.features-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+@media(min-width:700px){.features-grid{grid-template-columns:repeat(3,1fr)}}
+.feature-card{background:var(--card);padding:18px;border-radius:12px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.04)}
+
+/* Testimonials */
+.testimonials{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:900px){.testimonials{grid-template-columns:repeat(2,1fr)}}
+.testimonial{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+@media(min-width:800px){.pricing-grid{grid-template-columns:repeat(3,1fr)}}
+.price-card{background:var(--card);padding:18px;border-radius:12px;text-align:center;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
+.price-card.recommended{border:2px solid var(--primary);transform:translateY(-6px)}
+
+/* FAQ */
+details{background:var(--card);padding:14px;border-radius:8px;margin:8px 0;box-shadow:0 1px 6px rgba(0,0,0,0.04)}
+
+/* Contact form */
+form{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,0.04);max-width:720px;margin:18px 0}
+label{display:block;margin-bottom:6px;font-weight:600}
+input,textarea,select{width:100%;padding:10px;border:1px solid #e6ebf2;border-radius:8px;margin-bottom:12px}
+
+/* Footer */
+.site-footer{background:var(--card);padding:18px;border-top:1px solid rgba(0,0,0,0.04);margin-top:18px;text-align:center}
+
+/* Utilities */
+.muted{color:var(--muted)}
+.btn{display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-ghost{background:#fff;border:1px solid rgba(0,123,255,0.08);color:var(--primary)}
+@media(min-width:900px){
+  .hero{flex-direction:row;align-items:center}
+  .hero-left{text-align:left}
+  .hero-ctas{justify-content:flex-start}
+  .hero-trust{justify-content:flex-start}
+}</code></pre>
+
+      <p><strong>Instructor note:</strong> This combined CSS is a working base. Encourage students to refactor and add utility classes if they plan to extend the project.</p>
+    </section>
+
+    <section class="section">
+      <h2>18 — Example: responsive images & srcset</h2>
+      <p>Show students how to serve the right image size for each screen using <code>srcset</code> and <code>&lt;picture&gt;</code>.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;picture&gt;
+  &lt;source type="image/webp" srcset="images/product-400.webp 400w, images/product-800.webp 800w"&gt;
+  &lt;img src="images/product-800.jpg" alt="Ejistan SmartBand" loading="lazy"
+    srcset="images/product-400.jpg 400w, images/product-800.jpg 800w, images/product-1200.jpg 1200w"
+    sizes="(max-width:600px) 100vw, 600px"&gt;
+&lt;/picture&gt;</code></pre>
+
+      <p><strong>Hands-on:</strong> Ask students to compress images before and after and measure the difference in Lighthouse scores.</p>
+    </section>
+
+    <section class="section">
+      <h2>19 — Deploying the landing page</h2>
+      <p>Deploy to GitHub Pages, Netlify or Vercel — all are free for static pages. For many classes, Netlify is simple (drag & drop or connect to Git), and it supports serverless functions if students want to handle forms later.</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Quick Netlify deploy (class demo)
+1. git init && git add . && git commit -m "initial"
+2. push to GitHub (create repo)
+3. login to Netlify -> New site -> Import from GitHub
+4. choose repo, build settings: (no build for static), publish directory: /
+5. deploy and enable https
+</code></pre>
+
+      <p><strong>Security & privacy:</strong> If you collect emails, ensure you have a privacy policy and follow local regulations (GDPR/CCPA). For simple class demos, use email links or Netlify Forms.</p>
+    </section>
+
+    <section class="section">
+      <h2>20 — Final project rubric (grading criteria)</h2>
+      <p>Provide students with a rubric to self-assess or to be used for grading:</p>
+      <ul>
+        <li><strong>Structure & semantics (20%)</strong> — correct use of headings, sections, and landmarks.</li>
+        <li><strong>Responsiveness (20%)</strong> — layouts adapt cleanly at multiple breakpoints.</li>
+        <li><strong>Design & visual polish (20%)</strong> — spacing, typography, imagery, and CTA clarity.</li>
+        <li><strong>Accessibility & SEO (20%)</strong> — alt text, focus states, meta tags, JSON-LD.</li>
+        <li><strong>Performance & deployment (20%)</strong> — images optimized, hosted live, and LCP measured.</li>
+      </ul>
+
+      <p class="note">If students meet 80% or above, they demonstrate a strong working landing page suitable for their portfolio.</p>
+    </section>
+
+    <section class="section">
+      <h2>21 — Example "final" HTML snapshot</h2>
+      <p>For convenience, here's a compact final HTML snapshot combining all main sections (students can paste this into <code>index.html</code> and add the provided CSS and JS).</p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;... (use head from earlier snapshot) ...&lt;/head&gt;
+&lt;body&gt;
+  &lt;header class="site-header"&gt;&lt;div class="container"&gt;...nav...&lt;/div&gt;&lt;/header&gt;
+  &lt;main id="main-content"&gt;
+    &lt;section class="hero container"&gt;...hero content...&lt;/section&gt;
+    &lt;section id="features" class="container"&gt;...features...&lt;/section&gt;
+    &lt;section id="testimonials" class="container"&gt;...testimonials...&lt;/section&gt;
+    &lt;section id="pricing" class="container"&gt;...pricing...&lt;/section&gt;
+    &lt;section id="faq" class="container"&gt;...faq...&lt;/section&gt;
+    &lt;section id="contact" class="container"&gt;...contact form...&lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer class="site-footer"&gt;&lt;div class="container"&gt;...footer...&lt;/div&gt;&lt;/footer&gt;
+  &lt;script src="js/main.js" defer&gt;&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;</code></pre>
+
+      <p><strong>Class wrap-up:</strong> Encourage students to iterate and make the product their own: change colors, vary copy tone (fun vs professional), and experiment with layout changes.</p>
+    </section>
+
+    <section class="section">
+      <h2>22 — Additional resources & recommended reading</h2>
+      <ul>
+        <li>MDN — CSS layout (Flexbox & Grid)</li>
+        <li>Web.dev — Performance and Core Web Vitals</li>
+        <li>A11y Project — accessibility checklist</li>
+        <li>Google Lighthouse — for performance and accessibility audits</li>
+      </ul>
+      <p class="note">Provide links or a reading list in your LMS so students can explore further reading and tooling.</p>
+    </section>
+
+    <section class="section">
+      <h2>Final words & next steps</h2>
+      <p>This lesson equips students with a full plan and example code to build a commercial-quality landing page. The learning comes in the iteration: styling details, copy adjustments, performance tuning, and A/B tests. Encourage students to publish the page, gather feedback, and add it to their portfolio.</p>
+
+     
+    </section>
+
+  </main>
+<div>
+    <a href="Business.html">Next</a>
+</div>
+  <script>
+    // Copy handler for all copy buttons: finds nearest code block and copies its innerText
+    function copyCode(btn) {
+      const pre = btn.parentElement;
+      const code = pre.querySelector('code');
+      if (!code) return;
+      const text = code.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const old = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = old, 1400);
+      }).catch(err => {
+        console.error('Copy failed', err);
+        btn.textContent = 'Fail';
+        setTimeout(() => btn.textContent = 'Copy', 1400);
+      });
+    }
+  </script>
+</body>
+</html>

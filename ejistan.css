@@ -1,0 +1,134 @@
+body {
+ font-family: Arial; 
+ background: #00bfff; 
+ margin:0; 
+ display:flex; 
+ flex-direction:column; 
+ min-height:100vh;
+ }
+ #pageview{
+     background :#00bfff;
+     width:85%;
+     text-align:center;
+     font-size:17px;
+     color:white;
+     border:3px solid white;
+     padding:10px;
+     margin:10px 20px;
+ }
+  main {
+   max-width: 500px;
+    margin: 30px auto; 
+    background: white; 
+    padding: 30px; 
+    border-radius: 8px; 
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+ main h2 { 
+  text-align:center;
+   color:#333;
+    }
+   #names{
+       display :flex;
+       justify-content: space-between;
+       align-items :center;
+       flex-direction:row;
+   }
+   form{
+       width:100%;
+   }
+   input{
+       width:100%;
+       padding:10px;
+       border:1px solid black;
+       border-radius:10px;
+       margin:10px 5px;
+       font-size:16px;
+       text-align:center;
+   }
+   reg-email{
+       width:100%;
+       display:flex;
+       align-self:center;
+       justify-self:center;
+   }
+   #button {
+    width:100%;
+    padding:12px; 
+    margin:15px 10px; 
+    border-radius:5px;
+    font-size:16px;
+    text-align:center ; 
+    background:#0056b3;
+    color:white;
+    border:none;
+     cursor:pointer; 
+     font-weight:bold; 
+     transition:0.3s;
+     }
+     #button:hover {
+   background:#003d80; 
+   }
+     .switch{
+         margin:10px 0;
+     }
+     .switch a{
+         text-decoration:none;
+     }
+  
+  footer { 
+  margin-top:auto;
+   background:#222; 
+   color:white;
+    text-align:center; 
+    padding:15px; 
+    font-size:14px;
+    }
+  footer a { 
+  color:#00bfff; 
+  text-decoration:none; 
+  opmargin:0 10px;
+   }
+  footer a:hover { text-decoration:underline; }
+  img{
+       width:50px;
+        height:auto;
+    }
+    .payment-container{
+        background :white;
+        width:80%;
+        margin:10px auto;
+        padding:10px;
+        border-radius:10px;
+    }
+   #paymentForm{
+        display :flex ;
+        align-items:left;
+        justify-content: left;
+        flex-direction:column;
+        padding:10px;
+    }
+    #paymentblock{
+    display :flex;
+    align-items:center;
+     padding :10px;
+    width:100%;
+    margin:5px 0;
+    font-size:20px;
+    box-shadow: 0 4px 10px rgba(150, 150, 150, 0.3);
+    }
+    #paymentblock:hover{
+        transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(80, 80, 80, 0.3);
+    }
+    #paymentblock span{
+        padding : 10px;
+    }
+    #secureicon{
+        
+    font-size: 13px;
+      color: #555;
+      text-align: center;
+      margin-top: 15px;
+    }
+  </style

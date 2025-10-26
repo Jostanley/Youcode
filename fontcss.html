@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Tutorial - Fonts and Text</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    nav {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    h1 {
+      color: #0078d7;
+    }
+    section {
+      background: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    .example {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="selectors.html">Selectors</a>
+    <a href="color-background.html">Colors</a>
+    <a href="font-text.html">Fonts</a>
+    <a href="box-model.html">Box Model</a>
+  </nav>
+
+  <h1>🔤 CSS Fonts and Text</h1>
+  <p>Fonts and text properties control how your content looks — from font type to spacing and alignment.</p>
+
+  <section>
+    <h2>1. font-family</h2>
+    <p>Defines the font type to use for text.</p>
+    <pre><code>p { font-family: 'Courier New', monospace; }</code></pre>
+    <div class="example" style="font-family:'Courier New', monospace;">
+      This paragraph uses the Courier New font.
+    </div>
+  </section>
+
+  <section>
+    <h2>2. font-size</h2>
+    <p>Sets the size of the font.</p>
+    <pre><code>p { font-size: 24px; }</code></pre>
+    <div class="example" style="font-size:24px;">
+      This text is 24px large.
+    </div>
+  </section>
+
+  <section>
+    <h2>3. font-weight</h2>
+    <p>Controls how thick or bold the text appears.</p>
+    <pre><code>p { font-weight: bold; }</code></pre>
+    <div class="example" style="font-weight:bold;">
+      This text is bold.
+    </div>
+  </section>
+
+  <section>
+    <h2>4. font-style</h2>
+    <p>Makes text normal, italic, or oblique.</p>
+    <pre><code>p { font-style: italic; }</code></pre>
+    <div class="example" style="font-style:italic;">
+      This text is italic.
+    </div>
+  </section>
+
+  <section>
+    <h2>5. font-variant</h2>
+    <p>Converts text to small-caps format.</p>
+    <pre><code>p { font-variant: small-caps; }</code></pre>
+    <div class="example" style="font-variant: small-caps;">
+      This text uses small-caps style.
+    </div>
+  </section>
+
+  <section>
+    <h2>6. font (shorthand)</h2>
+    <p>Combine all font properties in one line.</p>
+    <pre><code>p { font: italic bold 20px Georgia; }</code></pre>
+    <div class="example" style="font: italic bold 20px Georgia;">
+      This is shorthand for font properties.
+    </div>
+  </section>
+
+  <section>
+    <h2>7. line-height</h2>
+    <p>Adjusts space between lines of text.</p>
+    <pre><code>p { line-height: 2; }</code></pre>
+    <div class="example" style="line-height:2;">
+      This paragraph has extra spacing between lines.<br>
+      The line-height makes reading easier.
+    </div>
+  </section>
+
+  <section>
+    <h2>8. letter-spacing</h2>
+    <p>Adjusts the space between individual letters.</p>
+    <pre><code>p { letter-spacing: 3px; }</code></pre>
+    <div class="example" style="letter-spacing:3px;">
+      This text has wider letter spacing.
+    </div>
+  </section>
+
+  <section>
+    <h2>9. word-spacing</h2>
+    <p>Adjusts the space between words.</p>
+    <pre><code>p { word-spacing: 10px; }</code></pre>
+    <div class="example" style="word-spacing:10px;">
+      This    text    has    more    space    between    words.
+    </div>
+  </section>
+
+  <section>
+    <h2>10. text-align</h2>
+    <p>Aligns text to left, right, center, or justify.</p>
+    <pre><code>p { text-align: center; }</code></pre>
+    <div class="example" style="text-align:center;">
+      This text is centered.
+    </div>
+  </section>
+
+  <section>
+    <h2>11. text-decoration</h2>
+    <p>Adds underline, overline, or line-through to text.</p>
+    <pre><code>p { text-decoration: underline; }</code></pre>
+    <div class="example" style="text-decoration: underline;">
+      This text is underlined.
+    </div>
+  </section>
+
+  <section>
+    <h2>12. text-transform</h2>
+    <p>Changes text case: uppercase, lowercase, or capitalize.</p>
+    <pre><code>p { text-transform: uppercase; }</code></pre>
+    <div class="example" style="text-transform: uppercase;">
+      This text is uppercase.
+    </div>
+  </section>
+
+  <section>
+    <h2>13. text-shadow</h2>
+    <p>Adds shadow behind text.</p>
+    <pre><code>p { text-shadow: 2px 2px 5px gray; }</code></pre>
+    <div class="example" style="text-shadow:2px 2px 5px gray;">
+      This text has a shadow.
+    </div>
+  </section>
+
+  <section>
+    <h2>14. white-space</h2>
+    <p>Controls how spaces and line breaks are handled.</p>
+    <pre><code>p { white-space: nowrap; }</code></pre>
+    <div class="example" style="white-space: nowrap;">
+      This text will not wrap even if the screen is narrow.
+    </div>
+  </section>
+
+  <section>
+    <h2>15. direction</h2>
+    <p>Sets the text direction: left-to-right (ltr) or right-to-left (rtl).</p>
+    <pre><code>p { direction: rtl; }</code></pre>
+    <div class="example" style="direction: rtl;">
+      This text flows from right to left.
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel ="styleSheet " href ="ejistan.css">
+  <title>Multi-Currency Paystack Payment</title>
+  <style>
+  
+  </style>
+</head>
+<body>
+    <p id="pageview">ejistan frontend web development</p>
+<div class="payment-container">
+  <h3>choose payment method</h3>
+  <div id="paymentForm">
+      <div id="paymentblock" onClick =' payWithPaystack ("bank_transfer")'>
+          <img src="../image/transfer.png" alt="Mobile money">
+          <span>local bank transfer</span>
+      </div>
+      
+    <div id="paymentblock" onClick =' payWithPaystack ("ussd")'>
+        <img src="../image/ussd.png" alt="ussd">
+    <span>USSD
+    </span>
+    </div>
+    <div id="paymentblock" onClick =' payWithPaystack ("card")'>
+        <img src="../image/Visa.png" alt="Visa MasterCard">
+        <span>Visa MasterCard</span>
+        </div>
+   
+    
+    <div id="paymentblock" onClick='payWithPaystack("apple_pay")'>
+       <img src="../image/apple.png" alt="Apple pay">
+        <span>Apple pay
+        </span>
+        </div>
+    </div>
+    <p id="secureicon">🔐secured by paystack</p>
+</div>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+    function payWithPaystack(method) {
+      let handler = PaystackPop.setup({
+        key: 'pk_live_10343c5462a915b51fac6020b280054f73231fa3', 
+        email: 'customer@email.com',
+        amount: 1000 * 100, 
+        currency: 'NGN', // or 'NGN', 'USD' depending on your setup
+        channels: [method],
+        callback: function(response) {
+          alert('Payment successful! Ref: ' + response.reference);
+        },
+        onClose: function() {
+          alert('Payment window closed.');
+        }
+      });
+      handler.openIframe();
+    }
+  </script>
+</body>
+
+</body>
+</html>

@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HTML Tag Masterclass — Classroom Reference</title>
+  <style>
+    :root{
+      --primary:#007bff;
+      --bg:#f7f9fb;
+      --card:#ffffff;
+      --muted:#6c757d;
+      --codebg:#0f1720;
+      --radius:10px;
+      
+    }
+    html,body{height:100%;position:relative;margin:0;font-family:  Arial, sans-serif;
+    background:var(--bg);color:#222;-webkit-font-smoothing:antialiased;
+    width:100vw; }
+    header{background:var(--primary);color:#fff;padding:18px 12px;box-shadow:0 3px 18px rgba(0,0,0,0.08); position:fixed; top:0px;
+    z-index:1100;}
+    
+    .container{width:100vw;;margin:10px auto;padding:0 18px}
+    
+    header h1{margin:0;font-size:1.25rem}
+    
+    .intro{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 4px 18px rgba(0,0,0,0.06);margin-top:14px}
+    
+    .search-row{display:flex;gap:12px;align-items:center;margin-top:12px; margin-bottom:12px;}
+    
+    .search-row input{flex:1;padding:10px 12px;border-radius:8px;border:1px solid #dde6f2;font-size:1rem; background:#f0f0f0;}
+    
+    .search-row button{background:#fff;border:1px solid rgba(0,0,0,0.06);padding:10px 12px;border-radius:8px;cursor:pointer}
+    
+   #clearBtn{
+       background:red;
+       color:white
+   }
+   
+   .main{
+       margin-top:100px;
+   } #categories{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
+    @media(min-width:400px){ .categories{grid-template-columns:1fr 380px} .left-col{order:1}
+     .right-col{order:2} }
+     
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+    
+    h2{color:var(--primary);margin-top:0; background:#0065b3;color: white; padding:5px; border-radius:10px;}
+    
+    h3{margin:8px 0;color:#222}
+    
+    p{margin:8px 0 12px}
+    
+    .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    
+    .tag-pill{background:#f1f5ff;color:var(--primary);padding:6px 8px;border-radius:999px;font-family:monospace}
+    pre{background:#f0f0f0;color:black;padding:12px;border-radius:8px;overflow:auto;position:relative;margin:20px 0;white-space:pre}
+    code{font-family:Consolas,monospace;font-size:0.95rem}
+    .copy-btn{position:absolute;right:10px;top:10px;background:var(--primary);color:#fff;border:none;padding:6px 8px;border-radius:6px;cursor:pointer;font-size:0.85rem}
+    
+    .muted{color:white;font-size:0.95rem}
+    .mutedsmall{
+        color:white;
+        width:100vw;
+        border:2px solid white;
+        padding:5px
+    }
+    
+    .badge{display:inline-block;background:#f0f7ff;color:var(--primary);padding:6px 8px;border-radius:6px;font-weight:600;margin-bottom:8px}
+    
+    .note{background:#fff8e1;border-left:4px solid #ffd54f;padding:10px;border-radius:6px;margin:8px 0}
+    
+    //nav.toc{position:sticky;top:18px}
+    
+    .toc ul{list-style:none;padding:0;margin:0}
+    .toc li{margin:6px 0}
+    .highlight{outline:3px solid rgba(0,123,255,0.12);transition:outline 0.12s}
+    a{
+        text-decoration:none;
+        font-size:18px;
+        background:#f0f0f0;
+        padding:10px;
+        margin:10px;
+    }
+    footer{max-width:var(--maxw);margin:22px auto 80px;padding:0 18px;color:#6b7280;font-size:0.95rem}
+    
+    .small{font-size:0.9rem;color:#666}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>HTML Tag Masterclass — Classroom Reference</h1>
+      
+    </div>
+  </header>
+
+  <main class="main" role="main">
+    <section class="intro card" aria-labelledby="intro-title">
+      <h2 id="intro-title">How to use this page</h2>
+      <p>This page groups HTML tags by category. Each tag includes a short explanation and a small example you can copy. Use the search box to find a tag quickly (e.g. type <code>img</code> or <code>form</code>).</p>
+
+      <div class="search-row" role="search">
+        <input id="searchInput" placeholder="Search tags (type 'img', 'form', 'meta', etc.)" aria-label="Search HTML tags" />
+        <button id="clearBtn" aria-label="Clear search">Clear</button>
+      </div>
+
+      <div style="margin-top:10px" class="muted small">Tip: search matches tag names and short descriptions. Click any "Copy" button to copy the example to your clipboard.</div>
+    </section>
+
+    <div class="categories">
+      <div class="left-col">
+        <!-- DOCUMENT & META -->
+        <section id="meta" class="card" data-tags="!doctype html head title meta link style script">
+          <h2>Document &amp; Metadata</h2>
+          <p class="muted">Tags that define the document, encoding, and resources in the <code>&lt;head&gt;</code>.</p>
+
+          <h3>&lt;!DOCTYPE html&gt;</h3>
+          <p>Declares the document type and enables standards mode in browsers.</p>
+          <pre><code>&lt;!DOCTYPE html&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;html lang="..."&gt;</h3>
+          <p>Root element of the document. The <code>lang</code> attribute helps accessibility and search engines.</p>
+          <pre><code>&lt;html lang="en"&gt; ... &lt;/html&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;head&gt; &amp; &lt;title&gt;</h3>
+          <p>&lt;head&gt; contains metadata; &lt;title&gt; sets the page title shown in browser tabs.</p>
+          <pre><code>&lt;head&gt;
+  &lt;title&gt;My Portfolio&lt;/title&gt;
+&lt;/head&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;meta&gt;</h3>
+          <p>Provides metadata like charset, viewport, and description for SEO and proper rendering.</p>
+          <pre><code>&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;
+&lt;meta name="description" content="Portfolio of Ejistan"&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;link&gt;</h3>
+          <p>Links external resources (CSS, icons, fonts). Use <code>rel</code> and <code>href</code>.</p>
+          <pre><code>&lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;link rel="icon" href="/favicon.png"&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;style&gt; &amp; &lt;script&gt;</h3>
+          <p>Inline CSS (<code>&lt;style&gt;</code>) and inline scripts or references to external JS (<code>&lt;script&gt;</code>).</p>
+          <pre><code>&lt;style&gt; /* inline CSS */ &lt;/style&gt;
+&lt;script src="js/main.js" defer&gt;&lt;/script&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- STRUCTURE & LAYOUT -->
+        <section id="structure" class="card" data-tags="header nav main section article aside footer div container">
+          <h2>Structure &amp; Layout</h2>
+          <p class="muted">Semantic elements to organize content into meaningful regions.</p>
+
+          <h3>&lt;header&gt;</h3>
+          <p>Represents introductory content, often contains branding and navigation.</p>
+          <pre><code>&lt;header&gt;
+  &lt;h1&gt;Site Title&lt;/h1&gt;
+&lt;/header&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;nav&gt;</h3>
+          <p>Navigation landmark containing links to other pages or sections.</p>
+          <pre><code>&lt;nav aria-label="Primary"&gt;
+  &lt;ul&gt;&lt;li&gt;&lt;a href="#about"&gt;About&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;/nav&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;main&gt;</h3>
+          <p>Main content area — there should be only one per page.</p>
+          <pre><code>&lt;main id="main-content"&gt; ... &lt;/main&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;section&gt; &amp; &lt;article&gt;</h3>
+          <p>&lt;section&gt; groups related content; &lt;article&gt; represents a self-contained piece (e.g., blog post).</p>
+          <pre><code>&lt;section id="features"&gt;...&lt;/section&gt;
+&lt;article&gt;&lt;h2&gt;Post Title&lt;/h2&gt;&lt;p&gt;Excerpt...&lt;/p&gt;&lt;/article&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;aside&gt;</h3>
+          <p>Sidebar or tangential content related to the main content (e.g., widgets.)</p>
+          <pre><code>&lt;aside class="sidebar"&gt;Newsletter widget&lt;/aside&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;footer&gt;</h3>
+          <p>Footer for site information, copyright, or secondary navigation.</p>
+          <pre><code>&lt;footer&gt;&amp;copy; 2025 Ejistan&lt;/footer&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;div&gt;</h3>
+          <p>Generic container used when no semantic element is suitable.</p>
+          <pre><code>&lt;div class="card"&gt;...&lt;/div&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- HEADINGS & TEXT -->
+        <section id="text" class="card" data-tags="h1 h2 h3 h4 h5 h6 p span strong em b i u small mark br hr blockquote cite abbr">
+          <h2>Headings &amp; Text Formatting</h2>
+          <p class="muted">Tags that create headlines, paragraphs, and text emphasis.</p>
+
+          <h3>&lt;h1&gt; ... &lt;h6&gt;</h3>
+          <p>Heading elements define the document structure and are important for accessibility and SEO.</p>
+          <pre><code>&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h2&gt;Section title&lt;/h2&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;p&gt; &amp; &lt;span&gt;</h3>
+          <p>&lt;p&gt; is for paragraphs. &lt;span&gt; is an inline wrapper for styling or scripts.</p>
+          <pre><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;span class="muted"&gt;Inline note&lt;/span&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;strong&gt;, &lt;em&gt;, &lt;b&gt;, &lt;i&gt;</h3>
+          <p>Semantic emphasis: <code>&lt;strong&gt;</code> indicates importance; <code>&lt;em&gt;</code> adds emphasis. <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code> are presentational.</p>
+          <pre><code>&lt;strong&gt;Important&lt;/strong&gt; — &lt;em&gt;emphasis&lt;/em&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;u&gt;, &lt;small&gt;, &lt;mark&gt;</h3>
+          <p>Underline, fine print, and highlighted text respectively.</p>
+          <pre><code>&lt;u&gt;Underlined&lt;/u&gt; — &lt;small&gt;small text&lt;/small&gt; — &lt;mark&gt;highlight&lt;/mark&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;br&gt; &amp; &lt;hr&gt;</h3>
+          <p>Line break and thematic break (horizontal rule) respectively.</p>
+          <pre><code>Line one.&lt;br&gt;Line two.
+&lt;hr&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;blockquote&gt; &amp; &lt;cite&gt;</h3>
+          <p>Quotes and citation sources.</p>
+          <pre><code>&lt;blockquote&gt;This is a quote.&lt;footer&gt;&lt;cite&gt;— Author&lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;abbr&gt;</h3>
+          <p>Abbreviations with an optional title attribute to explain the abbreviation to assistive tech.</p>
+          <pre><code>&lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/abbr&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- LISTS & LINKS -->
+        <section id="lists" class="card" data-tags="ul ol li a base">
+          <h2>Lists &amp; Links</h2>
+          <p class="muted">How to create lists and link between pages or sections.</p>
+
+          <h3>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</h3>
+          <p>Unordered and ordered lists with list items.</p>
+          <pre><code>&lt;ul&gt;
+  &lt;li&gt;Item one&lt;/li&gt;
+  &lt;li&gt;Item two&lt;/li&gt;
+&lt;/ul&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;a href="..."&gt;</h3>
+          <p>Anchor tag creates links. Use <code>href</code> for URLs or anchors like <code>#contact</code>. Include <code>rel="noopener"</code> for external links.</p>
+          <pre><code>&lt;a href="https://example.com" target="_blank" rel="noopener"&gt;Visit example&lt;/a&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;base&gt;</h3>
+          <p>Sets a base URL for relative links. Use carefully — affects all relative paths on the page.</p>
+          <pre><code>&lt;base href="https://example.com/"&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- MEDIA -->
+        <section id="media" class="card" data-tags="img picture source video audio iframe figure figcaption canvas">
+          <h2>Media &amp; Visuals</h2>
+          <p class="muted">Images, responsive images, videos, and embedded content.</p>
+
+          <h3>&lt;img&gt;</h3>
+          <p>Images must include descriptive <code>alt</code> text for accessibility. Use <code>loading="lazy"</code> to defer offscreen images.</p>
+          <pre><code>&lt;img src="images/product.jpg" alt="SmartBand product" width="600" height="400" loading="lazy"&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;picture&gt; &amp; &lt;source&gt;</h3>
+          <p>Serve responsive or modern formats (WebP) with <code>&lt;picture&gt;</code> and <code>&lt;source&gt;</code>.</p>
+          <pre><code>&lt;picture&gt;
+  &lt;source type="image/webp" srcset="product-400.webp 400w, product-800.webp 800w"&gt;
+  &lt;img src="product-800.jpg" alt="Product"&gt;
+&lt;/picture&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;figure&gt; &amp; &lt;figcaption&gt;</h3>
+          <p>Group images with captions for semantic meaning.</p>
+          <pre><code>&lt;figure&gt;
+  &lt;img src="demo.jpg" alt="Demo"&gt;
+  &lt;figcaption&gt;Screenshot of the demo&lt;/figcaption&gt;
+&lt;/figure&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;video&gt; &amp; &lt;source&gt;</h3>
+          <p>Embed videos with multiple sources and controls.</p>
+          <pre><code>&lt;video controls width="640"&gt;
+  &lt;source src="clip.webm" type="video/webm"&gt;
+  &lt;source src="clip.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;iframe&gt;</h3>
+          <p>Embed external content like maps or third-party widgets. Use sandboxing and <code>title</code> for accessibility.</p>
+          <pre><code>&lt;iframe src="https://www.youtube.com/embed/..." title="Demo video" width="560" height="315" allowfullscreen&gt;&lt;/iframe&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;canvas&gt;</h3>
+          <p>Canvas for drawing graphics via JavaScript (advanced use).</p>
+          <pre><code>&lt;canvas id="myCanvas" width="300" height="150"&gt;Fallback text for older browsers.&lt;/canvas&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- FORMS -->
+        <section id="forms" class="card" data-tags="form label input textarea select option button fieldset legend">
+          <h2>Forms &amp; Inputs</h2>
+          <p class="muted">Collecting user input — contact forms, subscriptions, and accessible labels.</p>
+
+          <h3>&lt;form&gt;</h3>
+          <p>Wraps input controls and defines submission action and method.</p>
+          <pre><code>&lt;form action="/submit" method="post"&gt;...&lt;/form&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;label&gt; &amp; &lt;input&gt;</h3>
+          <p>Always pair <code>&lt;label for="id"&gt;</code> with inputs — better accessibility.</p>
+          <pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input id="email" type="email" name="email" required&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;textarea&gt; &amp; &lt;select&gt; &amp; &lt;option&gt;</h3>
+          <p>Multi-line input and select controls.</p>
+          <pre><code>&lt;textarea rows="4" name="message"&gt;&lt;/textarea&gt;
+&lt;select name="plan"&gt;&lt;option value="basic"&gt;Basic&lt;/option&gt;&lt;/select&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;button type="submit"&gt;</h3>
+          <p>Buttons for submission or client-side actions.</p>
+          <pre><code>&lt;button type="submit"&gt;Send&lt;/button&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;fieldset&gt; &amp; &lt;legend&gt;</h3>
+          <p>Group related controls and provide a legend for context (useful for accessibility).</p>
+          <pre><code>&lt;fieldset&gt;&lt;legend&gt;Contact&lt;/legend&gt;...&lt;/fieldset&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- TABLES -->
+        <section id="tables" class="card" data-tags="table thead tbody tr th td caption colgroup col">
+          <h2>Tables &amp; Data</h2>
+          <p class="muted">Display tabular or structured data; use for pricing or comparison tables.</p>
+
+          <h3>&lt;table&gt; &amp; &lt;caption&gt;</h3>
+          <p>Table root and optional caption describing the table.</p>
+          <pre><code>&lt;table&gt;
+  &lt;caption&gt;Pricing Plans&lt;/caption&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Plan&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Basic&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+&lt;/table&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;thead&gt;, &lt;tbody&gt;, &lt;tr&gt;, &lt;th&gt;, &lt;td&gt;</h3>
+          <p>Head, body, rows, header cells, and data cells respectively.</p>
+          <pre><code>&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SEMANTIC & ACCESSIBILITY -->
+        <section id="semantic" class="card" data-tags="time address details summary progress meter abbr strong em aria role">
+          <h2>Semantic &amp; Accessibility</h2>
+          <p class="muted">Tags and features that improve meaning and accessibility for assistive tech and search engines.</p>
+
+          <h3>&lt;time&gt;</h3>
+          <p>Represents a specific time or date. Include <code>datetime</code> attribute for machine readability.</p>
+          <pre><code>&lt;time datetime="2025-10-17"&gt;Oct 17, 2025&lt;/time&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;address&gt;</h3>
+          <p>Contact information for person or organization (not for arbitrary addresses in text).</p>
+          <pre><code>&lt;address&gt;Ejistan Tech, Accra&lt;/address&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;details&gt; &amp; &lt;summary&gt;</h3>
+          <p>Expandable content that works without JS — great for FAQ sections.</p>
+          <pre><code>&lt;details&gt;&lt;summary&gt;FAQ question&lt;/summary&gt;&lt;p&gt;Answer&lt;/p&gt;&lt;/details&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;progress&gt; &amp; &lt;meter&gt;</h3>
+          <p>Visual indicators of progress or measurements; use semantic attributes for values.</p>
+          <pre><code>&lt;progress value="40" max="100"&gt;&lt;/progress&gt;
+&lt;meter value="6" min="0" max="10"&gt;6/10&lt;/meter&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>ARIA &amp; roles (attribute examples)</h3>
+          <p>ARIA attributes and roles provide assistive tech hints — use them where native semantics are missing.</p>
+          <pre><code>&lt;nav aria-label="Main navigation"&gt;...&lt;/nav&gt;
+&lt;div role="button" tabindex="0"&gt;Custom button&lt;/div&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- SCRIPTING & INTERACTIVITY -->
+        <section id="scripting" class="card" data-tags="script noscript template dialog">
+          <h2>Scripting &amp; Interactivity</h2>
+          <p class="muted">Tags used for scripts, progressive enhancement, and advanced UI patterns.</p>
+
+          <h3>&lt;script&gt;</h3>
+          <p>Include JS inline or reference external files. Use <code>defer</code> to delay execution until after parsing.</p>
+          <pre><code>&lt;script src="js/main.js" defer&gt;&lt;/script&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;noscript&gt;</h3>
+          <p>Fallback content for users with JS disabled.</p>
+          <pre><code>&lt;noscript&gt;Please enable JavaScript to use this site.&lt;/noscript&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;template&gt; &amp; &lt;dialog&gt;</h3>
+          <p>Templates for cloning DOM fragments and dialog for modals (modern browsers).</p>
+          <pre><code>&lt;template id="card-template"&gt;&lt;div class="card"&gt;...&lt;/div&gt;&lt;/template&gt;
+&lt;dialog id="confirm"&gt;Confirm action&lt;/dialog&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- CODE DISPLAY (CLASSROOM SPECIFIC) -->
+        <section id="code-display" class="card" data-tags="pre code button copy">
+          <h2>Code Display &amp; Classroom Controls</h2>
+          <p class="muted">How we display tutorials: &lt;pre&gt; preserves formatting; &lt;code&gt; marks code; buttons add copy-to-clipboard behavior.</p>
+
+          <h3>&lt;pre&gt; &amp; &lt;code&gt;</h3>
+          <p>Always wrap code examples in <code>&lt;pre&gt;&lt;code&gt;...&lt;/code&gt;&lt;/pre&gt; to preserve whitespace and allow copy behavior.</p>
+          <pre><code>&lt;pre&gt;&lt;code&gt; &lt;!-- example code --&gt; &lt;/code&gt;&lt;/pre&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>&lt;button&gt; (copy buttons)</h3>
+          <p>Buttons trigger copy actions. Add labels and accessible names for screen readers.</p>
+          <pre><code>&lt;button aria-label="Copy code"&gt;Copy&lt;/button&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+
+        <!-- MISCELLANEOUS -->
+        <section id="misc" class="card" data-tags="base meta link favicon">
+          <h2>Miscellaneous &amp; Head Utilities</h2>
+          <p class="muted">Other useful tags related to linking and document root behavior.</p>
+
+          <h3>&lt;base&gt;</h3>
+          <p>Sets the base URL for relative links in the document.</p>
+          <pre><code>&lt;base href="https://ejistan.example/"&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+
+          <h3>Favicon (via &lt;link&gt;)</h3>
+          <p>Small icon displayed in the browser tab.</p>
+          <pre><code>&lt;link rel="icon" href="/favicon.png" type="image/png"&gt;</code><button class="copy-btn" onclick="copyCode(this)">Copy</button></pre>
+        </section>
+      </div>
+
+      <aside class="right-col">
+        <nav class="toc card" aria-label="Tag categories">
+          <h3>Quick Index</h3>
+          <ul>
+            <li><a href="#meta">Document &amp; Metadata</a></li>
+            <li><a href="#structure">Structure &amp; Layout</a></li>
+            <li><a href="#text">Headings &amp; Text</a></li>
+            <li><a href="#lists">Lists &amp; Links</a></li>
+            <li><a href="#media">Media &amp; Visuals</a></li>
+            <li><a href="#forms">Forms &amp; Inputs</a></li>
+            <li><a href="#tables">Tables &amp; Data</a></li>
+            <li><a href="#semantic">Semantic &amp; Accessibility</a></li>
+            <li><a href="#scripting">Scripting &amp; Interactivity</a></li>
+            <li><a href="#code-display">Code Display</a></li>
+            <li><a href="#misc">Miscellaneous</a></li>
+          </ul>
+        </nav>
+
+        <div style="height:12px"></div>
+
+        <div class="card">
+          <h3>Search tips</h3>
+          <p class="muted small">Type exact tag names (like <code>input</code>, <code>picture</code>) or keywords (like "image", "form", "aria"). The search matches tags listed in each category.</p>
+        </div>
+
+        <div style="height:12px"></div>
+
+        <div class="card">
+          <h3>Teacher Notes</h3>
+          <p class="small muted">Use this file in class: open it once, then let students search and copy examples. Encourage them to run examples locally and experiment by changing attributes.</p>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div class="muted small">Built for classroom teaching — HTML Tag Masterclass. Edit and expand as your curriculum grows.</div>
+    </footer>
+  </main>
+
+  <script>
+    // COPY functionality for any code block's Copy button
+    function copyCode(btn) {
+      // find the nearest pre > code
+      const pre = btn.parentElement;
+      const codeEl = pre.querySelector('code');
+      if (!codeEl) return;
+      const text = codeEl.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const old = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = old, 1200);
+      }).catch(() => {
+        btn.textContent = 'Fail';
+        setTimeout(() => btn.textContent = 'Copy', 1200);
+      });
+    }
+
+    // SEARCH functionality: filter sections by tag names
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
+    const sections = Array.from(document.querySelectorAll('section[data-tags]'));
+
+    function normalize(s) {
+      return String(s || '').toLowerCase().trim();
+    }
+
+    function runSearch() {
+      const q = normalize(searchInput.value);
+      if (!q) {
+        sections.forEach(s => { s.style.display = ''; s.classList.remove('highlight'); });
+        return;
+      }
+      const terms = q.split(/\s+/).filter(Boolean);
+      sections.forEach(s => {
+        const tags = normalize(s.getAttribute('data-tags') || '');
+        // match if any term is included in tags or in text content
+        const matches = terms.every(term => tags.includes(term) || s.innerText.toLowerCase().includes(term));
+        s.style.display = matches ? '' : 'none';
+        if (matches) {
+          s.classList.add('highlight');
+          // scroll first match into view
+        } else {
+          s.classList.remove('highlight');
+        }
+      });
+      // scroll to first visible/ highlighted
+      const first = sections.find(s => s.style.display !== 'none');
+      if (first) first.scrollIntoView({behavior: 'smooth', block: 'center'});
+    }
+
+    searchInput.addEventListener('input', runSearch);
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      runSearch();
+      searchInput.focus();
+    });
+
+    // Allow pressing Enter to run search and focus behaviour
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        runSearch();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 0;
+      position: relative;
+      margin: 0;
+    }
+
+    #header-container {
+      background: #00bbff;
+      margin-bottom: 5px;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      width:100vw;
+    }
+
+    #container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90vw;
+    }
+
+    #header {
+      background: white;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    #content{
+        margin-top: 210px;
+    }
+
+    #profile {
+      margin: 5px;
+    }
+
+    #profile button {
+      border-radius: 50px;
+      width: 40px;
+      height: 40px;
+      border: none;
+      outline: none;
+    }
+
+    #profile p {
+      font-size: 15px;
+    }
+
+    #header input {
+      width: 90vw;
+      padding: 5px;
+      font-size: 15px;
+      text-align: center;
+      border-radius: 10px;
+      border: 1px solid black;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #body-profile {
+      height: 90px;
+      background: #f0f0f0;
+      margin: 10px;
+      padding: 5px;
+      box-shadow: 0 25px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    #profile-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 40%;
+      height: 60px;
+    }
+
+    #profile-container img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      padding: 5px;
+    }
+
+    #question {
+      padding: 16px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      background: #fff;
+    }
+    #question{
+       position: relative;
+    }
+    #language{
+        position: absolute;
+        right:10px;
+        
+    }
+    #asked-question{
+        margin-top:50px;
+        background:#f0f0f0;
+        padding:10px;
+        border-radius:6px;
+    }
+    #reply-container{
+        display:flex;
+        align-items:center;
+      
+    }
+    #reply-number,#reply-answers-header{
+        padding:0px 5px;
+        font-size:20px;
+        font-weight:700;
+    }
+    #reply-list{
+        margin-left:5px;
+        border-radius:10px;
+        border:2px solid #f0f0f0;
+        padding:5px;
+        
+    }
+    #reply-profile-container{
+        display:flex;
+        align-items:center;
+        flex-direction: row;
+        padding:5px;
+        
+    }
+    #reply-profile{
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        margin-right:5px;
+    }
+    
+    #reply-name{
+        font-size:17px;
+        font-weight:700;
+    }
+    #reply-container{
+        margin-top:5px;
+        width:100%;
+    }
+    #reply-answers{
+        background:#f0f0f0;
+        width:100%
+        margin:5px;
+        border-radius:10px;
+        padding:5px;
+    }
+    #reply-reaction{
+        display:flex;
+        align-items:center;
+        width:100%;
+        justify-content: space-between;
+        box-shadow:0 5px 10px rgba(0,0,0,0.2);
+    }
+    #agree-container,#disagree-container{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        
+    }
+    #agree-number,#disagree-number,#reply-agree,#reply-disagree{
+        padding:5px;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header-container">
+    <div>
+      <div id="container">
+        <div id="profile">
+          <button>profile</button>
+          <p>John deo</p>
+        </div>
+        <p>menu</p>
+      </div>
+
+      <div id="header">
+        <h2>Community</h2>
+        <input type="text" placeholder="Ask Question" />
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="content">
+      <ul>
+        <li>
+          <div id="body-profile">
+            <div id="profile-container">
+              <img src="../image/apple.png" alt="profile">
+              <p>John deo</p>
+            </div>
+            <p>23/03/2025</p>
+            <div id="question">
+              <h4 id ="language">HTML</h4>
+              <p id="asked-question">asked questions what is the reason you can't commit on your HTML website if there's any other way can some one tell me</p>
+ <div>
+     <img src="" alt="screenshot of my question">
+ </div>
+ <hr>
+              <div id="reply-container">
+                <p id="reply-number"> 23</p>
+                <p id="reply-answers-header">Answers</p>
+              </div>
+<hr>
+              <div>
+                  
+                <ul>
+                  <li id="reply-list">
+                      
+                      <div id="reply-profile-container">
+                    <img src="" alt="profile photo" id ="reply-profile">
+                    <p id="reply-name">name</p>
+                    </div>
+                    
+                    
+                    <div id="reply-container">
+                      <p id="reply-answers"> Reply Answers</p>
+                    </div>
+                    
+                    <div id="reply-reaction">
+                     <div id="agree-container">
+                         <p id="agree-number">24</p>
+                      <button id="reply-agree">Agree</button>
+                      </div>
+                      
+                      <div id="disagree-container">
+                      <p id="disagree-number">23</p>
+                      <button id="reply-disagree">Disagree</button>
+                      </div>
+                      
+                 </div>
+              </li>
+              <li id="reply-list">
+                      
+                      <div id="reply-profile-container">
+                    <img src="" alt="profile photo" id ="reply-profile">
+                    <p id="reply-name">name</p>
+                    </div>
+                    
+                    
+                    <div id="reply-container">
+                      <p id="reply-answers"> Reply Answers</p>
+                    </div>
+                    
+                    <div id="reply-reaction">
+                     <div id="agree-container">
+                         <p id="agree-number">24</p>
+                      <button id="reply-agree">Agree</button>
+                      </div>
+                      
+                      <div id="disagree-container">
+                      <p id="disagree-number">23</p>
+                      <button id="reply-disagree">Disagree</button>
+                      </div>
+                      
+                 </div>
+              </li>
+                
+
+                
+                  
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer id="footer"></footer>
+</body>
+</html>
