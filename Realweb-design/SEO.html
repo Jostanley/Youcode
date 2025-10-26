@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Optimizing Websites for SEO and Speed</title>
+  <style>
+    :root{
+      --primary:#007bff;
+      --bg:#f7f9fb;
+      --card:#ffffff;
+      --codebg:#1e1e1e;
+      --muted:#6c757d;
+    }
+    html,body{height:100%;margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:#222;line-height:1.6}
+    header{background:var(--primary);color:#fff;padding:28px 20px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.08)}
+    
+    main{max-width:980px;margin:28px auto;padding:22px;background:var(--card);border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.06)}
+    
+    h1{margin:0;font-size:1.5rem}
+    
+    h2{color:var(--primary);border-bottom:2px solid var(--primary);padding-bottom:8px;margin-top:26px}
+    h3{color:#333}
+    p{margin:0 0 12px}
+    pre{background:#f0f0f0;color:black;padding:16px;border-radius:8px;overflow:auto;position:relative;margin:12px 0}
+    
+    code{font-family:Consolas,monospace}
+    
+    .copy-btn{position:absolute;right:10px;top:10px;background:var(--primary);color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:0.9rem}
+    
+    .copy-btn:hover{background:#0056b3}
+    
+    .note{background:#fff3cd;border:1px solid #ffeeba;padding:10px;border-radius:6px;margin:12px 0;color:#856404}
+    
+    ul{margin:8px 0 12px 1.1rem}
+    
+    ol{margin:8px 0 12px 1.1rem}
+    
+    footer{margin-top:18px;padding:14px;text-align:center;background:var(--primary);color:white;border-radius:6px}
+    
+    .two {display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:800px){.two{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    
+    <div style="opacity:.95"> Optimizing Websites for SEO and Speed</div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Introduction</h2>
+      <p>
+        A fast, well-structured website is vital. Users expect pages that load quickly and search engines reward sites that are accessible, fast, and properly marked up.
+        In this lesson you’ll learn practical, hands-on techniques for improving both <strong>SEO (Search Engine Optimization)</strong> and <strong>performance</strong>.
+      </p>
+      <p>
+        We’ll cover metadata and structured data, content & headings, images and media, font loading, HTTP optimizations, caching, CDNs, build steps (minify/concat), measuring performance, and launch checklists.
+      </p>
+      <p class="note"><strong>How to use this lesson:</strong> Copy examples into your project, test with your dev tools and Lighthouse, then iterate. Each code block has a Copy button.</p>
+    </section>
+
+    <section id="seo-basics">
+      <h2>1 — SEO Basics: Titles, Descriptions, and Canonicals</h2>
+      <p>
+        Every page needs a unique <code>&lt;title&gt;</code> and a descriptive meta description. These help search engines and appear in search results.
+        Add a canonical URL to avoid duplicate content issues.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- Head of each page --&gt;
+&lt;title&gt;Services — ACME Web Design&lt;/title&gt;
+&lt;meta name="description" content="Professional website design and development for small businesses. Fast, responsive & optimized." /&gt;
+&lt;link rel="canonical" href="https://example.com/services.html" /&gt;
+</code></pre>
+
+      <p><strong>Tips:</strong> Keep titles ~50–60 characters and meta descriptions ~140–160 characters. Make them useful and unique per page.</p>
+    </section>
+
+    <section id="structured-data">
+      <h2>2 — Structured Data (JSON-LD)</h2>
+      <p>
+        Use structured data (Schema.org) to give search engines explicit information about your pages — business info, articles, breadcrumbs, events, etc. Google prefers <strong>JSON-LD</strong> placed in the head.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ACME Web Design",
+  "url": "https://example.com",
+  "logo": "https://example.com/images/logo.png",
+  "sameAs": [
+    "https://www.facebook.com/acme",
+    "https://twitter.com/acme"
+  ]
+}
+&lt;/script&gt;
+</code></pre>
+
+      <p><strong>Common structured data:</strong> Organization, LocalBusiness, Article, BreadcrumbList, Product. Test with Google’s Rich Results Test or structured data testing tools.</p>
+    </section>
+
+    <section id="sitemap-robots">
+      <h2>3 — Sitemap & robots.txt</h2>
+      <p>
+        Provide a sitemap.xml to help crawlers discover your pages. Use robots.txt to control crawler access to certain resources.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- sitemap.xml (place at site root) --&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://example.com/&lt;/loc&gt;
+    &lt;lastmod&gt;2025-10-15&lt;/lastmod&gt;
+    &lt;priority&gt;1.00&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://example.com/services.html&lt;/loc&gt;
+    &lt;lastmod&gt;2025-09-10&lt;/lastmod&gt;
+    &lt;priority&gt;0.80&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;
+</code></pre>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># robots.txt (site root)
+User-agent: *
+Disallow: /private/
+Sitemap: https://example.com/sitemap.xml
+</code></pre>
+
+      <p><strong>Tip:</strong> Submit your sitemap in Google Search Console and Bing Webmaster Tools after deployment.</p>
+    </section>
+
+    <section id="content-headings">
+      <h2>4 — Content Structure & Headings</h2>
+      <p>
+        Organize content with semantic HTML: <code>&lt;h1&gt;</code> for the page title, then <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code> for sections. Good headings improve accessibility and SEO.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;main&gt;
+  &lt;h1&gt;Professional Web Design&lt;/h1&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Our Services&lt;/h2&gt;
+    &lt;p&gt;We build responsive websites for small businesses.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+</code></pre>
+
+      <p><strong>Do not</strong> skip heading levels (e.g., don’t jump from <code>&lt;h1&gt;</code> to <code>&lt;h4&gt;</code>), and ensure your main content is crawlable in HTML (not only via JS-rendered content).</p>
+    </section>
+
+    <section id="images-media">
+      <h2>5 — Images & Media Optimization</h2>
+      <p>
+        Images are often the largest assets. Optimize them: serve responsive sizes, modern formats (WebP), compress, lazy-load, and provide width/height attributes to avoid layout shift.
+      </p>
+
+      <h3>Responsive images with srcset</h3>
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;img
+  src="/images/hero-800.jpg"
+  srcset="/images/hero-400.jpg 400w, /images/hero-800.jpg 800w, /images/hero-1200.jpg 1200w"
+  sizes="(max-width:600px) 100vw, 800px"
+  alt="Team designing website"
+  loading="lazy"
+  width="1200" height="600"&gt;
+</code></pre>
+
+      <h3>Use modern formats</h3>
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;picture&gt;
+  &lt;source type="image/webp" srcset="/images/hero-800.webp 800w, /images/hero-1200.webp 1200w"&gt;
+  &lt;img src="/images/hero-800.jpg" alt="Team designing website" loading="lazy" width="1200" height="600"&gt;
+&lt;/picture&gt;
+</code></pre>
+
+      <p><strong>Tools:</strong> Use image compressors (Squoosh, ImageMagick) or build tools to generate multiple sizes automatically. Always include descriptive <code>alt</code> text for accessibility and SEO.</p>
+    </section>
+
+    <section id="fonts">
+      <h2>6 — Font Loading & Optimization</h2>
+      <p>
+        Web fonts improve design but can block rendering. Use best practices: preconnect/preload, display swap, and limit font variants to reduce size.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- Preconnect to Google Fonts --&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"&gt;
+
+/* CSS */
+body { font-family: 'Inter', system-ui, Arial, sans-serif; font-display: swap; }
+</code></pre>
+
+      <p><strong>Notes:</strong> Use <code>display=swap</code> to avoid invisible text (FOIT). When possible self-host fonts and subset them to only required characters to improve performance.</p>
+    </section>
+
+    <section id="critical-css">
+      <h2>7 — Critical CSS & Render-Blocking Resources</h2>
+      <p>
+        CSS is render-blocking by default. Extract critical CSS for above-the-fold content and defer the rest. Tools like Penthouse or build plugins can help automate critical CSS extraction.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- Inline small critical CSS in the head --&gt;
+&lt;style&gt;
+/* minimal critical styles for header & hero */
+body{margin:0;font-family:Inter,system-ui}
+header{background:#007bff;color:#fff;padding:18px}
+&lt;/style&gt;
+&lt;link rel="stylesheet" href="/css/main.css" media="print" onload="this.media='all'">
+&lt;noscript&gt;&lt;link rel="stylesheet" href="/css/main.css"&gt;&lt;/noscript&gt;
+</code></pre>
+
+      <p>This technique ensures content renders quickly while the main stylesheet loads non-blocking.</p>
+    </section>
+
+    <section id="javascript">
+      <h2>8 — JavaScript Loading Strategies</h2>
+      <p>
+        Large JS files can slow initial load. Defer non-critical scripts and load essential code asynchronously. Split code into smaller chunks for better caching.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- Place at end of body or use defer/async --&gt;
+&lt;script src="/js/vendor.js" defer&gt;&lt;/script&gt;
+&lt;script src="/js/main.js" defer&gt;&lt;/script&gt;
+</code></pre>
+
+      <p><strong>When to use:</strong> Use <code>defer</code> for scripts that rely on DOM and should execute in order. Use <code>async</code> for independent third-party scripts (analytics) that can run anytime.</p>
+    </section>
+
+    <section id="caching-cdn">
+      <h2>9 — Caching & CDN</h2>
+      <p>
+        Use caching headers and a CDN to distribute static assets globally. Proper cache-control rules reduce repeat-load times significantly.
+      </p>
+
+      <h3>Nginx example — caching headers</h3>
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>location ~* \.(js|css|png|jpg|jpeg|webp|svg|gif)$ {
+  expires 30d;
+  add_header Cache-Control "public, max-age=2592000, immutable";
+}
+</code></pre>
+
+      <p><strong>CDN:</strong> Use Cloudflare, Fastly, or your hosting CDN to serve assets from edge locations. Many static hosts (Netlify, Vercel) include CDN distribution automatically.</p>
+    </section>
+
+    <section id="compression-http2">
+      <h2>10 — Compression & HTTP/2</h2>
+      <p>
+        Enable gzip or Brotli compression on the server to reduce asset sizes. Use HTTP/2 for multiplexing requests over a single connection to improve parallel loading.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code># Nginx example: enable gzip
+gzip on;
+gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+gzip_min_length 256;
+</code></pre>
+
+      <p><strong>Note:</strong> Brotli often compresses better than gzip; enable it where supported. Also prefer HTTPS — HTTP/2 requires TLS on most browsers.</p>
+    </section>
+
+    <section id="preload-preconnect">
+      <h2>11 — Preconnect, Prefetch & Preload</h2>
+      <p>
+        Hint the browser about important resources using <code>preconnect</code>, <code>preload</code>, and <code>prefetch</code>.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;!-- Preconnect to font host for faster font load --&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+
+&lt;!-- Preload hero image for fast LCP --&gt;
+&lt;link rel="preload" as="image" href="/images/hero-1200.webp"&gt;
+</code></pre>
+
+      <p><strong>Use carefully:</strong> Overusing preload/preconnect can waste bandwidth. Only hint the most critical resources (fonts, hero images, critical scripts).</p>
+    </section>
+
+    <section id="service-worker">
+      <h2>12 — Progressive Enhancements & Service Worker</h2>
+      <p>
+        Consider adding a service worker for caching and offline support (PWA). Start simple — cache static assets and return them for subsequent visits.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>// simple sw.js (service worker)
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open('site-v1').then(cache => cache.addAll([
+      '/',
+      '/index.html',
+      '/css/main.css',
+      '/js/main.js',
+      '/images/hero-800.webp'
+    ]))
+  );
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(resp => resp || fetch(event.request))
+  );
+});
+</code></pre>
+
+      <p><strong>Remember:</strong> Service workers require HTTPS and careful cache versioning during updates to avoid stale content issues.</p>
+    </section>
+
+    <section id="build-tools">
+      <h2>13 — Build Steps: Minify, Bundle & Tree-Shake</h2>
+      <p>
+        Use build tools to minify CSS/JS, bundle modules, and remove unused code. Tools: Vite, esbuild, Rollup, Webpack. Minification reduces file sizes; tree-shaking removes dead code.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>{
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  }
+}
+</code></pre>
+
+      <p><strong>Also:</strong> Compress build outputs (gzip/brotli) before uploading to some CDNs or enable server compression on the host.</p>
+    </section>
+
+    <section id="measure-optimize">
+      <h2>14 — Measure: Lighthouse, WebPageTest & Real-User Metrics</h2>
+      <p>
+        Measure before and after changes. Use Lighthouse in Chrome DevTools for lab metrics (LCP, FID, CLS). Use WebPageTest for network waterfall and advanced analysis. Collect Real User Monitoring (RUM) to see true user experience.
+      </p>
+
+      <h3>Key metrics to know</h3>
+      <ul>
+        <li><strong>LCP</strong> — Largest Contentful Paint (speed of main content render)</li>
+        <li><strong>FID</strong> — First Input Delay (interactivity)</li>
+        <li><strong>CLS</strong> — Cumulative Layout Shift (visual stability)</li>
+        <li><strong>TTFB</strong> — Time To First Byte (server responsiveness)</li>
+      </ul>
+
+      <p><strong>Tip:</strong> Optimize for LCP by ensuring hero image and main heading load early (preload image, critical CSS).</p>
+    </section>
+
+    <section id="accessibility-seo">
+      <h2>15 — Accessibility helps SEO</h2>
+      <p>
+        Accessible pages are usually better indexed. Use semantic HTML, correct alt attributes, ARIA where needed, and ensure content is reachable without JavaScript.
+      </p>
+
+      <pre><button class="copy-btn" onclick="copyCode(this)">Copy</button><code>&lt;img src="/images/team.jpg" alt="Design team planning user interfaces"&gt;
+&lt;nav aria-label="primary navigation"&gt;...&lt;/nav&gt;
+</code></pre>
+    </section>
+
+    <section id="deploy-checklist">
+      <h2>16 — Pre-Launch Checklist</h2>
+      <ol>
+        <li>Unique page titles and meta descriptions for all pages.</li>
+        <li>Sitemap.xml present and submitted to Google Search Console.</li>
+        <li>robots.txt configured correctly.</li>
+        <li>All images optimized and using responsive <code>srcset</code> or <code>&lt;picture&gt;</code>.</li>
+        <li>Fonts loaded with preconnect or preloads; minimal font variants used.</li>
+        <li>CSS critical path optimized and main stylesheet non-blocking.</li>
+        <li>JS deferred; third-party scripts loaded async.</li>
+        <li>Compression (gzip/brotli) enabled on server and caching headers set.</li>
+        <li>HTTPS enforced and HTTP/2 or HTTP/3 enabled if available.</li>
+        <li>Lighthouse score checked and common issues resolved.</li>
+      </ol>
+    </section>
+
+    <section id="troubleshooting">
+      <h2>17 — Common Problems & Quick Fixes</h2>
+      <h3>Slow LCP</h3>
+      <p>Preload hero images, inline critical CSS, reduce server response time (optimize backend), and use CDN.</p>
+
+      <h3>Large JavaScript bundle</h3>
+      <p>Split code, remove unused libraries, and lazy-load non-critical components.</p>
+
+      <h3>Fonts cause flash of invisible text (FOIT)</h3>
+      <p>Use <code>display=swap</code> or preload critical fonts, or self-host smaller subsets.</p>
+
+      <h3>Pages not being crawled</h3>
+      <p>Check robots.txt, ensure pages aren’t blocked by meta robots noindex, and submit sitemap to Search Console.</p>
+    </section>
+
+    <section id="final-words">
+      <h2>Conclusion</h2>
+      <p>
+        Optimizing for SEO and speed is an iterative process. Make measurable changes, test frequently, and keep the user experience central. A fast, accessible site not only ranks better but converts visitors into users and customers more effectively.
+      </p>
+      <p>
+        If you follow the practices in this lesson — meaningful metadata, structured data, responsive images, smart font loading, caching, compression, and measurement — you’ll have a solid foundation to build professional, high-performing websites.
+      </p>
+
+     
+    </section>
+<div>
+    <a href="opt.html">Next</a>
+</div>
+    <footer>
+      &copy; 2025 Real-World Web Design. Built for students.
+    </footer>
+  </main>
+
+  <script>
+    // copy function: finds the nearest code inside same pre
+    function copyCode(button){
+      const pre = button.parentElement;
+      const code = pre.querySelector('code');
+      if(!code) return;
+      const text = code.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const original = button.textContent;
+        button.textContent = 'Copied!';
+        setTimeout(()=> button.textContent = original, 1600);
+      }).catch(err => {
+        console.error('Copy failed', err);
+        button.textContent = 'Fail';
+        setTimeout(()=> button.textContent = 'Copy', 1600);
+      });
+    }
+  </script>
+</body>
+</html>
