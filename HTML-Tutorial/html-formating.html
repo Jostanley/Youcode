@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Text Formatting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 20px;
+    }
+    h1, h2, h3 {
+      text-align: center;
+      color: #007bff;
+    }
+    code {
+      background: #f2f2f2;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    ul {
+      background: #fff;
+      padding: 15px 25px;
+      border-left: 4px solid #007bff;
+      border-radius: 5px;
+      list-style: disc;
+    }
+    .example {
+      background: #fff;
+      border-left: 4px solid #28a745;
+      padding: 10px 20px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+    .topics {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    .topics span {
+      margin-right: 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <h1>HTML Text Formatting</h1>
+  <p>
+    HTML contains several elements for defining text with a special meaning.
+  </p>
+
+  <h3>Example</h3>
+  <div class="example">
+    <p><b>This text is bold</b></p>
+    <p><i>This text is italic</i></p>
+    <p>This is <sub>subscript</sub> and <sup>superscript</sup></p>
+  </div>
+
+  <h2>HTML Formatting Elements</h2>
+  <p>Formatting elements were designed to display special types of text:</p>
+  <ul>
+    <li><code>&lt;b&gt;</code> - Bold text</li>
+    <li><code>&lt;strong&gt;</code> - Important text</li>
+    <li><code>&lt;i&gt;</code> - Italic text</li>
+    <li><code>&lt;em&gt;</code> - Emphasized text</li>
+    <li><code>&lt;mark&gt;</code> - Marked text</li>
+    <li><code>&lt;small&gt;</code> - Smaller text</li>
+    <li><code>&lt;del&gt;</code> - Deleted text</li>
+    <li><code>&lt;ins&gt;</code> - Inserted text</li>
+    <li><code>&lt;sub&gt;</code> - Subscript text</li>
+    <li><code>&lt;sup&gt;</code> - Superscript text</li>
+  </ul>
+
+  <h2>HTML &lt;b&gt; and &lt;strong&gt; Elements</h2>
+  <p>
+    The HTML <code>&lt;b&gt;</code> element defines bold text, without any extra importance.
+  </p>
+  <div class="example">
+    <p><b>This text is bold</b></p>
+  </div>
+
+  <p>
+    The HTML <code>&lt;strong&gt;</code> element defines text with strong importance.
+    The content inside is typically displayed in bold.
+  </p>
+  <div class="example">
+    <p><strong>This text is important!</strong></p>
+  </div>
+
+  <h2>HTML &lt;i&gt; and &lt;em&gt; Elements</h2>
+  <p>
+    The HTML <code>&lt;i&gt;</code> element defines a part of text in an alternate voice or mood.
+  </p>
+  <p>Tip: The <code>&lt;i&gt;</code> tag is often used to indicate a technical term, phrase from another language, or thought.</p>
+  <div class="example">
+    <p><i>This text is italic</i></p>
+  </div>
+
+  <p>
+    The HTML <code>&lt;em&gt;</code> element defines emphasized text. 
+    Screen readers pronounce it with emphasis.
+  </p>
+  <div class="example">
+    <p><em>This text is emphasized</em></p>
+  </div>
+
+  <h2>HTML &lt;small&gt; Element</h2>
+  <p>The HTML <code>&lt;small&gt;</code> element defines smaller text:</p>
+  <div class="example">
+    <p><small>This is some smaller text.</small></p>
+  </div>
+
+  <h2>HTML &lt;mark&gt; Element</h2>
+  <p>The HTML <code>&lt;mark&gt;</code> element defines highlighted text:</p>
+  <div class="example">
+    <p>Do not forget to buy <mark>milk</mark> today.</p>
+  </div>
+
+  <h2>HTML &lt;del&gt; Element</h2>
+  <p>The HTML <code>&lt;del&gt;</code> element defines deleted text (usually shown with a line through it):</p>
+  <div class="example">
+    <p>My favorite color is <del>blue</del> red.</p>
+  </div>
+
+  <h2>HTML &lt;ins&gt; Element</h2>
+  <p>The HTML <code>&lt;ins&gt;</code> element defines inserted (underlined) text:</p>
+  <div class="example">
+    <p>My favorite color is <del>blue</del> <ins>red</ins>.</p>
+  </div>
+
+  <h2>HTML &lt;sub&gt; Element</h2>
+  <p>
+    The HTML <code>&lt;sub&gt;</code> element defines subscript text, used in chemical formulas or mathematical expressions:
+  </p>
+  <div class="example">
+    <p>This is <sub>subscripted</sub> text.</p>
+    <p>Water formula: H<sub>2</sub>O</p>
+  </div>
+
+  <h2>HTML &lt;sup&gt; Element</h2>
+  <p>
+    The HTML <code>&lt;sup&gt;</code> element defines superscript text, often used for footnotes:
+  </p>
+  <div class="example">
+    <p>This is <sup>superscripted</sup> text.</p>
+    <p>Example: WWW<sup>[1]</sup></p>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Paragraphs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 20px;
+    }
+    .h1, .h2 {
+      text-align: center;
+      color: #007bff;
+    }
+    code {
+      background: #f2f2f2;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    ul {
+      background: #fff;
+      padding: 15px 25px;
+      border-left: 4px solid #007bff;
+      border-radius: 5px;
+      list-style: disc;
+    }
+    .example {
+      background: #fff;
+      border-left: 4px solid #28a745;
+      padding: 10px 20px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="h1">HTML Paragraphs</h1>
+  <p>A paragraph always starts on a new line, and is usually a block of text.</p>
+
+  <h2 class="h2">The HTML <code>&lt;p&gt;</code> Element</h2>
+  <p>The HTML <code>&lt;p&gt;</code> element defines a paragraph.</p>
+  <p>A paragraph always starts on a new line, and browsers automatically add some white space (a margin) before and after a paragraph.</p>
+
+  <div class="example">
+    <h3>Example:</h3>
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+  </div>
+
+  <h2 class="h2">HTML Display</h2>
+  <p>You cannot be sure how HTML will be displayed. Large or small screens, and resized windows will create different results.</p>
+  <p>With HTML, you cannot change the display by adding extra spaces or extra lines in your HTML code.</p>
+  <p>The browser will automatically remove any extra spaces and lines when the page is displayed:</p>
+
+  <div class="example">
+    <h3>Example:</h3>
+    <p>
+      This paragraph
+      contains a lot of lines
+      in the source code,
+      but the browser
+      ignores it.
+    </p>
+
+    <p>
+      This paragraph
+      contains         a lot of spaces
+      in the source         code,
+      but the        browser
+      ignores it.
+    </p>
+  </div>
+
+  <h2 class="h2">HTML Horizontal Rules</h2>
+  <p>The <code>&lt;hr&gt;</code> tag defines a thematic break in an HTML page, and is most often displayed as a horizontal rule.</p>
+  <p>The <code>&lt;hr&gt;</code> element is used to separate content (or define a change) in an HTML page:</p>
+
+  <div class="example">
+    <h3>Example:</h3>
+    <h1>This is heading 1</h1>
+    <p>This is some text.</p>
+    <hr>
+    <h2>This is heading 2</h2>
+    <p>This is some other text.</p>
+    <hr>
+  </div>
+
+  <p>The <code>&lt;hr&gt;</code> tag is an empty tag, which means that it has no end tag.</p>
+
+  <h2 class="h2">HTML Line Breaks</h2>
+  <p>The HTML <code>&lt;br&gt;</code> element defines a line break. Use <code>&lt;br&gt;</code> if you want a line break (a new line) without starting a new paragraph:</p>
+
+  <div class="example">
+    <h3>Example:</h3>
+    <p>This is<br>a paragraph<br>with line breaks.</p>
+  </div>
+
+  <p>The <code>&lt;br&gt;</code> tag is an empty tag, which means that it has no end tag.</p>
+
+  <h2 class="h2">Story problem</h2>
+  <p>This story will display on a single line:</p>
+
+  <div class="example">
+    <h3>Example:</h3>
+    <p>
+      <br>
+      I am new to web development.<br>
+      This is me testing my first paragraph.<br>
+      This is a text of line breaks.<br>
+      I want to be a good developer in future.
+    </p>
+  </div>
+
+  <h2 class="h2">Solution - The HTML <code>&lt;pre&gt;</code> Element</h2>
+  <p>The HTML <code>&lt;pre&gt;</code> element defines preformatted text. The text inside a <code>&lt;pre&gt;</code> element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks:</p>
+
+  <div class="example">
+    <h3>Example:</h3>
+    <pre>
+I am new to web development.
+This is me testing my first paragraph.
+This is a text of line breaks.
+I want to be a good developer in future.
+    </pre>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Headings</title>
+  <style>
+   body {
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 20px;
+    }
+    .h1, .h2 {
+      text-align: center;
+      color: #007bff;
+    }
+    code {
+      background: #f2f2f2;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+    ul {
+      background: #fff;
+      padding: 15px 25px;
+      border-left: 4px solid #007bff;
+      border-radius: 5px;
+      list-style: disc;
+    }
+    .example-box {
+      background: #fff;
+      border-left: 4px solid #28a745;
+      padding: 10px 20px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+
+    .exampl {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .example-box h1,
+    .example-box h2,
+    .example-box h3,
+    .example-box h4,
+    .example-box h5,
+    .example-box h6 {
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2 class="h1">HTML Headings</h2>
+  <p>HTML headings are titles or subtitles that you want to display on a webpage.</p>
+
+  <p>HTML headings are defined with the
+   <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> tags.</p>
+
+  <h3>Example:</h3>
+  <div class="example-box">
+    <h1>Heading 1</h1>
+    <h2>Heading 2</h2>
+    <h3>Heading 3</h3>
+    <h4>Heading 4</h4>
+    <h5>Heading 5</h5>
+    <h6>Heading 6</h6>
+  </div>
+
+  <h3>Explanation</h3>
+  <p><code>&lt;h1&gt;</code> defines the most important heading, while <code>&lt;h6&gt;</code> defines the least important heading.</p>
+
+  <p><strong>Note:</strong> Browsers automatically add some white space (margin) before and after a heading.</p>
+
+  <h3 class="h1">Headings Are Important</h3>
+  <p>Search engines use headings to index the structure and content of your web pages.  
+  Users often skim a page by its headings. It is important to use headings to show the document structure.</p>
+
+  <ul>
+    <li><code>&lt;h1&gt;</code> — Main heading</li>
+    <li><code>&lt;h2&gt;</code> — Subheading</li>
+    <li><code>&lt;h3&gt;</code> — Less important heading</li>
+    <li>...and so on up to <code>&lt;h6&gt;</code>.</li>
+  </ul>
+
+  <p><strong>Note:</strong> Use HTML headings for headings only. Do not use them just to make text big or bold.</p>
+
+  <h3 class="h1">Bigger Headings</h3>
+  <p>You can change the size of any heading with the <code>style</code> attribute using the CSS <code>font-size</code> property.</p>
+
+  <h3>Example:</h3>
+  <div class="example-box">
+    &lt;h1 style="font-size:60px;"&gt;Heading 1&lt;/h1 &gt;
+  </div>
+</body>
+</html>

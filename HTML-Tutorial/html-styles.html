@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Favicon Tutorial</title>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    h2 {
+      color: #34495e;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    pre {
+      background-color: #f4f4f4;
+      padding: 15px;
+      border-left: 5px solid #2196F3;
+      overflow-x: auto;
+    }
+
+    code {
+      color: #c7254e;
+      background-color: #f9f2f4;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+
+    .example {
+      margin-bottom: 20px;
+    }
+
+    .btn-container {
+      margin: 20px 0;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 10px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>HTML Favicon</h1>
+  <p>A favicon is a small image displayed next to the page title in the browser tab.</p>
+
+  <h2>How To Add a Favicon in HTML</h2>
+  <p>
+    You can use any image you like as your favicon. You can also create your own favicon on websites like 
+    <a href="https://www.favicon.cc" target="_blank">https://www.favicon.cc</a>.
+  </p>
+  <p>
+    Tip: A favicon is a small image, so it should be simple and have high contrast.
+  </p>
+
+  <h2>Example of a Favicon</h2>
+  <p>
+    To add a favicon to your website, either save your favicon image in the root directory of your web server,
+    or create a folder in the root directory called <code>images</code> and save your favicon image inside it.
+    A common name for a favicon file is <code>favicon.ico</code>.
+  </p>
+
+  <div class="example">
+    <h2>Example</h2>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Page Title&lt;/title&gt;
+  &lt;link rel="icon" type="image/x-icon" href="/images/favicon.ico"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;This is a Heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+  </div>
+
+  <p>
+    Now, save the <code>index.html</code> file and reload it in your browser. Your browser tab should now display your favicon
+    image to the left of the page title.
+  </p>
+
+  <h2>Favicon File Format Support</h2>
+  <p>The following table shows file format support for favicon images in major browsers:</p>
+
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      <th>Browser</th>
+      <th>ICO</th>
+      <th>PNG</th>
+      <th>GIF</th>
+      <th>JPEG</th>
+      <th>SVG</th>
+    </tr>
+    <tr><td>Edge</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+    <tr><td>Chrome</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+    <tr><td>Firefox</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+    <tr><td>Opera</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+    <tr><td>Safari</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+  </table>
+
+  <h2>Chapter Summary</h2>
+  <ul>
+    <li>Use the HTML <code>&lt;link&gt;</code> element to insert a favicon.</li>
+    <li>The favicon image is displayed to the left of the page title in the browser tab.</li>
+    <li>Most browsers support multiple favicon image formats such as ICO, PNG, JPEG, GIF, and SVG.</li>
+  </ul>
+
+</body>
+</html>

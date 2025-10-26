@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Images</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: rgba(240, 248, 255, 0.7);
+    margin: 30px;
+  }
+
+  h1, h2 {
+    color: #003366;
+  }
+
+  p, li {
+    color: #222;
+  }
+
+  .example, .note, .summary {
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+
+  .example {
+    background: rgba(255, 255, 255, 0.9);
+    border-left: 5px solid rgba(0, 128, 255, 0.6);
+  }
+
+  code, pre {
+    background: rgba(235, 245, 255, 0.8);
+    display: block;
+    padding: 10px;
+    border-left: 4px solid rgba(0, 128, 255, 0.5);
+    overflow-x: auto;
+  }
+
+  .note {
+    background: rgba(255, 250, 200, 0.8);
+    border-left: 5px solid rgba(255, 204, 0, 0.8);
+  }
+
+  .summary {
+    background: rgba(220, 255, 220, 0.8);
+    border-left: 5px solid rgba(0, 200, 100, 0.8);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th, td {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: rgba(200, 220, 255, 0.6);
+  }
+
+  .title-bar {
+    background: rgba(0, 102, 204, 0.8);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 1.4em;
+    margin-bottom: 25px;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+</style>
+</head>
+<body>
+
+<div class="title-bar">HTML Images</div>
+
+<section>
+  <p>Images can improve the design and the appearance of a web page.</p>
+
+  <div class="example">
+    <strong>Example:</strong>
+    <code>&lt;img src="pic_trulli.jpg" alt="Italian Trulli"&gt;</code>
+    <code>&lt;img src="img_girl.jpg" alt="Girl in a jacket"&gt;</code>
+    <code>&lt;img src="img_chania.jpg" alt="Flowers in Chania"&gt;</code>
+  </div>
+
+  <h2>HTML Images Syntax</h2>
+  <p>The HTML <code>&lt;img&gt;</code> tag is used to embed an image in a web page.</p>
+  <p>Images are not technically inserted into a web page; they are linked to it. The <code>&lt;img&gt;</code> tag creates a holding space for the referenced image.</p>
+  <p>The <code>&lt;img&gt;</code> tag is empty, meaning it has no closing tag.</p>
+
+  <ul>
+    <li><strong>src</strong> — Specifies the path to the image</li>
+    <li><strong>alt</strong> — Specifies an alternate text for the image</li>
+  </ul>
+
+  <div class="example">
+    <h3>Syntax:</h3>
+    <code>&lt;img src="url" alt="alternatetext"&gt;</code>
+  </div>
+
+  <h2>The src Attribute</h2>
+  <p>The required <code>src</code> attribute specifies the path (URL) to the image.</p>
+
+  <div class="note">
+    <strong>Note:</strong> Ensure that your image files remain in the same folder relative to the page, otherwise your visitors may see a broken image icon.
+  </div>
+
+  <div class="example">
+    <code>&lt;img src="img_chania.jpg" alt="Flowers in Chania"&gt;</code>
+  </div>
+
+  <h2>The alt Attribute</h2>
+  <p>The required <code>alt</code> attribute provides alternate text for an image, if the user cannot view it.</p>
+
+  <div class="example">
+    <code>&lt;img src="img_chania.jpg" alt="Flowers in Chania"&gt;</code>
+    <code>&lt;img src="wrongname.gif" alt="Flowers in Chania"&gt;</code>
+  </div>
+
+  <p><strong>Tip:</strong> Screen readers use the alt text to describe images for users who are visually impaired.</p>
+
+  <h2>Image Size - Width and Height</h2>
+  <p>You can use the <code>style</code> attribute or the <code>width</code> and <code>height</code> attributes to specify the dimensions of an image.</p>
+
+  <div class="example">
+    <code>&lt;img src="img_girl.jpg" alt="Girl in a jacket" style="width:500px;height:600px;"&gt;</code>
+    <code>&lt;img src="img_girl.jpg" alt="Girl in a jacket" width="500" height="600"&gt;</code>
+  </div>
+
+  <div class="note">
+    <strong>Note:</strong> Always specify image width and height to prevent page flickering while loading.
+  </div>
+
+  <h2>Width and Height, or Style?</h2>
+  <p>All are valid, but using <code>style</code> is recommended since it keeps your CSS centralized.</p>
+
+  <div class="example">
+    <code>
+      &lt;!DOCTYPE html&gt;<br>
+      &lt;html&gt;<br>
+      &lt;head&gt;<br>
+      &lt;style&gt;<br>
+      img { width: 100%; }<br>
+      &lt;/style&gt;<br>
+      &lt;/head&gt;<br>
+      &lt;body&gt;<br><br>
+
+      &lt;img src="html5.gif" alt="HTML5 Icon" width="128" height="128"&gt;<br>
+      &lt;img src="html5.gif" alt="HTML5 Icon" style="width:128px;height:128px;"&gt;<br><br>
+
+      &lt;/body&gt;<br>
+      &lt;/html&gt;
+    </code>
+  </div>
+
+  <h2>Images in Another Folder</h2>
+  <div class="example">
+    <code>&lt;img src="/images/html5.gif" alt="HTML5 Icon" style="width:128px;height:128px;"&gt;</code>
+  </div>
+
+  <h2>Images on Another Server/Website</h2>
+  <div class="example">
+    <code>&lt;img src="https://www.w3schools.com/images/w3schools_green.jpg" alt="W3Schools.com"&gt;</code>
+  </div>
+
+  <div class="note">
+    <strong>Note:</strong> Always confirm you have permission before using external or copyrighted images.
+  </div>
+
+  <h2>Animated Images</h2>
+  <div class="example">
+    <code>&lt;img src="programming.gif" alt="Computer Man" style="width:48px;height:48px;"&gt;</code>
+  </div>
+
+  <h2>Image as a Link</h2>
+  <div class="example">
+    <code>
+      &lt;a href="default.asp"&gt;<br>
+      &nbsp;&nbsp;&lt;img src="smiley.gif" alt="HTML tutorial" style="width:42px;height:42px;"&gt;<br>
+      &lt;/a&gt;
+    </code>
+  </div>
+
+  <h2>Image Floating</h2>
+  <div class="example">
+    <code>
+      &lt;p&gt;&lt;img src="smiley.gif" alt="Smiley face" style="float:right;width:42px;height:42px;"&gt; The image will float to the right of the text.&lt;/p&gt;<br><br>
+      &lt;p&gt;&lt;img src="smiley.gif" alt="Smiley face" style="float:left;width:42px;height:42px;"&gt; The image will float to the left of the text.&lt;/p&gt;
+    </code>
+  </div>
+
+  <h2>Common Image Formats</h2>
+  <table>
+    <tr><th>Abbreviation</th><th>File Format</th><th>File Extension</th></tr>
+    <tr><td>APNG</td><td>Animated Portable Network Graphics</td><td>.apng</td></tr>
+    <tr><td>GIF</td><td>Graphics Interchange Format</td><td>.gif</td></tr>
+    <tr><td>ICO</td><td>Microsoft Icon</td><td>.ico, .cur</td></tr>
+    <tr><td>JPEG</td><td>Joint Photographic Expert Group image</td><td>.jpg, .jpeg, .jfif, .pjpeg, .pjp</td></tr>
+    <tr><td>PNG</td><td>Portable Network Graphics</td><td>.png</td></tr>
+    <tr><td>SVG</td><td>Scalable Vector Graphics</td><td>.svg</td></tr>
+  </table>
+
+  <div class="summary">
+    <h3>Chapter Summary</h3>
+    <ul>
+      <li>Use the HTML <code>&lt;img&gt;</code> element to define an image.</li>
+      <li>Use the <code>src</code> attribute to define the image URL.</li>
+      <li>Use the <code>alt</code> attribute for alternate text.</li>
+      <li>Use <code>width</code> and <code>height</code> or CSS to define image size.</li>
+      <li>Use CSS <code>float</code> to position images.</li>
+      <li>Optimize large images for faster loading.</li>
+    </ul>
+  </div>
+</section>
+ <h1>HTML Background Images</h1>
+
+  <div class="btn-container">
+    <a href="previous-page.html" class="btn">Previous</a>
+    <a href="next-page.html" class="btn">Next</a>
+  </div>
+
+  <p>A background image can be specified for almost any HTML element.</p>
+
+  <h2>Background Image on an HTML Element</h2>
+  <p>To add a background image on an HTML element, use the HTML <code>style</code> attribute and the CSS <code>background-image</code> property:</p>
+
+  <div class="example">
+    <h3>Example</h3>
+    <p>Add a background image on a <code>&lt;p&gt;</code> element:</p>
+    <pre><code>&lt;p style="background-image: url('img_girl.jpg');"&gt;</code></pre>
+  </div>
+
+  <p>You can also specify the background image in the <code>&lt;style&gt;</code> element, in the <code>&lt;head&gt;</code> section:</p>
+
+  <div class="example">
+    <h3>Example</h3>
+    <pre><code>&lt;style&gt;
+p {
+  background-image: url('img_girl.jpg');
+}
+&lt;/style&gt;</code></pre>
+  </div>
+
+  <h2>Background Image on a Page</h2>
+  <p>If you want the entire page to have a background image, you must specify the background image on the <code>&lt;body&gt;</code> element:</p>
+
+  <div class="example">
+    <h3>Example</h3>
+    <pre><code>&lt;style&gt;
+body {
+  background-image: url('img_girl.jpg');
+}
+&lt;/style&gt;</code></pre>
+  </div>
+
+  <h2>Background Repeat</h2>
+  <p>If the background image is smaller than the element, the image will repeat itself horizontally and vertically until it reaches the end of the element:</p>
+
+  <div class="example">
+    <h3>Example</h3>
+    <pre><code>&lt;style&gt;
+body {
+  background-image: url('example_img_girl.jpg');
+}
+&lt;/style&gt;</code></pre>
+  </div>
+
+  <p>To avoid the background image from repeating itself, set the <code>background-repeat</code> property to <code>no-repeat</code>:</p>
+
+  <div class="example">
+    <h3>Example</h3>
+    <pre><code>&lt;style&gt;
+body {
+  background-image: url('example_img_girl.jpg');
+  background-repeat: no-repeat;
+}
+&lt;/style&gt;</code></pre>
+  </div>
+
+  <h2>Background Cover</h2>
+  <p>If you want the background image to cover the entire element, you can set the <code>background-size</code> property to <code>cover</code>.</p>
+  <p>Also, to make sure the entire element is always covered, set the <code>background-attachment</code> property to <code>fixed</code>:</p>
+  <p>This way, the background image will cover the entire element, with no stretching (the image will keep its original proportions):</p>
+
+  <div class="example">
+    <h3>Example</h3>
+    <pre><code>&lt;style&gt;
+body {
+  background-image: url('img_girl.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+&lt;/style&gt;</code></pre>
+  </div>
+
+  <h2>Background Stretch</h2>
+  <p>If you want the background image to stretch to fit the entire element, you can set the <code>background-size</code> property to <code>100% 100%</code>:</p>
+  <p>Try resizing the browser window, and you will see that the image will stretch, but always cover the entire element.</p>
+
+  <div class="example">
+    <h3>Example</h3>
+    <pre><code>&lt;style&gt;
+body {
+  background-image: url('img_girl.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+&lt;/style&gt;</code></pre>
+  </div>
+</body>
+</html>

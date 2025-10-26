@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Quotation and Citation Elements</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 ,h2{
+            color: #0066cc;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        blockquote {
+            background-color: #f0f8ff;
+            border-left: 5px solid #0099ff;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        bdo {
+            display: block;
+            margin-top: 10px;
+            background-color: #fff3cd;
+            padding: 8px;
+            border-left: 4px solid #ffcc00;
+        }
+        .example {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        .tag-list {
+            background-color: #222;
+            color: #fff;
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 6px;
+        }
+        .tag-list span {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+   
+    <h1>HTML Quotation and Citation Elements</h1>
+    <p>In this chapter, we will go through the <code>&lt;blockquote&gt;</code>, <code>&lt;q&gt;</code>, <code>&lt;abbr&gt;</code>, <code>&lt;address&gt;</code>, <code>&lt;cite&gt;</code>, and <code>&lt;bdo&gt;</code> HTML elements.</p>
+
+    <h2>Example</h2>
+    <div class="example">
+        <p>Here is a quote from WWF's website:</p>
+        <blockquote cite="http://www.worldwildlife.org/who/index.html">
+            For 60 years, WWF has worked to help people and nature thrive. As the world's leading conservation organization,
+            WWF works in nearly 100 countries. At every level, we collaborate with people around the world to develop and deliver
+            innovative solutions that protect communities, wildlife, and the places in which they live.
+        </blockquote>
+    </div>
+
+    <h2>HTML &lt;blockquote&gt; for Quotations</h2>
+    <p>The HTML <code>&lt;blockquote&gt;</code> element defines a section that is quoted from another source. Browsers usually indent <code>&lt;blockquote&gt;</code> elements.</p>
+    <div class="example">
+        <p>Here is a quote from WWF's website:</p>
+        <blockquote cite="http://www.worldwildlife.org/who/index.html">
+            For 60 years, WWF has worked to help people and nature thrive. As the world's leading conservation organization,
+            WWF works in nearly 100 countries. At every level, we collaborate with people around the world to develop and deliver
+            innovative solutions that protect communities, wildlife, and the places in which they live.
+        </blockquote>
+    </div>
+
+    <h2>HTML &lt;q&gt; for Short Quotations</h2>
+    <p>The HTML <code>&lt;q&gt;</code> tag defines a short quotation. Browsers normally insert quotation marks around the quotation.</p>
+    <div class="example">
+        <p>WWF's goal is to: <q>Build a future where people live in harmony with nature.</q></p>
+    </div>
+
+    <h2>HTML &lt;abbr&gt; for Abbreviations</h2>
+    <p>The HTML <code>&lt;abbr&gt;</code> tag defines an abbreviation or acronym, like "HTML", "CSS", or "ATM".</p>
+    <div class="example">
+        <p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+    </div>
+
+    <h2>HTML &lt;address&gt; for Contact Information</h2>
+    <p>The HTML <code>&lt;address&gt;</code> tag defines the contact information for the author or owner of a document or article.</p>
+    <div class="example">
+        <address>
+            Written by John Doe.<br>
+            Visit us at:<br>
+            Example.com<br>
+            Box 564, Disneyland<br>
+            USA
+        </address>
+    </div>
+
+    <h2>HTML &lt;cite&gt; for Work Title</h2>
+    <p>The HTML <code>&lt;cite&gt;</code> tag defines the title of a creative work (e.g. a book, a poem, a song, or a painting).</p>
+    <div class="example">
+        <p><cite>The Scream</cite> by Edvard Munch. Painted in 1893.</p>
+    </div>
+
+    <h2>HTML &lt;bdo&gt; for Bi-Directional Override</h2>
+    <p>BDO stands for Bi-Directional Override. The HTML <code>&lt;bdo&gt;</code> tag is used to override the current text direction:</p>
+    <div class="example">
+        <bdo dir="rtl">This text will be written from right to left</bdo>
+    </div>
+
+</body>
+</html>

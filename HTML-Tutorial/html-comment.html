@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Comments</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 10px 2px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #007bff;
+    }
+
+    code {
+      background: #f2f2f2;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+
+    pre {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    ul {
+      background: #fff;
+      padding: 15px 25px;
+      border-left: 4px solid #007bff;
+      border-radius: 5px;
+      list-style: disc;
+    }
+
+    .example {
+      background: #fff;
+      border-left: 4px solid #28a745;
+      padding: 10px 20px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+
+    .note {
+      background-color: #ffffcc;
+      border-left: 5px solid #ffeb3b;
+      padding: 10px;
+      margin: 15px 0;
+      border-radius: 5px;
+    }
+
+    a.ad {
+      color: #04AA6D;
+      text-decoration: underline;
+    }
+
+    hr {
+      margin: 30px 0;
+      border: none;
+      border-top: 1px solid #ddd;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #04AA6D;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>HTML Comments</h1>
+    <p>HTML comments are not displayed in the browser, but they can help document your HTML source code.</p>
+
+    <h2>HTML Comment Tag</h2>
+    <p>You can add comments to your HTML source by using the following syntax:</p>
+
+    <div class="example">
+      <code>&lt;!-- Write your comments here --&gt;</code>
+    </div>
+
+    <p>Notice that there is an exclamation point (<code>!</code>) in the start tag, but not in the end tag.</p>
+
+    <div class="note">
+      <strong>Note:</strong> Comments are not displayed by the browser, but they can help document your HTML source code.
+    </div>
+
+    <h2>Add Comments</h2>
+    <p>With comments you can place notifications and reminders in your HTML code:</p>
+
+    <h3>Example</h3>
+    <div class="example">
+      <code>
+        &lt;!-- This is a comment --&gt;<br>
+        &lt;p&gt;This is a paragraph.&lt;/p&gt;<br>
+        &lt;!-- Remember to add more information here --&gt;
+      </code>
+    </div>
+
+    <h2>Hide Content</h2>
+    <p>Comments can be used to hide content. This can be helpful if you hide content temporarily:</p>
+
+    <h3>Example</h3>
+    <div class="example">
+      <code>
+        &lt;p&gt;This is a paragraph.&lt;/p&gt;<br>
+        &lt;!-- &lt;p&gt;This is another paragraph&lt;/p&gt; --&gt;<br>
+        &lt;p&gt;This is a paragraph too.&lt;/p&gt;
+      </code>
+    </div>
+
+    <p>You can also hide more than one line. Everything between <code>&lt;!--</code> and <code>--&gt;</code> will be hidden from display.</p>
+
+    <h3>Example</h3>
+    <p>Hide a section of HTML code:</p>
+    <div class="example">
+      <code>
+        &lt;p&gt;This is a paragraph.&lt;/p&gt;<br>
+        &lt;!--<br>
+        &lt;p&gt;Look at this cool image:&lt;/p&gt;<br>
+        &lt;img border="0" src="pic_trulli.jpg" alt="Trulli"&gt;<br>
+        --&gt;<br>
+        &lt;p&gt;This is a paragraph too.&lt;/p&gt;
+      </code>
+    </div>
+
+    <p>Comments are also great for debugging HTML, because you can comment out lines of code to search for errors.</p>
+
+    <h2>Hide Inline Content</h2>
+    <p>Comments can be used to hide parts in the middle of the HTML code.</p>
+
+    <h3>Example</h3>
+    <p>Hide a part of a paragraph:</p>
+    <div class="example">
+      <code>&lt;p&gt;This &lt;!-- great text --&gt; is a paragraph.&lt;/p&gt;</code>
+    </div>
+
+    <hr>
+
+    <footer>
+      <a href="#">❮ Previous</a>
+      <a href="#">Next ❯</a>
+    </footer>
+  </div>
+</body>
+</html>
